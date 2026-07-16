@@ -290,3 +290,15 @@ height:220px;
     height:220px;
     object-fit:cover;
 }
+.popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 20px rgba(0,0,0,.3);
+z-index:9999;
+width:350px;
+}
