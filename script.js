@@ -264,3 +264,10 @@ function checkout() {
         "_blank"
     );
 }
+function copyUPI(){
+
+navigator.clipboard.writeText("n92066158@oksbi");
+
+alert("UPI ID Copied!");
+
+}
