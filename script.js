@@ -271,3 +271,4 @@ navigator.clipboard.writeText("n92066158@oksbi");
 alert("UPI ID Copied!");
 
 }
+(addToCart() aur PlaceOrder(),
