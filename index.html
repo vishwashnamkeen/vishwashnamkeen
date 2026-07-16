@@ -393,4 +393,54 @@ Add To Cart
   </div>
 
 </div>
-  
+  <!-- ===== Customer Details ===== -->
+
+<div class="checkout-box">
+
+<h2>Customer Details</h2>
+
+<input type="text" id="customerName" placeholder="Enter Your Name">
+
+<input type="tel" id="customerPhone" placeholder="Mobile Number">
+
+<textarea id="customerAddress" placeholder="Full Address"></textarea>
+
+<select id="paymentMethod">
+<option value="">Select Payment Method</option>
+<option value="UPI">UPI Payment</option>
+<option value="Cash On Delivery">Cash On Delivery</option>
+</select>
+
+<input type="text" id="coupon" placeholder="Coupon Code">
+
+<button onclick="applyCoupon()">Apply Coupon</button>
+
+<div class="bill-box">
+
+<p>Product Total : <span id="productTotal">₹0</span></p>
+
+<p>GST (5%) : <span id="gstAmount">₹0</span></p>
+
+<p>Delivery Charge : <span id="deliveryCharge">₹40</span></p>
+
+<h3>Grand Total : <span id="grandTotal">₹0</span></h3>
+
+</div>
+
+<div id="upiBox" style="display:none;">
+
+<h3>UPI Payment</h3>
+
+<p><b>Owner :</b> NIKHIL VAISHNAV</p>
+
+<p><b>UPI ID :</b> n92066158@oksbi</p>
+
+<button onclick="copyUPI()">Copy UPI ID</button>
+
+</div>
+
+<button class="checkout-btn" onclick="placeOrder()">
+Place Order
+</button>
+
+</div>
