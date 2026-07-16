@@ -10,7 +10,53 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
+<!-- Order Popup -->
+<div id="orderPopup" class="popup">
 
+  <div class="popup-content">
+
+    <span class="close" onclick="closePopup()">&times;</span>
+
+    <h2>Complete Your Order</h2>
+
+    <label>Product Name</label>
+    <input type="text" id="productName" readonly>
+
+    <label>Price (₹)</label>
+    <input type="text" id="productPrice" readonly>
+
+    <label>Quantity</label>
+    <input type="number" id="quantity" value="1" min="1">
+
+    <label>Select Weight</label>
+    <select id="weight">
+      <option value="250g">250g</option>
+      <option value="500g">500g</option>
+      <option value="1kg">1kg</option>
+    </select>
+
+    <label>Your Name</label>
+    <input type="text" id="customerName" placeholder="Enter Your Name">
+
+    <label>Mobile Number</label>
+    <input type="tel" id="customerMobile" placeholder="10 Digit Mobile Number">
+
+    <label>Delivery Address</label>
+    <textarea id="customerAddress" placeholder="Full Address"></textarea>
+
+    <label>Payment Method</label>
+    <select id="paymentMethod">
+      <option value="UPI">UPI</option>
+      <option value="Cash on Delivery">Cash on Delivery</option>
+    </select>
+
+    <h3>Total: ₹<span id="popupTotal">0</span></h3>
+
+    <button onclick="placeOrder()">Place Order</button>
+
+  </div>
+
+</div>
 <body>
 
 <header class="header">
@@ -300,3 +346,51 @@ Add To Cart
 <button onclick="addToCart('Khakra',90)">
 Add To Cart
 </button>
+</body><!-- Order Popup -->
+<div id="orderPopup" class="popup">
+
+  <div class="popup-content">
+
+    <span class="close" onclick="closePopup()">&times;</span>
+
+    <h2>Complete Your Order</h2>
+
+    <label>Product Name</label>
+    <input type="text" id="productName" readonly>
+
+    <label>Price (₹)</label>
+    <input type="text" id="productPrice" readonly>
+
+    <label>Quantity</label>
+    <input type="number" id="quantity" value="1" min="1">
+
+    <label>Select Weight</label>
+    <select id="weight">
+      <option value="250g">250g</option>
+      <option value="500g">500g</option>
+      <option value="1kg">1kg</option>
+    </select>
+
+    <label>Your Name</label>
+    <input type="text" id="customerName" placeholder="Enter Your Name">
+
+    <label>Mobile Number</label>
+    <input type="tel" id="customerMobile" placeholder="10 Digit Mobile Number">
+
+    <label>Delivery Address</label>
+    <textarea id="customerAddress" placeholder="Full Address"></textarea>
+
+    <label>Payment Method</label>
+    <select id="paymentMethod">
+      <option value="UPI">UPI</option>
+      <option value="Cash on Delivery">Cash on Delivery</option>
+    </select>
+
+    <h3>Total: ₹<span id="popupTotal">0</span></h3>
+
+    <button onclick="placeOrder()">Place Order</button>
+
+  </div>
+
+</div>
+  
