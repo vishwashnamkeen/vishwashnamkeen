@@ -3,60 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Vishwas Namkeen</title>
 
 <link rel="stylesheet" href="style.css">
+
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
-<!-- Order Popup -->
-<div id="orderPopup" class="popup">
 
-  <div class="popup-content">
+<body>
 
-    <span class="close" onclick="closePopup()">&times;</span>
-
-    <h2>Complete Your Order</h2>
-
-    <label>Product Name</label>
-    <input type="text" id="productName" readonly>
-
-    <label>Price (₹)</label>
-    <input type="text" id="productPrice" readonly>
-
-    <label>Quantity</label>
-    <input type="number" id="quantity" value="1" min="1">
-
-    <label>Select Weight</label>
-    <select id="weight">
-      <option value="250g">250g</option>
-      <option value="500g">500g</option>
-      <option value="1kg">1kg</option>
-    </select>
-
-    <label>Your Name</label>
-    <input type="text" id="customerName" placeholder="Enter Your Name">
-
-    <label>Mobile Number</label>
-    <input type="tel" id="customerMobile" placeholder="10 Digit Mobile Number">
-
-    <label>Delivery Address</label>
-    <textarea id="customerAddress" placeholder="Full Address"></textarea>
-
-    <label>Payment Method</label>
-    <select id="paymentMethod">
-      <option value="UPI">UPI</option>
-      <option value="Cash on Delivery">Cash on Delivery</option>
-    </select>
-
-    <h3>Total: ₹<span id="popupTotal">0</span></h3>
-
-    <button onclick="placeOrder()">Place Order</button>
-
-  </div>
-
-</div>
 <header class="header">
 
 <div class="logo">
@@ -67,6 +25,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 <nav>
 
 <a href="#">Home</a>
+<a href="#slider">Gallery</a>
 <a href="#products">Products</a>
 <a href="#contact">Contact</a>
 
@@ -78,38 +37,69 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 </header>
 
-<section class="hero">
+<!-- Image Slider -->
 
-<img src="hero.jpg.png" alt="Hero Banner">
+<section id="slider">
 
-<div class="hero-text">
+<div class="slider">
 
-<h2>Welcome To Vishwas Namkeen</h2>
+<img class="slide active"
+src="hero.jpg.png">
 
-<p>
-Best Quality Namkeen & Snacks
-Delivered Fresh To Your Home
-</p>
+<img class="slide"
+src="Bhakarwadi.png.png">
 
-<a href="#products" class="btn">
-Shop Now
-</a>
+<img class="slide"
+src="Diet-Namkeen.png.png">
+
+<img class="slide"
+src="Khakra.png.png">
+
+<img class="slide"
+src="popcon.png.png">
+
+<img class="slide"
+src="Banana-Wafer.png.png">
 
 </div>
 
 </section>
 
+<!-- Hero -->
+
+<section class="hero">
+
+<h2>Welcome To Vishwas Namkeen</h2>
+
+<p>
+
+Best Quality Namkeen Delivered Fresh To Your Home.
+
+</p>
+
+<a href="#products" class="btn">
+
+Shop Now
+
+</a>
+
+</section>
+
+<!-- Products -->
+
 <section id="products">
 
 <h2 class="title">
+
 Our Products
+
 </h2>
 
 <div class="products">
 
 <div class="card">
 
-<img src="Bhakarwadi.png.png" alt="Bhakarwadi">
+<img src="Bhakarwadi.png.png">
 
 <h3>Bhakarwadi</h3>
 
@@ -123,7 +113,7 @@ Add To Cart
 
 <div class="card">
 
-<img src="Diet-Namkeen.png.png" alt="Diet Namkeen">
+<img src="Diet-Namkeen.png.png">
 
 <h3>Diet Namkeen</h3>
 
@@ -137,7 +127,7 @@ Add To Cart
 
 <div class="card">
 
-<img src="Khakra.png.png" alt="Khakra",90)">
+<img src="Khakra.png.png">
 
 <h3>Khakra</h3>
 
@@ -151,7 +141,7 @@ Add To Cart
 
 <div class="card">
 
-<img src="popcon.png.png" alt="Popcorn">
+<img src="popcon.png.png">
 
 <h3>Popcorn</h3>
 
@@ -165,7 +155,7 @@ Add To Cart
 
 <div class="card">
 
-<img src="Banana-Wafer.png.png" alt="Banana Wafer",75">
+<img src="Banana-Wafer.png.png">
 
 <h3>Banana Wafer</h3>
 
@@ -176,27 +166,88 @@ Add To Cart
 </button>
 
 </div>
-
-</div>
-<!-- Shopping Cart -->
+  <!-- Shopping Cart -->
 
 <section class="cart-section">
 
 <h2>Your Cart</h2>
 
 <div id="cart-items">
+
 <p>Your cart is empty.</p>
+
 </div>
 
-<h3>
-Total : ₹<span id="total">0</span>
-</h3>
+<h3>Total : ₹<span id="total">0</span></h3>
 
-<button onclick="checkout()">
+<button class="checkout-btn" onclick="checkout()">
 Checkout
 </button>
 
 </section>
+
+<!-- Order Popup -->
+
+<div id="orderPopup" class="popup">
+
+<div class="popup-content">
+
+<span class="close" onclick="closePopup()">&times;</span>
+
+<h2>Complete Your Order</h2>
+
+<label>Product</label>
+<input type="text" id="productName" readonly>
+
+<label>Price</label>
+<input type="text" id="productPrice" readonly>
+
+<label>Quantity</label>
+<input type="number" id="quantity" value="1" min="1">
+
+<label>Weight</label>
+
+<select id="weight">
+
+<option>250g</option>
+
+<option>500g</option>
+
+<option>1kg</option>
+
+</select>
+
+<label>Your Name</label>
+
+<input type="text" id="customerName">
+
+<label>Mobile Number</label>
+
+<input type="tel" id="customerMobile">
+
+<label>Delivery Address</label>
+
+<textarea id="customerAddress"></textarea>
+
+<label>Payment Method</label>
+
+<select id="paymentMethod">
+
+<option>UPI</option>
+
+<option>Cash On Delivery</option>
+
+</select>
+
+<h3>Total : ₹<span id="popupTotal">0</span></h3>
+
+<button onclick="placeOrder()">
+Place Order
+</button>
+
+</div>
+
+</div>
 
 <!-- Contact -->
 
@@ -204,25 +255,17 @@ Checkout
 
 <h2>Contact Us</h2>
 
-<p>
-📞 +91 8460183525
-</p>
+<p>📞 +91 8460183525</p>
 
-<p>
-📧 vishwashnamkeen@gmail.com
-</p>
+<p>📧 vishwashnamkeen@gmail.com</p>
 
-<p>
-📍 Dediapada Gujarat, India
-</p>
-  pincode 393040
+<p>📍 Dediapada, Gujarat - 393040</p>
 
 </section>
 
-<!-- WhatsApp Button -->
+<!-- WhatsApp -->
 
-<a
-href="https://wa.me/918460183525"
+<a href="https://wa.me/918460183525"
 class="whatsapp"
 target="_blank">
 
@@ -234,53 +277,101 @@ target="_blank">
 
 <footer>
 
-<p>
+<h2>Vishwas Namkeen</h2>
 
-© 2026 Vishwas Namkeen
+<p>Owner : Nikhil Vaishnav</p>
 
-</p>
+<p>UPI : n92066158@oksbi</p>
 
-<p>
-
-Fresh • Crispy • Tasty
-
-</p>
+<p>© 2026 Vishwas Namkeen</p>
 
 </footer>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
-<header>
-...
-</header>
+  <!-- ===== Checkout Section ===== -->
 
-<!-- YAHAN ADD KARO -->
+<section id="checkout" class="checkout-section">
 
-<section class="hero">
+<h2>Complete Your Order</h2>
 
-<img src="hero.jpg.png" alt="Hero Banner">
+<label>Full Name</label>
+<input type="text" id="customerName" placeholder="Enter Your Name">
 
-<div class="hero-text">
-<h2>🌟 Vishwas Namkeen 🌟</h2>
-<p>Fresh • Crispy • Tasty Namkeen</p>
+<label>Mobile Number</label>
+<input type="tel" id="customerMobile" maxlength="10"
+placeholder="10 Digit Mobile Number">
 
-<a href="#products" class="btn">
-Shop Now
-</a>
+<label>Address</label>
+<textarea id="customerAddress"
+placeholder="House No, Street, Village"></textarea>
 
-</div>
+<label>State</label>
+<input type="text" id="customerState"
+value="Gujarat">
 
-</section>
+<label>City</label>
+<input type="text" id="customerCity"
+placeholder="Enter City">
 
-<section id="products">
-...
-<h1>Vishwas Namkeen</h1>
-<p>Owner: Nikhil Vaishnav</p>
-<h2>Payment</h2>
+<label>PIN Code</label>
+<input
+type="number"
+id="customerPincode"
+maxlength="6"
+placeholder="393040">
 
-<p>UPI ID: <b>n92066158@oksbi</b></p>
+<p id="pinMessage"></p>
+
+<label>Select Weight</label>
+
+<select id="weight">
+
+<option value="250g">250g</option>
+
+<option value="500g">500g</option>
+
+<option value="1kg">1kg</option>
+
+</select>
+
+<label>Quantity</label>
+
+<input
+type="number"
+id="quantity"
+value="1"
+min="1">
+
+<label>Payment Method</label>
+
+<select id="paymentMethod"
+onchange="paymentChange()">
+
+<option value="">Select</option>
+
+<option value="UPI">
+UPI Payment
+</option>
+
+<option value="COD">
+Cash On Delivery
+</option>
+
+</select>
+
+<!-- ===== UPI ===== -->
+
+<div id="upiBox" style="display:none;">
+
+<h3>UPI Payment</h3>
+
+<p><b>Owner :</b> Nikhil Vaishnav</p>
+
+<p><b>UPI ID :</b> n92066158@oksbi</p>
 
 <button onclick="copyUPI()">
 Copy UPI ID
@@ -289,157 +380,117 @@ Copy UPI ID
 <br><br>
 
 <a href="upi://pay?pa=n92066158@oksbi&pn=Nikhil%20Vaishnav">
-<button>Pay Now</button>
+
+<button type="button">
+
+Pay Now
+
+</button>
+
 </a>
+
+<p>
+
+Payment complete hone ke baad niche Order button dabaye.
+
+</p>
+
+</div>
+
+<h3>
+
+Grand Total :
+₹<span id="popupTotal">0</span>
+
+</h3>
+
+<button
+class="checkout-btn"
+onclick="placeOrder()">
+
+Place Order
+
+</button>
+
+</section>
+  <!-- ===== Order Confirmation ===== -->
+
+<div id="orderSuccess" style="display:none;">
+
+<h2>🎉 Order Successfully Placed</h2>
+
+<p>Thank You For Shopping With Vishwas Namkeen.</p>
+
+<p>
+
+Your Order ID :
+<b id="orderId"></b>
+
+</p>
+
+<p>
+
+Estimated Delivery :
+2 - 5 Days
+
+</p>
+
+</div>
+
+<!-- ===== Contact ===== -->
+
+<section id="contact">
+
+<h2>Contact Us</h2>
+
+<p>📞 +91 8460183525</p>
+
+<p>📧 vishwashnamkeen@gmail.com</p>
+
+<p>📍 Dediapada, Gujarat - 393040</p>
+
+</section>
+
+<!-- ===== WhatsApp Button ===== -->
+
+<a href="https://wa.me/918460183525"
+
+class="whatsapp"
+
+target="_blank">
+
+<i class="fab fa-whatsapp"></i>
+
+</a>
+
+<!-- ===== Footer ===== -->
+
 <footer>
 
-<h3>Vishwas Namkeen</h3>
+<h2>🌟 Vishwas Namkeen 🌟</h2>
 
-<p>Owner: Nikhil Vaishnav</p>
+<p>Owner : Nikhil Vaishnav</p>
 
-<p>UPI ID: n92066158@oksbi</p>
+<p>UPI ID : n92066158@oksbi</p>
 
-<p>© 2026 All Rights Reserved.</p>
+<p>
+
+Fresh • Crispy • Tasty
+
+</p>
+
+<p>
+
+© 2026 Vishwas Namkeen
+
+</p>
 
 </footer>
-  <div id="orderPopup" class="popup" style="display:none;">
-  <h2>Order Details</h2>
 
-  <p>Product: <span id="productName"></span></p>
-
-  <label>Quantity</label>
-  <input type="number" id="qty" value="1" min="1">
-
-  <label>Weight</label>
-  <select id="weight">
-    <option>250g</option>
-    <option>500g</option>
-    <option>1kg</option>
-  </select>
-
-  <label>Payment</label>
-  <select id="payment">
-    <option>UPI</option>
-    <option>Cash on Delivery</option>
-  </select>
-
-  <label>Name</label>
-  <input type="text" id="customerName">
-
-  <label>Mobile</label>
-  <input type="tel" id="mobile">
-
-  <label>Address</label>
-  <textarea id="address"></textarea>
-
-  <button onclick="placeOrder()">Place Order</button>
-</div>
-  <button onclick="addToCart('Bhakarwadi',120)">
-Add To Cart
-</button>
-  <button onclick="addToCart('Diet Namkeen',150)">
-Add To Cart
-</button>
-
-<button onclick="addToCart('Khakra',90)">
-Add To Cart
-</button>
-</body><!-- Order Popup -->
-<div id="orderPopup" class="popup">
-
-  <div class="popup-content">
-
-    <span class="close" onclick="closePopup()">&times;</span>
-
-    <h2>Complete Your Order</h2>
-
-    <label>Product Name</label>
-    <input type="text" id="productName" readonly>
-
-    <label>Price (₹)</label>
-    <input type="text" id="productPrice" readonly>
-
-    <label>Quantity</label>
-    <input type="number" id="quantity" value="1" min="1">
-
-    <label>Select Weight</label>
-    <select id="weight">
-      <option value="250g">250g</option>
-      <option value="500g">500g</option>
-      <option value="1kg">1kg</option>
-    </select>
-
-    <label>Your Name</label>
-    <input type="text" id="customerName" placeholder="Enter Your Name">
-
-    <label>Mobile Number</label>
-    <input type="tel" id="customerMobile" placeholder="10 Digit Mobile Number">
-
-    <label>Delivery Address</label>
-    <textarea id="customerAddress" placeholder="Full Address"></textarea>
-
-    <label>Payment Method</label>
-    <select id="paymentMethod">
-      <option value="UPI">UPI</option>
-      <option value="Cash on Delivery">Cash on Delivery</option>
-    </select>
-
-    <h3>Total: ₹<span id="popupTotal">0</span></h3>
-
-    <button onclick="placeOrder()">Place Order</button>
-
-  </div>
-
-</div>
-  <!-- ===== Customer Details ===== -->
-
-<div class="checkout-box">
-
-<h2>Customer Details</h2>
-
-<input type="text" id="customerName" placeholder="Enter Your Name">
-
-<input type="tel" id="customerPhone" placeholder="Mobile Number">
-
-<textarea id="customerAddress" placeholder="Full Address"></textarea>
-
-<select id="paymentMethod">
-<option value="">Select Payment Method</option>
-<option value="UPI">UPI Payment</option>
-<option value="Cash On Delivery">Cash On Delivery</option>
-</select>
-
-<input type="text" id="coupon" placeholder="Coupon Code">
-
-<button onclick="applyCoupon()">Apply Coupon</button>
-
-<div class="bill-box">
-
-<p>Product Total : <span id="productTotal">₹0</span></p>
-
-<p>GST (5%) : <span id="gstAmount">₹0</span></p>
-
-<p>Delivery Charge : <span id="deliveryCharge">₹40</span></p>
-
-<h3>Grand Total : <span id="grandTotal">₹0</span></h3>
-
-</div>
-
-<div id="upiBox" style="display:none;">
-
-<h3>UPI Payment</h3>
-
-<p><b>Owner :</b> NIKHIL VAISHNAV</p>
-
-<p><b>UPI ID :</b> n92066158@oksbi</p>
-
-<button onclick="copyUPI()">Copy UPI ID</button>
-
-</div>
-
-<button class="checkout-btn" onclick="placeOrder()">
-Place Order
-</button>
-
-</div>
 <script src="script.js"></script>
+
+</body>
+
+</html>
+
+</div>
