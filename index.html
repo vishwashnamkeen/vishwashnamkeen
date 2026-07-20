@@ -46,24 +46,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 <img class="slide active"
 src="hero.jpg.png">
 
-<img class="slide"
-src="BHAKARWADI.PNG.png">
 
-<img class="slide"
-src="BINGOMASALA.PNG.png">
 
-<img class="slide"
-src="MASALABANANAWEFERS.PNG.png">
-
-<img class="slide"
-src="METHIPURI.PNG.png">
-
-<img class="slide"
-src="NADIYADIMIX.PNG.png">
-
-</div>
-
-</section>
 
 <!-- Hero -->
 
@@ -105,7 +89,7 @@ Our Products
 
 <p>₹120</p>
 
-<button onclick="addToCart('Bhakarwadi',120)">
+<button onclick="addToCart('BHAKARWADI',40)">
 Add To Cart
 </button>
 
@@ -214,217 +198,10 @@ target="_blank">
 
 <h2>Vishwas Namkeen</h2>
 
-<p>Owner : Nikhil Vaishnav</p>
 
-<p>UPI : n92066158@oksbi</p>
 
 <p>© 2026 Vishwas Namkeen</p>
 
-</footer>
-
-<script src="script.js"></script>
-
-</body>
-
-</html>
-  <!-- ===== Checkout Section ===== -->
-
-<section id="checkout" class="checkout-section">
-
-<h2>Complete Your Order</h2>
-
-<label>Full Name</label>
-<input type="text" id="customerName" placeholder="Enter Your Name">
-
-<label>Mobile Number</label>
-<input type="tel" id="customerMobile" maxlength="10"
-placeholder="10 Digit Mobile Number">
-
-<label>Address</label>
-<textarea id="customerAddress"
-placeholder="House No, Street, Village"></textarea>
-
-<label>State</label>
-<input type="text" id="customerState"
-value="Gujarat">
-
-<label>City</label>
-<input type="text" id="customerCity"
-placeholder="Enter City">
-
-<label>PIN Code</label>
-<input
-type="number"
-id="customerPincode"
-maxlength="6"
-placeholder="393040">
-
-<p id="pinMessage"></p>
-
-<label>Select Weight</label>
-
-<select id="weight">
-
-<option value="250g">250g</option>
-
-<option value="500g">500g</option>
-
-<option value="1kg">1kg</option>
-
-</select>
-
-<label>Quantity</label>
-
-<input
-type="number"
-id="quantity"
-value="1"
-min="1">
-
-<label>Payment Method</label>
-
-<select id="paymentMethod"
-onchange="paymentChange()">
-
-<option value="">Select</option>
-
-<option value="UPI">
-UPI Payment
-</option>
-
-<option value="COD">
-Cash On Delivery
-</option>
-
-</select>
-
-<!-- ===== UPI ===== -->
-
-<div id="upiBox" style="display:none;">
-
-<h3>UPI Payment</h3>
-
-<p><b>Owner :</b> Nikhil Vaishnav</p>
-
-<p><b>UPI ID :</b> n92066158@oksbi</p>
-
-<button onclick="copyUPI()">
-Copy UPI ID
-</button>
-
-<br><br>
-
-<a href="upi://pay?pa=n92066158@oksbi&pn=Nikhil%20Vaishnav">
-
-<button type="button">
-
-Pay Now
-
-</button>
-
-</a>
-
-<p>
-
-Payment complete hone ke baad niche Order button dabaye.
-
-</p>
-
-</div>
-
-<h3>
-
-Grand Total :
-₹<span id="popupTotal">0</span>
-
-</h3>
-
-<button
-class="checkout-btn"
-onclick="placeOrder()">
-
-Place Order
-
-</button>
-
-</section>
-  <!-- ===== Order Confirmation ===== -->
-
-<div id="orderSuccess" style="display:none;">
-
-<h2>🎉 Order Successfully Placed</h2>
-
-<p>Thank You For Shopping With Vishwas Namkeen.</p>
-
-<p>
-
-Your Order ID :
-<b id="orderId"></b>
-
-</p>
-
-<p>
-
-Estimated Delivery :
-2 - 5 Days
-
-</p>
-
-</div>
-
-<!-- ===== Contact ===== -->
-
-<section id="contact">
-
-<h2>Contact Us</h2>
-
-<p>📞 +91 8460183525</p>
-
-<p>📧 vishwashnamkeen@gmail.com</p>
-
-<p>📍 Dediapada, Gujarat - 393040</p>
-
-</section>
-
-<!-- ===== WhatsApp Button ===== -->
-
-<a href="https://wa.me/918460183525"
-
-class="whatsapp"
-
-target="_blank">
-
-<i class="fab fa-whatsapp"></i>
-
-</a>
-
-<!-- ===== Footer ===== -->
-
-<footer>
-
-<h2>🌟 Vishwas Namkeen 🌟</h2>
-
-<p>Owner : Nikhil Vaishnav</p>
-
-<p>UPI ID : n92066158@oksbi</p>
-
-<p>
-
-Fresh • Crispy • Tasty
-
-</p>
-
-<p>
-
-© 2026 Vishwas Namkeen
-
-</p>
-
-</footer>
-
-<script src="script.js"></script>
-
-</body>
 
 </html>
 
