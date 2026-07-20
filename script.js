@@ -1,112 +1,249 @@
-// Mobile Menu
-const menuBtn = document.querySelector(".menu-btn");
-const navbar = document.querySelector(".navbar");
+// =====================
+// VISHWASH NAMKEEN
+// script.js
+// =====================
 
-if (menuBtn && navbar) {
-  menuBtn.onclick = () => {
-    navbar.classList.toggle("show");
-  };
-}
+// Banner Slider
+let slideIndex = 0;
+const slides = document.querySelectorAll(".slide");
 
-// Hero Banner Slider
-const banners = ["banner1.jpg", "banner2.jpg"];
-const heroImg = document.querySelector(".hero-image img");
+function showSlides() {
 
-if (heroImg) {
-  let i = 0;
-  setInterval(() => {
-    i = (i + 1) % banners.length;
-    heroImg.src = banners[i];
-  }, 3000);
-}
+    slides.forEach((slide) => {
+        slide.classList.remove("active");
+    });
 
-// Product Slider
-const slider = document.querySelector(".product-slider");
+    slideIndex++;
 
-if (slider) {
-  setInterval(() => {
-    if (slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 5) {
-      slider.scrollTo({
-        left: 0,
-        behavior: "smooth"
-      });
-    } else {
-      slider.scrollBy({
-        left: 320,
-        behavior: "smooth"
-      });
+    if (slideIndex > slides.length) {
+        slideIndex = 1;
     }
-  }, 3000);
+
+    if (slides.length > 0) {
+        slides[slideIndex - 1].classList.add("active");
+    }
+
+    setTimeout(showSlides, 3000);
 }
 
-// Product Search
-const search = document.getElementById("search");
+showSlides();
 
-if (search) {
-  search.addEventListener("keyup", function () {
-    const value = this.value.toLowerCase();
+// Cart Variables
+let totalItems = 0;
+let totalPrice = 0;
 
-    document.querySelectorAll(".product-card").forEach(card => {
-      card.style.display =
-        card.innerText.toLowerCase().includes(value)
-          ? "block"
-          : "none";
+// Add To Cart
+function addToCart(product, price, qtyId) {
+
+    let qty = parseInt(document.getElementById(qtyId).value);
+
+    if (isNaN(qty) || qty < 1) {
+        qty = 1;
+    }
+
+    totalItems += qty;
+    totalPrice += qty * price;
+
+    document.getElementById("totalItems").innerText = totalItems;
+    document.getElementById("totalPrice").innerText = totalPrice;
+
+    alert(
+        qty +
+        " x " +
+        product +
+        " Added To Cart"
+    );
+
+}
+// ======================
+// BUY NOW FUNCTION
+// ======================
+
+function buyNow() {
+
+    if (totalItems === 0) {
+        alert("Please Add Product To Cart");
+        return;
+    }
+
+    const name = document.getElementById("name").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const pincode = document.getElementById("pincode").value.trim();
+    const upi = document.getElementById("upiid").value.trim();
+
+    if (name === "") {
+        alert("Enter Your Name");
+        return;
+    }
+
+    if (mobile.length != 10) {
+        alert("Enter Valid Mobile Number");
+        return;
+    }
+
+    if (address === "") {
+        alert("Enter Address");
+        return;
+    }
+
+    if (pincode.length != 6) {
+        alert("Enter Valid Pincode");
+        return;
+    }
+
+    if (upi === "") {
+        alert("Enter UPI ID");
+        return;
+    }
+
+    let payURL =
+        "upi://pay?pa=" +
+        upi +
+        "&pn=Vishwash Namkeen&am=" +
+        totalPrice +
+        "&cu=INR";
+
+    window.location.href = payURL;
+
+    alert(
+        "Order Placed Successfully!\n\n" +
+        "Customer : " + name +
+        "\nTotal : ₹" + totalPrice
+    );
+
+}
+
+// ======================
+// SMOOTH SCROLL
+// ======================
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+    anchor.addEventListener("click", function(e){
+
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior:"smooth"
+        });
+
     });
-  });
+
+});
+// ======================
+// AUTO PRODUCT SLIDER
+// ======================
+
+const productSlider = document.querySelector(".product-slider");
+
+if (productSlider) {
+
+setInterval(() => {
+
+productSlider.scrollBy({
+left:300,
+behavior:"smooth"
+});
+
+if (
+productSlider.scrollLeft +
+productSlider.clientWidth >=
+productSlider.scrollWidth - 10
+){
+
+productSlider.scrollTo({
+left:0,
+behavior:"smooth"
+});
+
 }
 
-// Buy Now Button
-document.querySelectorAll(".buy-btn").forEach(btn => {
+},3000);
 
-  btn.onclick = () => {
+}
 
-    const qty = prompt("Enter Quantity", "1");
+// ======================
+// SEARCH PRODUCTS
+// ======================
 
-    if (!qty) return;
+const search=document.getElementById("search");
 
-    const address = prompt("Enter Full Address");
+if(search){
 
-    if (!address) return;
+search.addEventListener("keyup",function(){
 
-    const pincode = prompt("Enter Pincode");
+let value=this.value.toLowerCase();
 
-    if (!pincode) return;
+document.querySelectorAll(".product-card").forEach(card=>{
 
-    const total = Number(qty) * 120;
+let text=card.innerText.toLowerCase();
 
-    const upi = "8460183525@ibl";
-
-    window.location.href =
-      "upi://pay?pa=" +
-      upi +
-      "&pn=Vishwash Namkeen&am=" +
-      total +
-      "&cu=INR";
-
-  };
+card.style.display=text.includes(value)
+?"block":"none";
 
 });
 
-// Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-
-  link.onclick = function (e) {
-
-    e.preventDefault();
-
-    document.querySelector(this.getAttribute("href")).scrollIntoView({
-      behavior: "smooth"
-    });
-
-  };
-
 });
 
-// Current Year
-const year = document.getElementById("year");
-
-if (year) {
-  year.innerHTML = new Date().getFullYear();
 }
 
-console.log("Vishwash Namkeen Website Loaded");
+// ======================
+// MOBILE MENU
+// ======================
+
+const menu=document.querySelector(".menu-btn");
+const nav=document.querySelector("nav");
+
+if(menu && nav){
+
+menu.onclick=()=>{
+
+nav.classList.toggle("show");
+
+};
+
+}
+
+// ======================
+// BACK TO TOP
+// ======================
+
+const topBtn=document.getElementById("topBtn");
+
+window.onscroll=function(){
+
+if(topBtn){
+
+if(document.documentElement.scrollTop>300){
+
+topBtn.style.display="block";
+
+}else{
+
+topBtn.style.display="none";
+
+}
+
+}
+
+};
+
+if(topBtn){
+
+topBtn.onclick=function(){
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+};
+
+}
+
+// ======================
+// WEBSITE LOADED
+// ======================
+
+console.log("Vishwash Namkeen Website Ready");
