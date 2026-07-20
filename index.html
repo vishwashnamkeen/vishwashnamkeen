@@ -4,10 +4,11 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Vishwash Namkeen | Premium Snacks</title>
+
+<meta name="description" content="Vishwash Namkeen - Premium Quality Namkeen & Snacks">
 
 <link rel="stylesheet" href="style.css">
 
@@ -17,78 +18,93 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<!--================ NAVBAR =================-->
+<div id="loader">
 
-<header class="header">
-
-<div class="logo">
-
-<h1>VISHWASH</h1>
-
-<p>PREMIUM NAMKEEN</p>
+<div class="spinner"></div>
 
 </div>
 
-<nav>
+<header>
 
-<ul>
+<nav class="navbar">
+
+<div class="logo">
+
+<h1>Vishwash <span>Namkeen</span></h1>
+
+</div>
+
+<ul class="nav-links">
 
 <li><a href="#home">Home</a></li>
 
+<li><a href="#about">About</a></li>
+
 <li><a href="#products">Products</a></li>
 
-<li><a href="#about">About</a></li>
+<li><a href="#gallery">Gallery</a></li>
 
 <li><a href="#contact">Contact</a></li>
 
 </ul>
 
-</nav>
+<div class="menu-btn">
 
-<div class="nav-btn">
-
-<a href="#products">Buy Now</a>
+<i class="fa-solid fa-bars"></i>
 
 </div>
+
+</nav>
 
 </header>
 
-<!--================ HERO =================-->
-
 <section class="hero" id="home">
 
-<div class="hero-left">
+<div class="hero-content">
 
-<h3>WELCOME TO</h3>
+<h1>
 
-<h1>VISHWASH <span>NAMKEEN</span></h1>
+Premium
+
+<span>Namkeen</span>
+
+For Every
+
+Occasion
+
+</h1>
 
 <p>
 
-Premium Quality Traditional Namkeen.
+Fresh...
 
-Fresh Ingredients • Authentic Taste • Made With Love
+Crispy...
+
+Delicious...
+
+Made with Pure Ingredients.
 
 </p>
 
-<div class="hero-btn">
+<div class="hero-buttons">
 
-<a href="#products" class="btn1">
+<a href="#products" class="btn">
 
 Explore Products
 
 </a>
 
-<a href="#about" class="btn2">
+<a href="#contact" class="btn2">
 
-Learn More
+Order Now
 
 </a>
 
@@ -96,542 +112,409 @@ Learn More
 
 </div>
 
-<div class="hero-right">/div>
+<div class="hero-image">
 
-<section id="products" class="products">
-
-<div class="title">
-
-<h2>Our Premium Products</h2>
-
-<p>
-
-Choose your favourite snacks
-
-</p>
-
-</div>
-
-<div class="product-grid">
-  <!-- Product 1 -->
-
-<div class="card">
-
-<img src="BINGOMASALA.PNG.png" alt="Bingo Masala">
-
-<h3>Bingo Masala</h3>
-
-<p>
-Crispy triangle snack with spicy masala flavour.
-</p>
-
-<div class="price">
-₹120
-</div>
-
-<button class="buy-btn"
-onclick="openOrder(
-'Bingo Masala',
-120,
-'BINGOMASALA.PNG.png'
-)">
-Buy Now
-</button>
-
-</div>
-
-
-<!-- Product 2 -->
-
-<div class="card">
-
-<img src="BINGOPANIPURI.PNG.png" alt="Bingo Panipuri">
-
-<h3>Bingo Panipuri</h3>
-
-<p>
-Tangy Panipuri flavour with crunchy texture.
-</p>
-
-<div class="price">
-₹120
-</div>
-
-<button class="buy-btn"
-onclick="openOrder(
-'Bingo Panipuri',
-120,
-'BINGOPANIPURI.PNG.png'
-)">
-Buy Now
-</button>
-
-</div>
-
-
-<!-- Product 3 -->
-
-<div class="card">
-
-<img src="PUNJABIMIX.PNG.png" alt="Punjabi Mix">
-
-<h3>Punjabi Mix</h3>
-
-<p>
-Traditional Punjabi style premium namkeen.
-</p>
-
-<div class="price">
-₹130
-</div>
-
-<button class="buy-btn"
-onclick="openOrder(
-'Punjabi Mix',
-130,
-'PUNJABIMIX.PNG.png'
-)">
-Buy Now
-</button>
-
-</div>
-<!-- Product 4 -->
-
-<div class="card">
-
-<img src="NADIYADIMIX.PNG.png" alt="Nadiyadi Mix">
-
-<h3>Nadiyadi Mix</h3>
-
-<p>
-Crunchy traditional Gujarati style namkeen with rich taste.
-</p>
-
-<div class="price">
-₹130
-</div>
-
-<button class="buy-btn"
-onclick="openOrder(
-'Nadiyadi Mix',
-130,
-'NADIYADIMIX.PNG.png'
-)">
-Buy Now
-</button>
-
-</div>
-
-<!-- Product 5 -->
-
-<div class="card">
-
-<img src="METHIPURI.PNG.jpeg" alt="Methi Puri">
-
-<h3>Methi Puri</h3>
-
-<p>
-Fresh methi flavour with crispy premium quality.
-</p>
-
-<div class="price">
-₹110
-</div>
-
-<button class="buy-btn"
-onclick="openOrder(
-'Methi Puri',
-110,
-'METHIPURI.PNG.jpeg'
-)">
-Buy Now
-</button>
-
-</div>
-
-<!-- Product 6 -->
-
-<div class="card">
-
-<img src="MASALABANANAWEFERS.PNG.png" alt="Masala Banana Wafers">
-
-<h3>Masala Banana Wafers</h3>
-
-<p>
-Premium banana wafers with spicy masala seasoning.
-</p>
-
-<div class="price">
-₹140
-</div>
-
-<button class="buy-btn"
-onclick="openOrder(
-'Masala Banana Wafers',
-140,
-'MASALABANANAWEFERS.PNG.png'
-)">
-Buy Now
-</button>
-
-</div>
-<!-- Product 7 -->
-
-<div class="card">
-
-<img src="BHAKARWADI.PNG.png" alt="Bhakarwadi">
-
-<h3>Bhakarwadi</h3>
-
-<p>
-Traditional crispy Bhakarwadi with authentic spicy and sweet flavour.
-</p>
-
-<div class="price">
-₹150
-</div>
-
-<button class="buy-btn"
-onclick="openOrder(
-'Bhakarwadi',
-150,
-'BHAKARWADI.PNG.png'
-)">
-Buy Now
-</button>
-
-</div>
+<img src="Hiro.jpg.png" alt="Hero">
 
 </div>
 
 </section>
 
-<!--================ ABOUT =================-->
+<section class="features">
 
-<section class="about" id="about">
+<div class="feature">
 
-<div class="about-left">
-
-
-
-</div>
-
-<div class="about-right">
-
-<h5>ABOUT US</h5>
-
-<h2>
-India's Trusted Premium Namkeen Brand
-</h2>
-
-<p>
-
-Vishwash Namkeen is committed to delivering authentic Indian taste with premium quality ingredients. Every packet is prepared with care to ensure freshness, crispiness and delicious flavour.
-
-</p>
-
-<div class="about-box">
-
-<div class="box">
-
-<h3>100%</h3>
-
-<p>Fresh Quality</p>
-
-</div>
-
-<div class="box">
-
-<h3>7+</h3>
-
-<p>Premium Products</p>
-
-</div>
-
-<div class="box">
-
-<h3>1000+</h3>
-
-<p>Happy Customers</p>
-
-</div>
-
-</div>
-
-<a href="#products" class="about-btn">
-
-Explore Products
-
-</a>
-
-</div>
-
-</section>
-<!--================ WHY CHOOSE US =================-->
-
-<section class="why">
-
-<div class="section-title">
-
-<h5>WHY CHOOSE US</h5>
-
-<h2>Why Customers Love Vishwash Namkeen</h2>
-
-<p>
-Fresh ingredients, premium quality and authentic Indian taste in every pack.
-</p>
-
-</div>
-
-<div class="why-grid">
-
-<div class="why-card">
-
-<i class="fa-solid fa-award"></i>
+<i class="fa-solid fa-medal"></i>
 
 <h3>Premium Quality</h3>
 
 <p>
-High quality ingredients with hygienic packaging.
+
+Best Ingredients Used
+
 </p>
 
 </div>
 
-<div class="why-card">
-
-<i class="fa-solid fa-leaf"></i>
-
-<h3>Fresh Ingredients</h3>
-
-<p>
-Made from carefully selected fresh ingredients.
-</p>
-
-</div>
-
-<div class="why-card">
+<div class="feature">
 
 <i class="fa-solid fa-truck-fast"></i>
 
 <h3>Fast Delivery</h3>
 
 <p>
-Quick and secure delivery across India.
+
+Quick Service
+
 </p>
 
 </div>
 
-<div class="why-card">
+<div class="feature">
 
-<i class="fa-solid fa-heart"></i>
+<i class="fa-solid fa-shield-heart"></i>
+
+<h3>100% Hygienic</h3>
+
+<p>
+
+Safe & Healthy
+
+</p>
+
+</div>
+
+<div class="feature">
+
+<i class="fa-solid fa-star"></i>
 
 <h3>Trusted Brand</h3>
 
 <p>
-Loved by thousands of happy customers.
+
+Loved By Customers
+
 </p>
 
 </div>
 
-</div>
-
 </section>
 
-<!--================ COMPANY STATS =================-->
+<section id="about" class="about">
 
-<section class="counter">
+<div class="about-image">
 
-<div class="count-box">
-
-<h2>10+</h2>
-
-<p>Years Experience</p>
+<img src="Hiro.jpg.png" alt="About">
 
 </div>
 
-<div class="count-box">
+<div class="about-content">
 
-<h2>5000+</h2>
+<h2>About Vishwash Namkeen</h2>
 
-<p>Happy Customers</p>
+<p>
 
-</div>
+Welcome to Vishwash Namkeen.
 
-<div class="count-box">
+We are committed to delivering premium-quality namkeen made with fresh ingredients, authentic recipes, and traditional taste.
 
-<h2>50+</h2>
+Every bite is prepared with care to ensure unmatched quality and delicious flavor.
 
-<p>Dealers</p>
+</p>
 
-</div>
+<a href="#products" class="btn">
 
-<div class="count-box">
+View Products
 
-<h2>100%</h2>
-
-<p>Quality Products</p>
+</a>
 
 </div>
 
 </section>
-<!--================ GALLERY =================-->
+<!-- PRODUCTS SECTION -->
+
+<section class="products" id="products">
+
+<h2 class="section-title">Our Products</h2>
+
+<div class="product-grid">
+
+<div class="product-card">
+<img src="BHAKARWADI.PNG.png" alt="">
+<h3>Bhakarwadi</h3>
+<p>Crispy & Spicy Traditional Snack.</p>
+<a href="#" class="buy-btn">Order Now</a>
+</div>
+
+<div class="product-card">
+<img src="BINGOMASALA.PNG.png" alt="">
+<h3>Bingo Masala</h3>
+<p>Crunchy Masala Flavor.</p>
+<a href="#" class="buy-btn">Order Now</a>
+</div>
+
+<div class="product-card">
+<img src="BINGOPANIPURI.PNG.png" alt="">
+<h3>Bingo Panipuri</h3>
+<p>Chatpata Panipuri Taste.</p>
+<a href="#" class="buy-btn">Order Now</a>
+</div>
+
+<div class="product-card">
+<img src="MASALABANANAWEFERS.PNG.png" alt="">
+<h3>Banana Wafers</h3>
+<p>Fresh Masala Banana Chips.</p>
+<a href="#" class="buy-btn">Order Now</a>
+</div>
+
+<div class="product-card">
+<img src="METHIPURI.PNG.jpeg" alt="">
+<h3>Methi Puri</h3>
+<p>Traditional Homemade Taste.</p>
+<a href="#" class="buy-btn">Order Now</a>
+</div>
+
+<div class="product-card">
+<img src="NADIYADIMIX.PNG.png" alt="">
+<h3>Nadiyadi Mix</h3>
+<p>Special Gujarati Mix.</p>
+<a href="#" class="buy-btn">Order Now</a>
+</div>
+
+<div class="product-card">
+<img src="PUNJABIMIX.PNG.png" alt="">
+<h3>Punjabi Mix</h3>
+<p>Extra Spicy Punjabi Style.</p>
+<a href="#" class="buy-btn">Order Now</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- GALLERY -->
 
 <section class="gallery" id="gallery">
 
-<div class="section-title">
-
-<h5>OUR GALLERY</h5>
-
-<h2>Premium Snack Collection</h2>
-
-<p>
-Discover our delicious range of premium namkeen.
-</p>
-
-</div>
+<h2 class="section-title">Gallery</h2>
 
 <div class="gallery-grid">
 
-<div class="gallery-item">
-<img src="BINGOMASALA.PNG.png" alt="Bingo Masala">
-</div>
+<img src="BHAKARWADI.PNG.png">
 
-<div class="gallery-item">
-<img src="BINGOPANIPURI.PNG.png" alt="Bingo Panipuri">
-</div>
+<img src="BINGOMASALA.PNG.png">
 
-<div class="gallery-item">
-<img src="PUNJABIMIX.PNG.png" alt="Punjabi Mix">
-</div>
+<img src="BINGOPANIPURI.PNG.png">
 
-<div class="gallery-item">
-<img src="NADIYADIMIX.PNG.png" alt="Nadiyadi Mix">
-</div>
+<img src="MASALABANANAWEFERS.PNG.png">
 
-<div class="gallery-item">
-<img src="METHIPURI.PNG.jpeg" alt="Methi Puri">
-</div>
+<img src="METHIPURI.PNG.jpeg">
 
-<div class="gallery-item">
-<img src="MASALABANANAWEFERS.PNG.png" alt="Banana Wafers">
-</div>
+<img src="NADIYADIMIX.PNG.png">
 
-<div class="gallery-item">
-<img src="BHAKARWADI.PNG.png" alt="Bhakarwadi">
-</div>
+<img src="PUNJABIMIX.PNG.png">
+
+<img src="Hiro.jpg.png">
 
 </div>
 
 </section>
 
-<!--================ TESTIMONIALS =================-->
+<!-- TESTIMONIAL -->
 
 <section class="testimonial">
 
-<div class="section-title">
+<h2 class="section-title">
 
-<h5>CUSTOMER REVIEWS</h5>
+Customer Reviews
 
-<h2>What Our Customers Say</h2>
+</h2>
 
-</div>
+<div class="testimonial-box">
 
-<div class="testimonial-grid">
+<div class="review">
 
-<div class="review-card">
-
-<h3>⭐⭐⭐⭐⭐</h3>
+★★★★★
 
 <p>
-"The quality is amazing and the taste is authentic. My family loves Vishwash Namkeen."
+
+Amazing Taste...
+
+Very Fresh Namkeen.
+
 </p>
 
-<h4>- Rahul Patel</h4>
+<h4>- Rahul</h4>
 
 </div>
 
-<div class="review-card">
+<div class="review">
 
-<h3>⭐⭐⭐⭐⭐</h3>
+★★★★★
 
 <p>
-"Very fresh products and premium packaging. Highly recommended."
+
+Best Quality Products.
+
+Highly Recommended.
+
 </p>
 
-<h4>- Neha Sharma</h4>
+<h4>- Priya</h4>
 
 </div>
 
-<div class="review-card">
+<div class="review">
 
-<h3>⭐⭐⭐⭐⭐</h3>
-  <!-- ================= CONTACT ================= -->
+★★★★★
 
-<section id="contact" class="contact">
+<p>
 
-    <div class="title">
-        <h2>Contact Us</h2>
-        <p>We are happy to serve you.</p>
-    </div>
+Very Crispy & Delicious.
 
-    <div class="contact-box">
+</p>
 
-        <div class="contact-info">
+<h4>- Amit</h4>
 
-            <h3>VISHWASH NAMKEEN</h3>
+</div>
 
-            <p>📍 Indore, Madhya Pradesh</p>
-
-            <p>📞 +91 9876543210</p>
-
-            <p>📧 vishwashnamkeen@gmail.com</p>
-
-            <p>🕘 Monday - Sunday : 9 AM - 9 PM</p>
-
-        </div>
-
-        <form class="contact-form">
-
-            <input type="text" placeholder="Your Name" required>
-
-            <input type="email" placeholder="Email Address" required>
-
-            <input type="tel" placeholder="Mobile Number" required>
-
-            <textarea rows="6" placeholder="Write Your Message"></textarea>
-
-            <button type="submit">
-                Send Message
-            </button>
-
-        </form>
-
-    </div>
+</div>
 
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- FAQ -->
 
-<footer class="footer">
+<section class="faq">
 
-    <h2>VISHWASH NAMKEEN</h2>
+<h2 class="section-title">
 
-    <p>
-        Premium Quality Namkeen Since 2025
-    </p>
+Frequently Asked Questions
 
-    <p>
-        © 2026 Vishwash Namkeen. All Rights Reserved.
-    </p>
+</h2>
+
+<div class="faq-item">
+
+<h3>Do you deliver all over India?</h3>
+
+<p>Yes, we provide delivery across India.</p>
+
+</div>
+
+<div class="faq-item">
+
+<h3>Are your products fresh?</h3>
+
+<p>Yes, every order is freshly packed.</p>
+
+</div>
+
+<div class="faq-item">
+
+<h3>How can I order?</h3>
+
+<p>You can order directly through WhatsApp.</p>
+
+</div>
+
+</section>
+  <!-- CONTACT SECTION -->
+
+<section class="contact" id="contact">
+
+<div class="container">
+
+<h2 class="section-title">Contact Us</h2>
+
+<p class="contact-text">
+
+We'd love to hear from you. Contact us for bulk orders, dealership, or any inquiry.
+
+</p>
+
+<div class="contact-box">
+
+<div class="contact-info">
+
+<h3>Get In Touch</h3>
+
+<p><i class="fa-solid fa-location-dot"></i> Your Address Here</p>
+
+<p><i class="fa-solid fa-phone"></i> +91 9876543210</p>
+
+<p><i class="fa-solid fa-envelope"></i> info@vishwashnamkeen.com</p>
+
+<p><i class="fa-brands fa-whatsapp"></i> WhatsApp Available</p>
+
+<div class="social-icons">
+
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+
+<a href="#"><i class="fab fa-instagram"></i></a>
+
+<a href="#"><i class="fab fa-youtube"></i></a>
+
+<a href="#"><i class="fab fa-linkedin-in"></i></a>
+
+</div>
+
+</div>
+
+<div class="contact-form">
+
+<form>
+
+<input type="text" placeholder="Your Name" required>
+
+<input type="email" placeholder="Your Email" required>
+
+<input type="tel" placeholder="Phone Number" required>
+
+<textarea rows="6" placeholder="Your Message"></textarea>
+
+<button type="submit" class="btn">
+
+Send Message
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-content">
+
+<h2>Vishwash <span>Namkeen</span></h2>
+
+<p>
+
+Fresh Taste • Premium Quality • Trusted Brand
+
+</p>
+
+<p>
+
+© 2026 Vishwash Namkeen.
+
+All Rights Reserved.
+
+</p>
+
+</div>
 
 </footer>
 
-</body>
-</html>
-  <div class="hero-right">
-    <img src="Hero.jpg.png" alt="Hero">
-</div>
+<!-- WHATSAPP BUTTON -->
 
-<p>
-"Fast delivery and excellent taste. Will order again."
-SLETTER =================-->
+<a href="https://wa.me/919876543210"
+
+class="whatsapp"
+
+target="_blank">
+
+<i class="fab fa-whatsapp"></i>
+
+</a>
+
+<!-- SCROLL TOP -->
+
+<button id="topBtn">
+
+<i class="fa-solid fa-arrow-up"></i>
+
+</button>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
