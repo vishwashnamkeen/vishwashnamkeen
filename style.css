@@ -72,6 +72,305 @@ body {
     object-fit: contain; /* Taki image kate nahi */
     border-radius: 5px;
 }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(135deg,#0a0a0a 0%,#220000 30%,#0d0d0d 60%,#450000 100%);
+
+color:#fff;
+
+overflow-x:hidden;
+
+}
+
+/* Red Glow */
+
+body::before{
+
+content:'';
+
+position:fixed;
+
+top:-200px;
+
+left:-200px;
+
+width:600px;
+
+height:600px;
+
+background:#ff0000;
+
+filter:blur(220px);
+
+opacity:.18;
+
+z-index:-1;
+
+}
+
+body::after{
+
+content:'';
+
+position:fixed;
+
+right:-200px;
+
+bottom:-200px;
+
+width:600px;
+
+height:600px;
+
+background:#ff3d00;
+
+filter:blur(220px);
+
+opacity:.18;
+
+z-index:-1;
+
+}
+
+/* Navbar */
+
+header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:20px 8%;
+
+background:rgba(0,0,0,.65);
+
+backdrop-filter:blur(12px);
+
+position:sticky;
+
+top:0;
+
+z-index:1000;
+
+}
+
+.logo h1{
+
+font-size:38px;
+
+color:#FFD700;
+
+font-weight:800;
+
+letter-spacing:2px;
+
+}
+
+.logo p{
+
+color:#ddd;
+
+}
+
+nav a{
+
+color:#fff;
+
+text-decoration:none;
+
+margin-left:30px;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:#ff3d3d;
+
+}
+
+/* Hero */
+
+.hero{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:80px 8%;
+
+gap:50px;
+
+}
+
+.hero-text h1{
+
+font-size:60px;
+
+line-height:1.1;
+
+}
+
+.hero-text p{
+
+margin:25px 0;
+
+font-size:20px;
+
+color:#ddd;
+
+}
+
+button{
+
+background:linear-gradient(90deg,#ff0000,#b30000);
+
+padding:16px 40px;
+
+border:none;
+
+border-radius:50px;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+transition:.4s;
+
+}
+
+button:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 0 25px red;
+
+}
+
+/* Hero Image */
+
+.hero-image img{
+
+width:500px;
+
+filter:drop-shadow(0 0 40px rgba(255,0,0,.45));
+
+animation:float 4s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+}
+
+/* Products */
+
+.products{
+
+padding:90px 8%;
+
+}
+
+.products h2{
+
+font-size:42px;
+
+text-align:center;
+
+margin-bottom:50px;
+
+color:#FFD700;
+
+}
+
+.product-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:35px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,0,0,.2);
+
+border-radius:20px;
+
+padding:20px;
+
+transition:.4s;
+
+backdrop-filter:blur(10px);
+
+}
+
+.card:hover{
+
+transform:translateY(-12px);
+
+box-shadow:0 0 30px rgba(255,0,0,.4);
+
+}
+
+.card img{
+
+width:100%;
+
+}
+
+.card h3{
+
+text-align:center;
+
+margin-top:15px;
+
+color:#FFD700;
+
+}
+
+/* Footer */
+
+footer{
+
+text-align:center;
+
+padding:30px;
+
+background:#000;
+
+margin-top:80px;
+
+color:#bbb;
+
+}
 
 .product-card h3 {
     margin-top: 15px;
