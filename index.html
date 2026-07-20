@@ -1,172 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishwash Namkeen</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome for Icons (Search, Menu, Socials, WhatsApp) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VISHWASH NAMKEEN</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
 
-    <!-- 1. Loading Screen (Preloader) -->
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
+<header>
 
-    <!-- 2. Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo">Vishwash<span>Namkeen</span></div>
-        
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#products">Products</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+<div class="logo">
+<h1>VISHWASH</h1>
+<p>Premium Namkeen</p>
+</div>
 
-        <div class="nav-actions">
-            <button class="search-btn" title="Search"><i class="fas fa-search"></i></button>
-            <button class="login-btn">Login</button>
-            <button class="signup-btn">Sign Up</button>
-            <button id="dark-mode-toggle" title="Dark Mode"><i class="fas fa-moon"></i></button>
-            <!-- Hamburger Menu -->
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
+<nav>
 
-    <!-- 3. Hero Slider & CTA -->
-    <section id="home" class="hero-slider">
-        <div class="slide active" style="background-image: url('hero.jpg.png');">
-            <div class="hero-content">
-                <h1>Swadishth Aur Kurkura</h1>
-                <p>Hamara namkeen, aapki har khushi ka saathi.</p>
-                <button class="cta-btn">Shop Now</button>
-            </div>
-        </div>
-        <div class="slide" style="background-image: url('BHAKARWADI.PNG.png');">
-            <div class="hero-content">
-                <h1>Paramparik Swaad</h1>
-                <p>Ghar jaisa swaad, ab packet mein.</p>
-                <button class="cta-btn">Explore</button>
-            </div>
-        </div>
-        <!-- Slider Controls -->
-        <button class="prev-slide">&#10094;</button>
-        <button class="next-slide">&#10095;</button>
-    </section>
+<a href="#">Home</a>
+<a href="#">Products</a>
+<a href="#">About</a>
+<a href="#">Contact</a>
 
-    <!-- 4. About Section -->
-    <section id="about" class="section">
-        <h2>About Us</h2>
-        <p>Vishwash Namkeen saalo se aapke liye behtareen quality ke snacks bana raha hai. Humari shuruaat ek chhote se parivar se hui thi aur aaj hum pure desh mein apna swaad pahoncha rahe hain.</p>
-    </section>
+</nav>
 
-    <!-- 5. Services Section -->
-    <section id="services" class="section bg-light">
-        <h2>Our Services</h2>
-        <div class="services-container">
-            <div class="service-box"><i class="fas fa-truck"></i> <h3>Fast Delivery</h3><p>Pore desh mein tez delivery.</p></div>
-            <div class="service-box"><i class="fas fa-box"></i> <h3>Bulk Orders</h3><p>Shaadi aur party ke liye special orders.</p></div>
-            <div class="service-box"><i class="fas fa-leaf"></i> <h3>100% Fresh</h3><p>Taaza aur shuddh samagri se bana.</p></div>
-        </div>
-    </section>
+</header>
 
-    <!-- 6. Product Cards & Image Gallery -->
-    <section id="products" class="section">
-        <h2>Our Best Sellers</h2>
-        <div class="product-grid">
-            <div class="product-card"><img src="BHAKARWADI.PNG.png" alt="Bhakarwadi"><h3>Bhakarwadi</h3><button class="buy-btn">Add to Cart</button></div>
-            <div class="product-card"><img src="BINGOMASALA.PNG.png" alt="Bingo Masala"><h3>Bingo Masala</h3><button class="buy-btn">Add to Cart</button></div>
-            <div class="product-card"><img src="BINGOPANIPURI.PNG.png" alt="Bingo Panipuri"><h3>Bingo Panipuri</h3><button class="buy-btn">Add to Cart</button></div>
-            <div class="product-card"><img src="MASALABANANAWEFERS.PNG.png" alt="Masala Banana Wafers"><h3>Masala Banana Wafers</h3><button class="buy-btn">Add to Cart</button></div>
-            <div class="product-card"><img src="METHIPURI.PNG.jpeg" alt="Methi Puri"><h3>Methi Puri</h3><button class="buy-btn">Add to Cart</button></div>
-            <div class="product-card"><img src="NADIYADIMIX.PNG.png" alt="Nadiyadi Mix"><h3>Nadiyadi Mix</h3><button class="buy-btn">Add to Cart</button></div>
-            <div class="product-card"><img src="PUNJABIMIX.PNG.png" alt="Punjabi Mix"><h3>Punjabi Mix</h3><button class="buy-btn">Add to Cart</button></div>
-        </div>
-    </section>
+<section class="hero">
 
-    <!-- 7. Testimonials Slider -->
-    <section id="testimonials" class="section bg-light">
-        <h2>Customer Reviews</h2>
-        <div class="testimonial-container">
-            <div class="testimonial-card">
-                <p>"Bhakarwadi ka swaad bahut hi lajawab hai. Ekdum fresh!"</p>
-                <h4>- Rahul Verma</h4>
-            </div>
-            <div class="testimonial-card">
-                <p>"Punjabi Mix meri family ka favourite hai. Great quality."</p>
-                <h4>- Priya Sharma</h4>
-            </div>
-        </div>
-    </section>
+<div class="hero-text">
 
-    <!-- 8. FAQ (Accordion) -->
-    <section id="faq" class="section">
-        <h2>Frequently Asked Questions</h2>
-        <div class="faq-container">
-            <div class="faq-item">
-                <button class="faq-question">Kya aap out of state delivery karte hain? <i class="fas fa-chevron-down"></i></button>
-                <div class="faq-answer"><p>Haan, hum pure India mein deliver karte hain.</p></div>
-            </div>
-            <div class="faq-item">
-                <button class="faq-question">Namkeen kitne din tak fresh rehta hai? <i class="fas fa-chevron-down"></i></button>
-                <div class="faq-answer"><p>Hamare packets air-tight hote hain aur 3-4 mahine tak fresh rehte hain.</p></div>
-            </div>
-        </div>
-    </section>
+<h1>Premium Indian Snacks</h1>
 
-    <!-- 9. Contact Form & Google Map -->
-    <section id="contact" class="section bg-light">
-        <h2>Contact Us</h2>
-        <div class="contact-wrapper">
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea rows="5" placeholder="Your Message" required></textarea>
-                <button type="submit" class="cta-btn">Send Message</button>
-            </form>
-            <div class="map-container">
-                <!-- Placeholder for Google Map iFrame -->
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.0!2d72.5!3d23.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDAwJzAwLjAiTiA3MsKwMzAnMDAuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
+<p>
+Traditional Taste • Premium Quality • Freshly Packed
+</p>
 
-    <!-- 10. Newsletter Subscribe -->
-    <section class="newsletter">
-        <h2>Subscribe for Offers</h2>
-        <form>
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit" class="cta-btn">Subscribe</button>
-        </form>
-    </section>
+<button>Explore Products</button>
 
-    <!-- 11. Footer & Social Media Icons -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">Vishwash Namkeen</div>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
-        </div>
-        <p>&copy; 2024 Vishwash Namkeen. All Rights Reserved.</p>
-    </footer>
+</div>
 
-    <!-- 12. Floating WhatsApp Button -->
-    <a href="https://wa.me/8460183525" class="whatsapp-btn" target="_blank" title="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+<div class="hero-image">
 
-    <!-- 13. Scroll to Top Button -->
-    <button id="scrollTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+<img src="Hiro.jpg.png" alt="Hero">
 
-    <script src="script.js"></script>
+</div>
+
+</section>
+
+<section class="products">
+
+<h2>Our Products</h2>
+
+<div class="product-grid">
+
+<div class="card">
+<img src="BINGOMASALA.PNG.png">
+<h3>Bingo Masala</h3>
+</div>
+
+<div class="card">
+<img src="BINGOPANIPURI.PNG.png">
+<h3>Bingo Panipuri</h3>
+</div>
+
+<div class="card">
+<img src="PUNJABIMIX.PNG.png">
+<h3>Punjabi Mix</h3>
+</div>
+
+<div class="card">
+<img src="NADIYADIMIX.PNG.png">
+<h3>Nadiyadi Mix</h3>
+</div>
+
+<div class="card">
+<img src="METHIPURI.PNG.jpeg">
+<h3>Methi Puri</h3>
+</div>
+
+<div class="card">
+<img src="MASALABANANAWEFERS.PNG.png">
+<h3>Masala Banana Wafers</h3>
+</div>
+
+<div class="card">
+<img src="BHAKARWADI.PNG.png">
+<h3>Bhakarwadi</h3>
+</div>
+
+</div>
+
+</section>
+
+<section class="about">
+
+<h2>Why Vishwash?</h2>
+
+<p>
+
+✔ Premium Ingredients<br>
+
+✔ Freshly Packed<br>
+
+✔ Traditional Taste<br>
+
+✔ Authentic Indian Snacks
+
+</p>
+
+</section>
+
+<footer>
+
+<p>
+
+© 2026 VISHWASH NAMKEEN
+
+</p>
+
+</footer>
+
+<script src="script.js"></script>
+
 </body>
 </html>
