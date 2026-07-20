@@ -1,59 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Vishwash Namkeen</title>
+<title>Vishwash Namkeen | Premium Snacks</title>
 
 <link rel="stylesheet" href="style.css">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 </head>
 
 <body>
 
+<!--================ NAVBAR =================-->
+
 <header class="header">
 
 <div class="logo">
+
 <h1>VISHWASH</h1>
-<span>PREMIUM NAMKEEN</span>
+
+<p>PREMIUM NAMKEEN</p>
+
 </div>
 
 <nav>
 
-<a href="#">Home</a>
+<ul>
 
-<a href="#products">Products</a>
+<li><a href="#home">Home</a></li>
 
-<a href="#about">About</a>
+<li><a href="#products">Products</a></li>
 
-<a href="#contact">Contact</a>
+<li><a href="#about">About</a></li>
+
+<li><a href="#contact">Contact</a></li>
+
+</ul>
 
 </nav>
 
+<div class="nav-btn">
+
+<a href="#products">Buy Now</a>
+
+</div>
+
 </header>
 
-<section class="hero">
+<!--================ HERO =================-->
+
+<section class="hero" id="home">
 
 <div class="hero-left">
 
-<h1>
-Traditional Taste<br>
-Premium Quality
-</h1>
+<h3>WELCOME TO</h3>
+
+<h1>VISHWASH <span>NAMKEEN</span></h1>
 
 <p>
 
-Fresh • Crispy • Authentic Indian Snacks
+Premium Quality Traditional Namkeen.
+
+Fresh Ingredients • Authentic Taste • Made With Love
 
 </p>
 
-<a href="#products" class="btn">
+<div class="hero-btn">
+
+<a href="#products" class="btn1">
+
 Explore Products
+
 </a>
+
+<a href="#about" class="btn2">
+
+Learn More
+
+</a>
+
+</div>
 
 </div>
 
@@ -65,80 +104,834 @@ Explore Products
 
 </section>
 
+<!--=============== PRODUCTS START =================-->
+
 <section id="products" class="products">
 
-<h2>Our Products</h2>
+<div class="title">
 
-<div class="product-grid">
-
-<div class="card">
-<img src="BINGOMASALA.PNG.png">
-<h3>Bingo Masala</h3>
-</div>
-
-<div class="card">
-<img src="BINGOPANIPURI.PNG.png">
-<h3>Bingo Panipuri</h3>
-</div>
-
-<div class="card">
-<img src="PUNJABIMIX.PNG.png">
-<h3>Punjabi Mix</h3>
-  <div class="card">
-<img src="NADIYADIMIX.PNG.png" alt="Nadiyadi Mix">
-<h3>Nadiyadi Mix</h3>
-</div>
-
-<div class="card">
-<img src="METHIPURI.PNG.jpeg" alt="Methi Puri">
-<h3>Methi Puri</h3>
-</div>
-
-<div class="card">
-<img src="MASALABANANAWEFERS.PNG.png" alt="Masala Banana Wafers">
-<h3>Masala Banana Wafers</h3>
-</div>
-
-<div class="card">
-<img src="BHAKARWADI.PNG.png" alt="Bhakarwadi">
-<h3>Bhakarwadi</h3>
-</div>
-
-</div>
-</section>
-
-<section id="about" class="about">
-
-<h2>About Vishwash Namkeen</h2>
+<h2>Our Premium Products</h2>
 
 <p>
-Vishwash Namkeen brings traditional Indian taste with premium quality ingredients.
-Every pack is prepared for freshness, authentic flavour and crispy taste.
+
+Choose your favourite snacks
+
 </p>
 
+</div>
+
+<div class="product-grid">
+  <!-- Product 1 -->
+
+<div class="card">
+
+<img src="BINGOMASALA.PNG.png" alt="Bingo Masala">
+
+<h3>Bingo Masala</h3>
+
+<p>
+Crispy triangle snack with spicy masala flavour.
+</p>
+
+<div class="price">
+₹120
+</div>
+
+<button class="buy-btn"
+onclick="openOrder(
+'Bingo Masala',
+120,
+'BINGOMASALA.PNG.png'
+)">
+Buy Now
+</button>
+
+</div>
+
+
+<!-- Product 2 -->
+
+<div class="card">
+
+<img src="BINGOPANIPURI.PNG.png" alt="Bingo Panipuri">
+
+<h3>Bingo Panipuri</h3>
+
+<p>
+Tangy Panipuri flavour with crunchy texture.
+</p>
+
+<div class="price">
+₹120
+</div>
+
+<button class="buy-btn"
+onclick="openOrder(
+'Bingo Panipuri',
+120,
+'BINGOPANIPURI.PNG.png'
+)">
+Buy Now
+</button>
+
+</div>
+
+
+<!-- Product 3 -->
+
+<div class="card">
+
+<img src="PUNJABIMIX.PNG.png" alt="Punjabi Mix">
+
+<h3>Punjabi Mix</h3>
+
+<p>
+Traditional Punjabi style premium namkeen.
+</p>
+
+<div class="price">
+₹130
+</div>
+
+<button class="buy-btn"
+onclick="openOrder(
+'Punjabi Mix',
+130,
+'PUNJABIMIX.PNG.png'
+)">
+Buy Now
+</button>
+
+</div>
+<!-- Product 4 -->
+
+<div class="card">
+
+<img src="NADIYADIMIX.PNG.png" alt="Nadiyadi Mix">
+
+<h3>Nadiyadi Mix</h3>
+
+<p>
+Crunchy traditional Gujarati style namkeen with rich taste.
+</p>
+
+<div class="price">
+₹130
+</div>
+
+<button class="buy-btn"
+onclick="openOrder(
+'Nadiyadi Mix',
+130,
+'NADIYADIMIX.PNG.png'
+)">
+Buy Now
+</button>
+
+</div>
+
+<!-- Product 5 -->
+
+<div class="card">
+
+<img src="METHIPURI.PNG.jpeg" alt="Methi Puri">
+
+<h3>Methi Puri</h3>
+
+<p>
+Fresh methi flavour with crispy premium quality.
+</p>
+
+<div class="price">
+₹110
+</div>
+
+<button class="buy-btn"
+onclick="openOrder(
+'Methi Puri',
+110,
+'METHIPURI.PNG.jpeg'
+)">
+Buy Now
+</button>
+
+</div>
+
+<!-- Product 6 -->
+
+<div class="card">
+
+<img src="MASALABANANAWEFERS.PNG.png" alt="Masala Banana Wafers">
+
+<h3>Masala Banana Wafers</h3>
+
+<p>
+Premium banana wafers with spicy masala seasoning.
+</p>
+
+<div class="price">
+₹140
+</div>
+
+<button class="buy-btn"
+onclick="openOrder(
+'Masala Banana Wafers',
+140,
+'MASALABANANAWEFERS.PNG.png'
+)">
+Buy Now
+</button>
+
+</div>
+<!-- Product 7 -->
+
+<div class="card">
+
+<img src="BHAKARWADI.PNG.png" alt="Bhakarwadi">
+
+<h3>Bhakarwadi</h3>
+
+<p>
+Traditional crispy Bhakarwadi with authentic spicy and sweet flavour.
+</p>
+
+<div class="price">
+₹150
+</div>
+
+<button class="buy-btn"
+onclick="openOrder(
+'Bhakarwadi',
+150,
+'BHAKARWADI.PNG.png'
+)">
+Buy Now
+</button>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="contact" class="contact">
+<!--================ ABOUT =================-->
 
-<h2>Contact Us</h2>
+<section class="about" id="about">
 
-<p>📞 +91 XXXXX XXXXX</p>
+<div class="about-left">
 
-<p>📧 info@vishwashnamkeen.com</p>
+<img src="Hiro.jpg.png" alt="About Vishwash">
 
-<p>📍 India</p>
+</div>
+
+<div class="about-right">
+
+<h5>ABOUT US</h5>
+
+<h2>
+India's Trusted Premium Namkeen Brand
+</h2>
+
+<p>
+
+Vishwash Namkeen is committed to delivering authentic Indian taste with premium quality ingredients. Every packet is prepared with care to ensure freshness, crispiness and delicious flavour.
+
+</p>
+
+<div class="about-box">
+
+<div class="box">
+
+<h3>100%</h3>
+
+<p>Fresh Quality</p>
+
+</div>
+
+<div class="box">
+
+<h3>7+</h3>
+
+<p>Premium Products</p>
+
+</div>
+
+<div class="box">
+
+<h3>1000+</h3>
+
+<p>Happy Customers</p>
+
+</div>
+
+</div>
+
+<a href="#products" class="about-btn">
+
+Explore Products
+
+</a>
+
+</div>
 
 </section>
+<!--================ WHY CHOOSE US =================-->
+
+<section class="why">
+
+<div class="section-title">
+
+<h5>WHY CHOOSE US</h5>
+
+<h2>Why Customers Love Vishwash Namkeen</h2>
+
+<p>
+Fresh ingredients, premium quality and authentic Indian taste in every pack.
+</p>
+
+</div>
+
+<div class="why-grid">
+
+<div class="why-card">
+
+<i class="fa-solid fa-award"></i>
+
+<h3>Premium Quality</h3>
+
+<p>
+High quality ingredients with hygienic packaging.
+</p>
+
+</div>
+
+<div class="why-card">
+
+<i class="fa-solid fa-leaf"></i>
+
+<h3>Fresh Ingredients</h3>
+
+<p>
+Made from carefully selected fresh ingredients.
+</p>
+
+</div>
+
+<div class="why-card">
+
+<i class="fa-solid fa-truck-fast"></i>
+
+<h3>Fast Delivery</h3>
+
+<p>
+Quick and secure delivery across India.
+</p>
+
+</div>
+
+<div class="why-card">
+
+<i class="fa-solid fa-heart"></i>
+
+<h3>Trusted Brand</h3>
+
+<p>
+Loved by thousands of happy customers.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!--================ COMPANY STATS =================-->
+
+<section class="counter">
+
+<div class="count-box">
+
+<h2>10+</h2>
+
+<p>Years Experience</p>
+
+</div>
+
+<div class="count-box">
+
+<h2>5000+</h2>
+
+<p>Happy Customers</p>
+
+</div>
+
+<div class="count-box">
+
+<h2>50+</h2>
+
+<p>Dealers</p>
+
+</div>
+
+<div class="count-box">
+
+<h2>100%</h2>
+
+<p>Quality Products</p>
+
+</div>
+
+</section>
+<!--================ GALLERY =================-->
+
+<section class="gallery" id="gallery">
+
+<div class="section-title">
+
+<h5>OUR GALLERY</h5>
+
+<h2>Premium Snack Collection</h2>
+
+<p>
+Discover our delicious range of premium namkeen.
+</p>
+
+</div>
+
+<div class="gallery-grid">
+
+<div class="gallery-item">
+<img src="BINGOMASALA.PNG.png" alt="Bingo Masala">
+</div>
+
+<div class="gallery-item">
+<img src="BINGOPANIPURI.PNG.png" alt="Bingo Panipuri">
+</div>
+
+<div class="gallery-item">
+<img src="PUNJABIMIX.PNG.png" alt="Punjabi Mix">
+</div>
+
+<div class="gallery-item">
+<img src="NADIYADIMIX.PNG.png" alt="Nadiyadi Mix">
+</div>
+
+<div class="gallery-item">
+<img src="METHIPURI.PNG.jpeg" alt="Methi Puri">
+</div>
+
+<div class="gallery-item">
+<img src="MASALABANANAWEFERS.PNG.png" alt="Banana Wafers">
+</div>
+
+<div class="gallery-item">
+<img src="BHAKARWADI.PNG.png" alt="Bhakarwadi">
+</div>
+
+</div>
+
+</section>
+
+<!--================ TESTIMONIALS =================-->
+
+<section class="testimonial">
+
+<div class="section-title">
+
+<h5>CUSTOMER REVIEWS</h5>
+
+<h2>What Our Customers Say</h2>
+
+</div>
+
+<div class="testimonial-grid">
+
+<div class="review-card">
+
+<h3>⭐⭐⭐⭐⭐</h3>
+
+<p>
+"The quality is amazing and the taste is authentic. My family loves Vishwash Namkeen."
+</p>
+
+<h4>- Rahul Patel</h4>
+
+</div>
+
+<div class="review-card">
+
+<h3>⭐⭐⭐⭐⭐</h3>
+
+<p>
+"Very fresh products and premium packaging. Highly recommended."
+</p>
+
+<h4>- Neha Sharma</h4>
+
+</div>
+
+<div class="review-card">
+
+<h3>⭐⭐⭐⭐⭐</h3>
+
+<p>
+"Fast delivery and excellent taste. Will order again."
+</p>
+
+<h4>- Amit Verma</h4>
+
+</div>
+
+</div>
+
+</section>
+<!--================ CONTACT =================-->
+
+<section class="contact" id="contact">
+
+<div class="section-title">
+
+<h5>CONTACT US</h5>
+
+<h2>Get In Touch</h2>
+
+<p>
+For Orders, Dealership & Business Enquiries
+</p>
+
+</div>
+
+<div class="contact-container">
+
+<div class="contact-info">
+
+<h3>Contact Information</h3>
+
+<div class="info-box">
+<i class="fa-solid fa-phone"></i>
+<span>+91 9876543210</span>
+</div>
+
+<div class="info-box">
+<i class="fa-solid fa-envelope"></i>
+<span>info@vishwashnamkeen.com</span>
+</div>
+
+<div class="info-box">
+<i class="fa-solid fa-location-dot"></i>
+<span>Ahmedabad, Gujarat, India</span>
+</div>
+
+<div class="info-box">
+<i class="fa-brands fa-whatsapp"></i>
+<span>WhatsApp Support 24×7</span>
+</div>
+
+</div>
+
+<div class="contact-form">
+
+<form>
+
+<input type="text" placeholder="Full Name" required>
+
+<input type="email" placeholder="Email Address" required>
+
+<input type="tel" placeholder="Mobile Number" required>
+
+<input type="text" placeholder="City">
+
+<textarea placeholder="Write Your Message"></textarea>
+
+<button type="submit">
+Send Message
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+<!--================ WHATSAPP BUTTON =================-->
+
+<a href="https://wa.me/919876543210"
+class="whatsapp"
+target="_blank">
+
+<i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+<!--================ FOOTER =================-->
 
 <footer>
 
-<p>© 2026 Vishwash Namkeen. All Rights Reserved.</p>
+<div class="footer-logo">
+
+<h2>VISHWASH NAMKEEN</h2>
+
+<p>
+Premium Quality Traditional Indian Snacks
+</p>
+
+</div>
+
+<div class="footer-links">
+
+<a href="#home">Home</a>
+
+<a href="#products">Products</a>
+
+<a href="#about">About</a>
+
+<a href="#contact">Contact</a>
+
+</div>
+
+<div class="footer-copy">
+
+<p>
+
+© 2026 Vishwash Namkeen. All Rights Reserved.
+
+</p>
+
+</div>
 
 </footer>
+<!--================ BUY NOW POPUP =================-->
+
+<div class="order-popup" id="orderPopup">
+
+<div class="order-box">
+
+<span class="close-btn"
+onclick="closeOrder()">&times;</span>
+
+<h2>Complete Your Order</h2>
+
+<div class="order-product">
+
+<img id="orderImage"
+src=""
+alt="Product">
+
+<div>
+
+<h3 id="productName">
+Product Name
+</h3>
+
+<h4>
+
+₹ <span id="productPrice">0</span>
+
+</h4>
+
+</div>
+
+</div>
+
+<form id="orderForm">
+
+<label>Full Name</label>
+
+<input
+type="text"
+placeholder="Enter Full Name"
+required>
+
+<label>Mobile Number</label>
+
+<input
+type="tel"
+placeholder="10 Digit Mobile Number"
+required>
+
+<label>Delivery Address</label>
+
+<textarea
+placeholder="House No, Area, Landmark"
+required>
+</textarea>
+
+<div class="row">
+
+<div>
+
+<label>City</label>
+
+<input
+type="text"
+placeholder="City"
+required>
+
+</div>
+
+<div>
+
+<label>State</label>
+
+<input
+type="text"
+placeholder="State"
+required>
+
+</div>
+
+</div>
+
+<label>PIN Code</label>
+
+<input
+type="number"
+placeholder="PIN Code"
+required>
+
+<label>Quantity</label>
+
+<input
+type="number"
+value="1"
+min="1"
+id="qty">
+
+<label>Payment Method</label>
+
+<select>
+
+<option>
+UPI Payment
+</option>
+
+<option>
+Cash On Delivery
+</option>
+
+</select>
+
+<div class="upi-box">
+
+<h3>UPI ID</h3>
+
+<p>
+
+vishwash@upi
+
+</p>
+
+<p>
+
+Scan QR after CSS & JS setup.
+
+</p>
+
+</div>
+
+<button
+type="submit"
+class="place-order">
+
+Place Order
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+<!--================ NEWSLETTER =================-->
+
+<section class="newsletter">
+
+<div class="newsletter-box">
+
+<h5>NEWSLETTER</h5>
+
+<h2>Stay Updated</h2>
+
+<p>
+Subscribe to get updates about new products, offers and latest deals.
+</p>
+
+<form class="newsletter-form">
+
+<input
+type="email"
+placeholder="Enter Your Email"
+required>
+
+<button type="submit">
+Subscribe
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+<!--================ FAQ =================-->
+
+<section class="faq">
+
+<div class="section-title">
+
+<h5>FAQ</h5>
+
+<h2>Frequently Asked Questions</h2>
+
+</div>
+
+<div class="faq-box">
+
+<details>
+
+<summary>Do you deliver across India?</summary>
+
+<p>
+Yes, delivery is available in most locations across India.
+</p>
+
+</details>
+
+<details>
+
+<summary>Which payment methods are accepted?</summary>
+
+<p>
+UPI, Cash on Delivery (where available), and online payment.
+</p>
+
+</details>
+
+<details>
+
+<summary>How long does delivery take?</summary>
+
+<p>
+Usually 2–7 business days depending on your location.
+</p>
+
+</details>
+
+</div>
+
+</section>
+
+<!--================ SCROLL TO TOP =================-->
+
+<button id="topBtn" onclick="scrollToTop()">
+
+<i class="fa-solid fa-arrow-up"></i>
+
+</button>
 
 <script src="script.js"></script>
 
 </body>
 </html>
-
-</div>
