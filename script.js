@@ -500,25 +500,6 @@ function updateCart() {
     document.getElementById("cartTotal").innerHTML = "₹ " + total;
 }
 
-function changeQty(index,val){
-    cart[index].qty += val;
-
-    if(cart[index].qty<=0){
-        cart.splice(index,1);
-    }
-
-    updateCart();
-}
-
-function removeItem(index){
-    cart.splice(index,1);
-    updateCart();
-}
-// ==========================================
-// SHOPPING CART
-// ==========================================
-
-let cart = [];
 
 
 // ==========================================
@@ -1064,19 +1045,6 @@ function placeOrder() {
         whatsappUrl,
         "_blank"
     );
-
-}
-
-
-// ==========================================
-// LOAD CART
-// ==========================================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        updateCart();
 
     }
 );
