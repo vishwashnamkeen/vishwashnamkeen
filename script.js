@@ -28,12 +28,6 @@ function showSlides() {
 
 showSlides();
 
-// ===============================
-// SHOPPING CART
-// ===============================
-
-let cart = [];
-
 
 // ===============================
 // ADD TO CART
@@ -201,31 +195,16 @@ function updateCart() {
                         </button>
 
                         <span>
-                            ${item.qty}
-                        </span>
+${item.qty}</span>
 
-                        <button
-                            onclick="changeQty(${index}, 1)">
-                            +
-                        </button>
-
-                    </div>
-
-                    <strong>
-                        ₹${itemTotal}
-                    </strong>
-
-                    <button
-                        onclick="removeItem(${index})">
-
-                        Remove
-
-                    </button>
-
-                </div>
-
-            `;
-
+<buttononclick="changeQty(${index}, 1)">
++
+</button></div>
+<strong>
+₹${itemTotal}</strong>
+<buttononclick="removeItem(${index})">Remove
+</button>
+</div>`;
         }
     );
 
