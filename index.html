@@ -211,7 +211,14 @@ View Products
 </section>
 
 </section>
+<h2>Shopping Cart</h2>
 
+<div id="cartItems"></div>
+
+<h3>Total: <span id="cartTotal">₹0</span></h3>
+
+<button>Pay with UPI</button>
+  
 <!-- TESTIMONIAL -->
 
 <section class="testimonial">
@@ -482,40 +489,6 @@ target="_blank">
 
 <i class="fa-solid fa-arrow-up"></i>
 
-</button><section id="calculator" style="padding:50px;text-align:center;background:#111;color:white;">
-
-<h2 style="color:#ffb400;">Order Calculator</h2>
-
-<select id="product" onchange="calculateTotal()">
-<option value="40">Bhakarwadi - ₹40</option>
-<option value="40">Bingo Masala - ₹40</option>
-<option value="40">Bingo Panipuri - ₹40</option>
-<option value="40">Masala Banana Wafers - ₹40</option>
-<option value="40">Methi Puri - ₹40</option>
-<option value="40">Nadiyadi Mix - ₹40</option>
-<option value="40">Punjabi Mix - ₹40</option>
-</select>
-
-<br><br>
-
-<input type="number" id="qty" value="1" min="1" onchange="calculateTotal()" onkeyup="calculateTotal()">
-
-<h3>Total : ₹ <span id="total">40</span></h3>
-
-<button style="padding:12px 25px;background:#ff9800;border:none;border-radius:8px;font-size:18px;">
-Pay with UPI
-</button>
-
-</section>
-
-<script>
-function calculateTotal(){
-let price=document.getElementById("product").value;
-let qty=document.getElementById("qty").value;
-document.getElementById("total").innerHTML=price*qty;
-}
-calculateTotal();
-</script>
 
 <script src="script.js"></script>
 
