@@ -25,3 +25,11 @@ function showSlides() {
 
     setTimeout(showSlides, 3000);
 }
+function openCart() {
+    document.getElementById("cartDrawer").classList.add("active");
+}
+
+function closeCart() {
+    document.getElementById("cartDrawer").classList.remove("active");
+}
+openCart();
