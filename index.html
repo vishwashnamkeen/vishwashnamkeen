@@ -55,7 +55,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <li><a href="#contact">Contact</a></li>
 
 </ul>
-
+<div class="cart-icon" onclick="openCart()">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span id="cartCount">0</span>
+</div>
+  
 <div class="menu-btn">
 
 <i class="fa-solid fa-bars"></i>
@@ -298,8 +302,16 @@ target="_blank">
 
 </a>
 
-<!-- SCROLL TOP -->
+<div id="cartDrawer" class="cart-drawer">
+    <div class="cart-header">
+        <h2>Shopping Cart</h2>
+        <button onclick="closeCart()">✖</button>
+    </div>
 
-<button id="topBtn">
+    <div id="cartItems"></div>
 
-<i class="fa-solid fa-arrow-up"></i>
+    <div class="cart-footer">
+        <h3>Total: ₹<span id="cartTotal">0</span></h3>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+</div>
