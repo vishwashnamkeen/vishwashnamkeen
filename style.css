@@ -436,47 +436,47 @@ transform:translateX(-50%);
    CUSTOMER REVIEWS
 =========================== */
 
-.testimonial{
-    padding:100px 8%;
-    background:#0b0b0b;
-}
+<!-- CUSTOMER REVIEWS -->
 
-.testimonial-box{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:25px;
-}
+<section class="testimonial" id="reviews">
 
-.review{
-    background:#1b1b1b;
-    border-radius:18px;
-    padding:30px;
-    text-align:center;
-    transition:.3s;
-    border:1px solid #222;
-}
+<h2 class="section-title">Customer Reviews</h2>
 
-.review:hover{
-    transform:translateY(-10px);
-    border-color:#FFD700;
-}
+<div class="testimonial-box">
 
-.review i{
-    color:#FFD700;
-    font-size:22px;
-    margin-bottom:15px;
-}
+<div class="review">
 
-.review p{
-    color:#ddd;
-    line-height:1.7;
-}
+<div class="stars">★★★★★</div>
 
-.review h4{
-    margin-top:20px;
-    color:#FFD700;
-    font-size:20px;
-}
+<p>Amazing Taste... Very Fresh Namkeen.</p>
+
+<h4>- Riya Patel</h4>
+
+</div>
+
+<div class="review">
+
+<div class="stars">★★★★★</div>
+
+<p>Best Quality Products. Highly Recommended.</p>
+
+<h4>- Rahul Jain</h4>
+
+</div>
+
+<div class="review">
+
+<div class="stars">★★★★★</div>
+
+<p>Very Crispy & Delicious.</p>
+
+<h4>- Aryan Shah</h4>
+
+</div>
+
+</div>
+
+</section>
 
 /* ===========================
    CONTACT
