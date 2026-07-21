@@ -33,3 +33,52 @@ function closeCart() {
     document.getElementById("cartDrawer").classList.remove("active");
 }
 openCart();
+let selectedProduct="";
+let selectedPrice=0;
+let popupQty=1;
+
+function buyNow(product,price){
+
+selectedProduct=product;
+selectedPrice=price;
+popupQty=1;
+
+document.getElementById("popupProduct").innerText=product;
+document.getElementById("popupPrice").innerText=price;
+document.getElementById("popupQty").innerText=popupQty;
+
+document.getElementById("buyPopup").style.display="flex";
+}
+
+function closePopup(){
+document.getElementById("buyPopup").style.display="none";
+}
+
+function changePopupQty(val){
+
+popupQty+=val;
+
+if(popupQty<1) popupQty=1;
+
+document.getElementById("popupQty").innerText=popupQty;
+}
+
+function confirmBuy(){
+
+let total=selectedPrice*popupQty;
+
+let message=
+`Hello Vishwash Namkeen,
+
+Product: ${selectedProduct}
+Price: ₹${selectedPrice}
+Quantity: ${popupQty}
+Total: ₹${total}`;
+
+window.open(
+"https://wa.me/918460183525?text="+encodeURIComponent(message),
+"_blank"
+);
+
+closePopup();
+}
