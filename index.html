@@ -211,14 +211,316 @@ View Products
 </section>
 
 </section>
-<h2>Shopping Cart</h2>
+<!-- ================= SHOPPING CART ================= -->
+<section id="shopping-cart" class="shopping-cart-section">
 
-<div id="cartItems"></div>
+    <div class="cart-box">
 
-<h3>Total: <span id="cartTotal">₹0</span></h3>
+        <h2>🛒 Shopping Cart</h2>
 
-<button>Pay with UPI</button>
-  
+        <p class="cart-subtitle">
+            Your selected products
+        </p>
+
+        <!-- Cart Products -->
+        <div id="cartItems">
+
+            <div class="empty-cart">
+                🛒
+                <h3>Your cart is empty</h3>
+                <p>Add products to your cart.</p>
+            </div>
+
+        </div>
+
+        <!-- Total -->
+        <div class="cart-total-box">
+
+            <div class="total-line">
+                <span>Total Items</span>
+                <strong>
+                    <span id="totalItems">0</span>
+                </strong>
+            </div>
+
+            <div class="total-line grand-total">
+                <span>Total Amount</span>
+                <strong>
+                    ₹<span id="cartTotal">0</span>
+                </strong>
+            </div>
+
+        </div>
+
+        <!-- Payment -->
+        <div class="payment-section">
+
+            <h3>💳 Payment</h3>
+
+            <p>Select your payment method:</p>
+
+            <label class="payment-method">
+                <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="upi"
+                    checked
+                >
+                UPI Payment
+            </label>
+
+            <label class="payment-method">
+                <input
+                    type="radio"
+                    name="paymentMethod"
+                    value="cod"
+                >
+                Cash on Delivery
+            </label>
+
+            <button
+                type="button"
+                class="checkout-btn"
+                onclick="checkout()">
+
+                Proceed to Checkout
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<style>
+
+.shopping-cart-section {
+    padding: 50px 20px;
+    background: #f5f5f5;
+}
+
+.cart-box {
+    max-width: 850px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+}
+
+.cart-box h2 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.cart-subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+
+/* Cart Item */
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item h4 {
+    margin: 0 0 5px;
+}
+
+.cart-item p {
+    margin: 0;
+    color: #555;
+}
+
+
+/* Quantity */
+
+.quantity-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-box button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: #222;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.quantity-box span {
+    font-weight: bold;
+}
+
+
+/* Remove */
+
+.remove-btn {
+    background: #e63946;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* Total */
+
+.cart-total-box {
+    margin-top: 25px;
+    border-top: 2px solid #eee;
+    padding-top: 20px;
+}
+
+.total-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.grand-total {
+    font-size: 22px;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+
+/* Payment */
+
+.payment-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 10px;
+}
+
+.payment-method {
+    display: block;
+    padding: 12px;
+    margin: 8px 0;
+    background: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.payment-method input {
+    margin-right: 10px;
+}
+
+
+/* Checkout */
+
+.checkout-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #198754;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.checkout-btn:hover {
+    background: #146c43;
+}
+
+
+/* Empty */
+
+.empty-cart {
+    text-align: center;
+    padding: 35px;
+    color: #777;
+}
+<!-- CUSTOMER DETAILS -->
+<section class="customer-details">
+
+    <h2>📦 Delivery Details</h2>
+
+    <input
+        type="text"
+        id="customerName"
+        placeholder="Your Full Name"
+        required
+    >
+
+    <input
+        type="tel"
+        id="customerPhone"
+        placeholder="Mobile Number"
+        required
+    >
+
+    <textarea
+        id="customerAddress"
+        placeholder="Complete Delivery Address"
+        required
+    ></textarea>
+
+    <textarea
+        id="orderNote"
+        placeholder="Order Note (Optional)"
+    ></textarea>
+
+</section>
+
+
+<!-- ORDER BUTTON -->
+<div class="order-section">
+
+    <button
+        class="place-order-btn"
+        onclick="placeOrder()">
+
+        📲 Place Order on WhatsApp
+
+    </button>
+
+</div>
+
+
+<!-- TRUST SECTION -->
+<div class="trust-section">
+
+    <div>
+        🔒
+        <strong>Secure Shopping</strong>
+        <p>Your information is safe</p>
+    </div>
+
+    <div>
+        🚚
+        <strong>Fast Delivery</strong>
+        <p>Quick delivery at your doorstep</p>
+    </div>
+
+    <div>
+        💬
+        <strong>Customer Support</strong>
+        <p>We're here to help</p>
+    </div>
+
+</div>
+
+/*
 <!-- TESTIMONIAL -->
 
 <section class="testimonial">
