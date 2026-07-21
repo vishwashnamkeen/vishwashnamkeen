@@ -247,21 +247,7 @@ behavior:"smooth"
 // ======================
 
 console.log("Vishwash Namkeen Website Ready");
-function orderNow(product) {
-    let qty = prompt("Kitne packet chahiye?");
 
-    if (qty && qty > 0) {
-        let msg = `Hello Vishwash Namkeen,%0A
-Mujhe order karna hai.%0A
-Product: ${product}%0A
-Quantity: ${qty} Packet`;
-
-        window.open(
-            "https://wa.me/918460183525?text=" + msg,
-            "_blank"
-        );
-    }
-}
 function orderNow(product) {
     let qty = prompt("Kitne Packet Chahiye?");
 
@@ -274,7 +260,7 @@ Mujhe order karna hai.
 Product: ${product}
 Quantity: ${qty} Packet`;
 
-        let url = "https://wa.me/919876543210?text=" + encodeURIComponent(message);
+        let url = "https://wa.me/918460183525?text=" + encodeURIComponent(message);
         window.open(url, "_blank");
     }
 }
