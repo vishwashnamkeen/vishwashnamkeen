@@ -406,14 +406,6 @@ header{
 /* ===========================
    AUTO IMAGE SLIDER
 =========================== */
-
-.slider{
-    width:100%;
-    overflow:hidden;
-    border-radius:18px;
-    position:relative;
-}
-
 .slider-track{
     display:flex;
     width:max-content;
