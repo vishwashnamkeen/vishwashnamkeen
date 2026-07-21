@@ -332,7 +332,16 @@ header{
         transform:scale(1.08);
     }
 }
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    transition:0.4s ease;
+}
 
+.slide img:hover{
+    transform:scale(1.08);
+}
 /* ===========================
    PRODUCT RESPONSIVE
 =========================== */
