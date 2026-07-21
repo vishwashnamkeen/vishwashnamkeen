@@ -264,4 +264,63 @@ Quantity: ${qty} Packet`;
         window.open(url, "_blank");
     }
 }
+let cart = [];
 
+function addToCart(name, price) {
+    let item = cart.find(p => p.name === name);
+
+    if (item) {
+        item.qty++;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            qty: 1
+        });
+    }
+
+    updateCart();
+}
+
+function updateCart() {
+    let html = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+        total += item.price * item.qty;
+
+        html += `
+        <div class="cart-item">
+            <b>${item.name}</b><br>
+
+            <button onclick="changeQty(${index},-1)">-</button>
+
+            ${item.qty}
+
+            <button onclick="changeQty(${index},1)">+</button>
+
+            ₹${item.price * item.qty}
+
+            <button onclick="removeItem(${index})">❌</button>
+        </div><hr>
+        `;
+    });
+
+    document.getElementById("cartItems").innerHTML = html;
+    document.getElementById("cartTotal").innerHTML = "₹ " + total;
+}
+
+function changeQty(index,val){
+    cart[index].qty += val;
+
+    if(cart[index].qty<=0){
+        cart.splice(index,1);
+    }
+
+    updateCart();
+}
+
+function removeItem(index){
+    cart.splice(index,1);
+    updateCart();
+}
