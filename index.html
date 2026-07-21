@@ -284,40 +284,29 @@ Fresh Taste • Premium Quality • Trusted Brand
 
 All Rights Reserved.
 
-</p>
+<!-- BUY POPUP -->
+<div id="buyPopup" class="popup">
 
-</div>
+  <div class="popup-box">
 
-</footer>
+    <span class="close" onclick="closePopup()">&times;</span>
 
-<!-- WHATSAPP BUTTON -->
+    <h2 id="popupProduct">Product</h2>
 
-<a href="https://wa.me/918460183525?text=Hello%20Vishwash%20Namkeen,%20mujhe%20website%20se%20order%20karna%20hai."
+    <h3>₹<span id="popupPrice">0</span></h3>
 
-class="whatsapp"
+    <div class="qty-box">
+      <button onclick="changePopupQty(-1)">−</button>
 
-target="_blank">
+      <span id="popupQty">1</span>
 
-<i class="fab fa-whatsapp"></i>
-
-</a>
-
-<div id="cartDrawer" class="cart-drawer">
-    <div class="cart-header">
-        <h2>Shopping Cart</h2>
-        <button onclick="closeCart()">✖</button>
+      <button onclick="changePopupQty(1)">+</button>
     </div>
 
-    <div id="cartItems"></div>
+    <button class="buy-btn" onclick="confirmBuy()">
+      Buy on WhatsApp
+    </button>
 
-    <div class="cart-footer">
-        <h3>Total: ₹<span id="cartTotal">0</span></h3>
-        <button onclick="checkout()">Checkout</button>
-    </div>
+  </div>
+
 </div>
-
-        <button onclick="buyNow('Bhakarwadi',120)">Buy Now</button>
-
-<button onclick="buyNow('Bingo Masala',130)">Buy Now</button>
-
-<button onclick="buyNow('Methi Puri',120)">Buy Now</button>
