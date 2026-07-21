@@ -340,6 +340,219 @@ target="_blank">
 </body>
 </html>
 <script src="script.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vishwash Namkeen</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<nav>
+
+<div class="logo">
+<h2>Vishwash <span>Namkeen</span></h2>
+</div>
+
+<ul>
+
+<li><a href="#">Home</a></li>
+
+<li><a href="#products">Products</a></li>
+
+<li><a href="#cart">Cart</a></li>
+
+<li><a href="#contact">Contact</a></li>
+
+</ul>
+
+<div class="cart-btn" onclick="document.getElementById('cart').scrollIntoView({behavior:'smooth'})">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<span id="cartCount">0</span>
+
+</div>
+
+</nav>
+
+</header>
+
+<section class="products" id="products">
+
+<h2>Our Products</h2>
+
+<div class="product-grid">
+
+<!-- PRODUCT 1 -->
+
+<div class="product">
+
+<img src="METHIPURI.PNG.png">
+
+<h3>Methi Puri</h3>
+
+<p>₹120</p>
+
+<button onclick="addToCart('Methi Puri',120)">
+Add To Cart
+</button>
+
+</div>
+
+<!-- PRODUCT 2 -->
+
+<div class="product">
+
+<img src="NADIYADIMIX.PNG.png">
+
+<h3>Nadiyadi Mix</h3>
+
+<p>₹150</p>
+
+<button onclick="addToCart('Nadiyadi Mix',150)">
+Add To Cart
+</button>
+
+</div>
+
+<!-- PRODUCT 3 -->
+
+<div class="product">
+
+<img src="PUNJABIMIX.PNG.png">
+
+<h3>Punjabi Mix</h3>
+
+<p>₹160</p>
+
+<button onclick="addToCart('Punjabi Mix',160)">
+Add To Cart
+</button>
+
+</div>
+
+<!-- PRODUCT 4 -->
+
+<div class="product">
+
+<img src="BHAKARWADI.PNG.png">
+
+<h3>Bhakarwadi</h3>
+
+<p>₹140</p>
+
+<button onclick="addToCart('Bhakarwadi',140)">
+Add To Cart
+</button>
+
+</div>
+
+<!-- PRODUCT 5 -->
+
+<div class="product">
+
+<img src="BINGOMASALA.PNG.png">
+
+<h3>Bingo Masala</h3>
+
+<p>₹50</p>
+
+<button onclick="addToCart('Bingo Masala',50)">
+Add To Cart
+</button>
+
+</div>
+
+<!-- PRODUCT 6 -->
+
+<div class="product">
+
+<img src="BINGOPANIPURI.PNG.png">
+
+<h3>Bingo Panipuri</h3>
+
+<p>₹50</p>
+
+<button onclick="addToCart('Bingo Panipuri',50)">
+Add To Cart
+</button>
+
+</div>
+
+<!-- PRODUCT 7 -->
+
+<div class="product">
+
+<img src="MASALABANANAWEFERS.PNG.png">
+
+<h3>Banana Wafers</h3>
+
+<p>₹130</p>
+
+<button onclick="addToCart('Banana Wafers',130)">
+Add To Cart
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="cart" class="cart">
+
+<h2>
+<i class="fa-solid fa-cart-shopping"></i>
+
+Shopping Cart
+
+</h2>
+
+<div id="cartItems">
+
+<p>Your Cart Is Empty</p>
+
+</div>
+
+<h3>
+
+Total Items :
+<span id="totalItems">0</span>
+
+</h3>
+
+<h3>
+
+Total Amount :
+₹<span id="cartTotal">0</span>
+
+</h3>
+
+<button class="checkout"
+onclick="checkout()">
+
+Proceed To Checkout
+
+</button>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
 
 </body>
 
