@@ -315,35 +315,7 @@ target="_blank">
         <button onclick="checkout()">Checkout</button>
     </div>
 </div>
-{function buyNow(product, price) {
 
-    let qty = prompt("Kitne packet chahiye?", "1");
-
-    if (qty === null) return;
-
-    qty = parseInt(qty);
-
-    if (isNaN(qty) || qty < 1) {
-        alert("Please enter a valid quantity.");
-        return;
-    }
-
-    let total = qty * price;
-
-    let message =
-`Hello Vishwash Namkeen,
-
-Mujhe order karna hai.
-
-Product: ${product}
-Price: ₹${price}
-Quantity: ${qty}
-Total: ₹${total}`;
-
-    let url = "https://wa.me/918460183525?text=" + encodeURIComponent(message);
-
-    window.open(url, "_blank");
-}
         <button onclick="buyNow('Bhakarwadi',120)">Buy Now</button>
 
 <button onclick="buyNow('Bingo Masala',130)">Buy Now</button>
