@@ -432,51 +432,57 @@ transform:translateX(-50%);
 
 }
 
-/* ===========================
-   CUSTOMER REVIEWS
-=========================== */
+/* CUSTOMER REVIEWS */
 
-<!-- CUSTOMER REVIEWS -->
+.testimonial{
+    padding:80px 10%;
+    background:#111;
+}
 
-<section class="testimonial" id="reviews">
+.section-title{
+    text-align:center;
+    font-size:38px;
+    color:#FFD700;
+    margin-bottom:40px;
+}
 
-<h2 class="section-title">Customer Reviews</h2>
+.testimonial-box{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
 
-<div class="testimonial-box">
+.review{
+    background:#1b1b1b;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    transition:.3s;
+    border:1px solid #333;
+}
 
-<div class="review">
+.review:hover{
+    transform:translateY(-8px);
+    border-color:#FFD700;
+}
 
-<div class="stars">★★★★★</div>
+.stars{
+    color:#FFD700;
+    font-size:28px;
+    margin-bottom:15px;
+}
 
-<p>Amazing Taste... Very Fresh Namkeen.</p>
+.review p{
+    font-size:18px;
+    color:#fff;
+    line-height:1.6;
+    margin-bottom:15px;
+}
 
-<h4>- Riya Patel</h4>
-
-</div>
-
-<div class="review">
-
-<div class="stars">★★★★★</div>
-
-<p>Best Quality Products. Highly Recommended.</p>
-
-<h4>- Rahul Jain</h4>
-
-</div>
-
-<div class="review">
-
-<div class="stars">★★★★★</div>
-
-<p>Very Crispy & Delicious.</p>
-
-<h4>- Aryan Shah</h4>
-
-</div>
-
-</div>
-
-</section>
+.review h4{
+    color:#FFD700;
+    font-size:16px;
+}
 
 /* ===========================
    CONTACT
