@@ -296,7 +296,7 @@ color:#FFD700;
 color:#ccc;
 margin-bottom:20px;
 }
-   line-hight:1.6;
+line-hight:1.6;
 
 .buy-btn{
 display:inline-block;
@@ -561,6 +561,4 @@ font-size:34px;
 .gallery-grid,
 .testimonial-box{
 grid-template-columns:1fr;
-}
-
 }
