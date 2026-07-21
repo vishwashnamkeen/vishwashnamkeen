@@ -265,7 +265,7 @@ overflow:hidden;
 text-align:center;
 padding:20px;
 transition:.4s;
-min-height: 520pxsemicolon(;)
+min-height: 520px;
 border:1px solid #222;
 }
 
@@ -296,6 +296,7 @@ color:#FFD700;
 color:#ccc;
 margin-bottom:20px;
 }
+   line-hight:1.6;
 
 .buy-btn{
 display:inline-block;
