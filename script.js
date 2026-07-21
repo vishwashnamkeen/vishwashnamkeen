@@ -27,8 +27,7 @@ function showSlides() {
 }
 
 showSlides();
-
-
+let cart=[];
 // ===============================
 // ADD TO CART
 // ===============================
