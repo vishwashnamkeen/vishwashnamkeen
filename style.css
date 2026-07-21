@@ -932,6 +932,32 @@ justify-content:center;
 .products h2{
 font-size:28px;
 }
+   <!-- BUY POPUP -->
+<div id="buyPopup" class="popup">
+
+  <div class="popup-box">
+
+    <span class="close" onclick="closePopup()">&times;</span>
+
+    <h2 id="popupProduct">Product</h2>
+
+    <h3>₹<span id="popupPrice">0</span></h3>
+
+    <div class="qty-box">
+      <button onclick="changePopupQty(-1)">−</button>
+
+      <span id="popupQty">1</span>
+
+      <button onclick="changePopupQty(1)">+</button>
+    </div>
+
+    <button class="buy-btn" onclick="confirmBuy()">
+      Buy on WhatsApp
+    </button>
+
+  </div>
+
+</div>
 
 .product img{
 width:140px;
