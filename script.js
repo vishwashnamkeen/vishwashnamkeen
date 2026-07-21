@@ -664,11 +664,11 @@ function payWithUPI() {
     */
 
     let upiId =
-        "yourupi@upi";
+        n92066158@oksbi
 
 
     let merchantName =
-        "My Online Store";
+       VISHWASH NAMKEEN
 
 
     let upiUrl =
@@ -860,7 +860,7 @@ function placeOrder() {
     */
 
     let whatsappNumber =
-        "919876543210";
+        "8460183525";
 
 
     let whatsappUrl =
