@@ -28,90 +28,302 @@ function showSlides() {
 
 showSlides();
 
-// Cart Variables
-let totalItems = 0;
-let totalPrice = 0;
+// ===============================
+// SHOPPING CART
+// ===============================
 
-// Add To Cart
+let cart = [];
+
+
+// ===============================
+// ADD TO CART
+// ===============================
+
 function addToCart(product, price, qtyId) {
 
-    let qty = parseInt(document.getElementById(qtyId).value);
+    let qtyInput = document.getElementById(qtyId);
 
-    if (isNaN(qty) || qty < 1) {
+    let qty = parseInt(qtyInput.value) || 1;
+
+    if (qty < 1) {
         qty = 1;
     }
 
-    totalItems += qty;
-    totalPrice += qty * price;
+    // Check product already in cart
+    let existing = cart.find(
+        item => item.name === product
+    );
 
-    document.getElementById("totalItems").innerText = totalItems;
-    document.getElementById("totalPrice").innerText = totalPrice;
+    if (existing) {
+
+        existing.qty += qty;
+
+    } else {
+
+        cart.push({
+            name: product,
+            price: Number(price),
+            qty: qty
+        });
+
+    }
+
+    updateCart();
 
     alert(
-        qty +
-        " x " +
+        qty + " x " +
         product +
         " Added To Cart"
     );
 
 }
-// ======================
-// BUY NOW FUNCTION
-// ======================
 
-function buyNow() {
 
-    if (totalItems === 0) {
-        alert("Please Add Product To Cart");
-        return;
+// ===============================
+// BUY NOW
+// ===============================
+
+function buyNow(product, price, qtyId) {
+
+    let qtyInput =
+        document.getElementById(qtyId);
+
+    let qty =
+        parseInt(qtyInput.value) || 1;
+
+    if (qty < 1) {
+        qty = 1;
     }
 
-    const name = document.getElementById("name").value.trim();
-    const mobile = document.getElementById("mobile").value.trim();
-    const address = document.getElementById("address").value.trim();
-    const pincode = document.getElementById("pincode").value.trim();
-    const upi = document.getElementById("upiid").value.trim();
 
-    if (name === "") {
-        alert("Enter Your Name");
+    // Directly add product
+    cart = [
+
+        {
+            name: product,
+            price: Number(price),
+            qty: qty
+        }
+
+    ];
+
+
+    // Calculate total
+    let total =
+        Number(price) * qty;
+
+
+    // Update cart
+    updateCart();
+
+
+    // Open checkout automatically
+    openCheckout();
+
+}
+
+
+// ===============================
+// UPDATE CART
+// ===============================
+
+function updateCart() {
+
+    let cartItems =
+        document.getElementById("cartItems");
+
+    let cartTotal =
+        document.getElementById("cartTotal");
+
+    let totalItems =
+        document.getElementById("totalItems");
+
+
+    if (!cartItems) return;
+
+
+    let total = 0;
+
+    let items = 0;
+
+
+    if (cart.length === 0) {
+
+        cartItems.innerHTML =
+            "<p>Your cart is empty.</p>";
+
+        if (cartTotal) {
+            cartTotal.innerText = "0";
+        }
+
+        if (totalItems) {
+            totalItems.innerText = "0";
+        }
+
         return;
+
     }
 
-    if (mobile.length != 10) {
-        alert("Enter Valid Mobile Number");
-        return;
-    }
 
-    if (address === "") {
-        alert("Enter Address");
-        return;
-    }
+    let html = "";
 
-    if (pincode.length != 6) {
-        alert("Enter Valid Pincode");
-        return;
-    }
 
-    if (upi === "") {
-        alert("Enter UPI ID");
-        return;
-    }
+    cart.forEach(
+        (item, index) => {
 
-    let payURL =
-        "upi://pay?pa=" +
-        upi +
-        "&pn=Vishwash Namkeen&am=" +
-        totalPrice +
-        "&cu=INR";
+            let itemTotal =
+                item.price *
+                item.qty;
 
-    window.location.href = payURL;
 
-    alert(
-        "Order Placed Successfully!\n\n" +
-        "Customer : " + name +
-        "\nTotal : ₹" + totalPrice
+            total += itemTotal;
+
+            items += item.qty;
+
+
+            html += `
+
+                <div class="cart-item">
+
+                    <h4>
+                        ${item.name}
+                    </h4>
+
+                    <p>
+                        ₹${item.price}
+                    </p>
+
+                    <div class="quantity-box">
+
+                        <button
+                            onclick="changeQty(${index}, -1)">
+                            −
+                        </button>
+
+                        <span>
+                            ${item.qty}
+                        </span>
+
+                        <button
+                            onclick="changeQty(${index}, 1)">
+                            +
+                        </button>
+
+                    </div>
+
+                    <strong>
+                        ₹${itemTotal}
+                    </strong>
+
+                    <button
+                        onclick="removeItem(${index})">
+
+                        Remove
+
+                    </button>
+
+                </div>
+
+            `;
+
+        }
     );
 
+
+    cartItems.innerHTML = html;
+
+
+    if (cartTotal) {
+
+        cartTotal.innerText =
+            total;
+
+    }
+
+
+    if (totalItems) {
+
+        totalItems.innerText =
+            items;
+
+    }
+
+}
+
+
+// ===============================
+// CHANGE QUANTITY
+// ===============================
+
+function changeQty(index, value) {
+
+    if (!cart[index]) return;
+
+
+    cart[index].qty += value;
+
+
+    if (cart[index].qty < 1) {
+
+        cart[index].qty = 1;
+
+    }
+
+
+    updateCart();
+
+}
+
+
+// ===============================
+// REMOVE PRODUCT
+// ===============================
+
+function removeItem(index) {
+
+    cart.splice(index, 1);
+
+    updateCart();
+
+}
+
+
+// ===============================
+// OPEN CHECKOUT
+// ===============================
+
+function openCheckout() {
+
+    if (cart.length === 0) {
+
+        alert(
+            "Please add a product first."
+        );
+
+        return;
+
+    }
+
+
+    let checkout =
+        document.getElementById(
+            "checkoutSection"
+        );
+
+
+    if (checkout) {
+
+        checkout.style.display =
+            "block";
+
+
+        checkout.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+
+ 
 }
 
 // ======================
