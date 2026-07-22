@@ -603,6 +603,7 @@ subtotal = 0;
 
 cart.forEach(item=>{
 
+   uncaught syntraxError:missing)after arguent list script.js:606
 const price = Number(string(item.price.replace("₹","")); 0;
 
 subtotal += price * item.qty;
