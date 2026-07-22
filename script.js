@@ -178,4 +178,13 @@ function processWhatsAppOrder(e) {
     
     const whatsappURL = `https://wa.me/918460183525?text=${message}`;
     window.open(whatsappURL, '_blank');
+    // 2. Clear Cart after placing order
+    cart = [];
+    updateCartUI();
+
+    // 3. User ko inform karke direct Home Page / Order Successful view par wapas le aao
+    alert("Aapka order WhatsApp par send ho raha hai! Order message send karne ke baad aap wapas Vishwash Namkeen website par aa sakte hain.");
+    
+    // Return to main Vishwash Namkeen home page
+    showPage('home-page');
 }
