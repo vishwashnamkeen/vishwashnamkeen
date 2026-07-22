@@ -1,212 +1,222 @@
-// ==========================================
-// 1. GLOBAL STATE & DATA
-// ==========================================
-let cart = [];
+// Sample Products Data
+const products = [
+    { id: 1, name: "Premium Wireless Headphones", category: "Electronics", price: 3499, image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&q=80" },
+    { id: 2, name: "Minimalist Black Watch", category: "Accessories", price: 4999, image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80" },
+    { id: 3, name: "Smart Speaker Echo", category: "Electronics", price: 2899, image: "https://images.unsplash.com/photo-1589003077984-894e133dabab?w=600&q=80" },
+    { id: 4, name: "Classic UV Sunglasses", category: "Fashion", price: 1599, image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=600&q=80" },
+    { id: 5, name: "Ultra-thin Mechanical Keyboard", category: "Electronics", price: 6200, image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&q=80" },
+    { id: 6, name: "Genuine Leather Backpack", category: "Fashion", price: 3899, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80" }
+];
 
-// ==========================================
-// 2. DOM LOADED INITIALIZATION
-// ==========================================
-document.addEventListener('DOMContentLoaded', () => {
-    initMobileMenu();
-    initCartButtons();
-    initQuickView();
-    initWhatsAppOrder();
-    initSmoothScroll();
+// Application State
+let wishlist = [];
+let cart = [];
+let currentCategory = 'All';
+
+// Initialize App on DOM Load
+window.addEventListener('DOMContentLoaded', () => {
+    renderShop();
+    updateBadges();
 });
 
-// ==========================================
-// 3. MOBILE MENU TOGGLE
-// ==========================================
-function initMobileMenu() {
-    const menuToggle = document.getElementById('mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
+// Switch Between Shop & Dedicated Wishlist Tab
+function switchTab(tab) {
+    document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            
-            // Toggle menu icon between bars & times (X)
-            const icon = menuToggle.querySelector('i');
-            if (icon) {
-                icon.classList.toggle('fa-bars');
-                icon.classList.toggle('fa-times');
-            }
-        });
+    if(tab === 'shop') {
+        document.getElementById('shopView').classList.add('active');
+        document.getElementById('tab-shop').classList.add('active');
+    } else if(tab === 'wishlist') {
+        document.getElementById('wishlistView').classList.add('active');
+        document.getElementById('tab-wishlist').classList.add('active');
+        renderWishlist();
     }
 }
 
-// ==========================================
-// 4. CART SYSTEM (ADD TO CART)
-// ==========================================
-function initCartButtons() {
-    const cartBtns = document.querySelectorAll('.cart-btn');
+// Render Shop Items (with Category Filter & Live Search)
+function renderShop() {
+    const grid = document.getElementById('shopGrid');
+    const searchVal = document.getElementById('searchInput').value.toLowerCase();
 
-    cartBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const productCard = e.target.closest('.product-card');
-            if (!productCard) return;
-
-            const productName = productCard.querySelector('h3').innerText;
-            const priceText = productCard.querySelector('.price .current').innerText;
-            const price = parseInt(priceText.replace('₹', '').trim());
-            const imgSrc = productCard.querySelector('img').src;
-
-            addToCart(productName, price, imgSrc);
-        });
+    const filtered = products.filter(p => {
+        const matchesCat = currentCategory === 'All' || p.category === currentCategory;
+        const matchesSearch = p.name.toLowerCase().includes(searchVal);
+        return matchesCat && matchesSearch;
     });
+
+    grid.innerHTML = filtered.map(product => {
+        const isLiked = wishlist.includes(product.id);
+        return `
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <button class="like-btn ${isLiked ? 'active' : ''}" onclick="toggleWishlist(${product.id})">
+                        <i class="fa-${isLiked ? 'solid' : 'regular'} fa-heart"></i>
+                    </button>
+                    <img src="${product.image}" alt="${product.name}" class="card-img">
+                </div>
+                <div class="card-body">
+                    <span class="card-category">${product.category}</span>
+                    <h3 class="card-title">${product.name}</h3>
+                    <div class="card-footer">
+                        <span class="price">₹${product.price.toLocaleString('en-IN')}</span>
+                        <button class="add-btn" onclick="addToCart(${product.id})">
+                            <i class="fa-solid fa-cart-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
 }
 
-function addToCart(name, price, img) {
-    const existingItem = cart.find(item => item.name === name);
+// Render Wishlist Items Tab
+function renderWishlist() {
+    const grid = document.getElementById('wishlistGrid');
+    const emptyState = document.getElementById('wishlistEmpty');
 
-    if (existingItem) {
-        existingItem.quantity += 1;
+    const wishlistProducts = products.filter(p => wishlist.includes(p.id));
+
+    if(wishlistProducts.length === 0) {
+        grid.innerHTML = '';
+        emptyState.style.display = 'block';
     } else {
-        cart.push({
-            name: name,
-            price: price,
-            img: img,
-            quantity: 1
-        });
+        emptyState.style.display = 'none';
+        grid.innerHTML = wishlistProducts.map(product => `
+            <div class="card">
+                <div class="card-img-wrapper">
+                    <button class="like-btn active" onclick="toggleWishlist(${product.id})">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                    <img src="${product.image}" alt="${product.name}" class="card-img">
+                </div>
+                <div class="card-body">
+                    <span class="card-category">${product.category}</span>
+                    <h3 class="card-title">${product.name}</h3>
+                    <div class="card-footer">
+                        <span class="price">₹${product.price.toLocaleString('en-IN')}</span>
+                        <button class="add-btn" onclick="addToCart(${product.id})">
+                            <i class="fa-solid fa-cart-plus"></i> Move To Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+}
+
+// Toggle Wishlist Logic
+function toggleWishlist(id) {
+    const idx = wishlist.indexOf(id);
+    const product = products.find(p => p.id === id);
+
+    if(idx === -1) {
+        wishlist.push(id);
+        showToast(`"${product.name}" Wishlist me add ho gaya!`);
+    } else {
+        wishlist.splice(idx, 1);
+        showToast(`Wishlist se remove kar diya gaya.`);
     }
 
-    updateCartUI();
-    showToast(`"${name}" added to cart! 🛒`);
+    updateBadges();
+    renderShop();
+    renderWishlist();
 }
 
-function updateCartUI() {
-    const cartBadge = document.querySelector('.cart-icon .badge');
-    if (cartBadge) {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        cartBadge.innerText = totalItems;
+// Cart Logic & Drawer
+function addToCart(id) {
+    const existing = cart.find(item => item.id === id);
+    const product = products.find(p => p.id === id);
 
-        // Pulse Animation for Cart Badge
-        cartBadge.style.transform = 'scale(1.3)';
-        setTimeout(() => cartBadge.style.transform = 'scale(1)', 200);
+    if(existing) {
+        existing.qty++;
+    } else {
+        cart.push({ ...product, qty: 1 });
     }
+
+    showToast(`"${product.name}" Cart me add ho gaya!`);
+    updateBadges();
+    renderCartDrawer();
 }
 
-// ==========================================
-// 5. QUICK VIEW & BUY NOW FUNCTIONALITY
-// ==========================================
-function initQuickView() {
-    const viewBtns = document.querySelectorAll('.view-btn');
-
-    viewBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const productCard = e.target.closest('.product-card');
-            if (!productCard) return;
-
-            const productName = productCard.querySelector('h3').innerText;
-            const price = productCard.querySelector('.price .current').innerText;
-            
-            // Direct Order Link for WhatsApp
-            const message = `Hello Vishwash Namkeen, I want to inquire about: *${productName}* (${price})`;
-            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappUrl, '_blank');
-        });
-    });
+function updateQty(id, change) {
+    const item = cart.find(i => i.id === id);
+    if(item) {
+        item.qty += change;
+        if(item.qty <= 0) {
+            cart = cart.filter(i => i.id !== id);
+        }
+    }
+    updateBadges();
+    renderCartDrawer();
 }
 
-// ==========================================
-// 6. WHATSAPP DIRECT ORDER BUTTONS
-// ==========================================
-function initWhatsAppOrder() {
-    const orderBtns = document.querySelectorAll('.btn-whatsapp, .btn-whatsapp-large');
+function renderCartDrawer() {
+    const container = document.getElementById('cartItems');
+    const totalEl = document.getElementById('cartTotal');
 
-    orderBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            // Agar Cart me items hain toh Cart details bhejega, warna normal message
-            let message = "Hello Vishwash Namkeen! 👋\nI want to place an order.";
+    if(cart.length === 0) {
+        container.innerHTML = `<p style="text-align:center; color: var(--text-muted); margin-top:2rem;">Aapka Cart khali hai.</p>`;
+        totalEl.innerText = `₹0`;
+        return;
+    }
 
-            if (cart.length > 0) {
-                message = "Hello Vishwash Namkeen! 👋\nI would like to order the following items:\n\n";
-                let total = 0;
+    let total = 0;
+    container.innerHTML = cart.map(item => {
+        total += item.price * item.qty;
+        return `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.name}">
+                <div class="cart-item-details">
+                    <div class="cart-item-title">${item.name}</div>
+                    <div class="cart-item-price">₹${(item.price * item.qty).toLocaleString('en-IN')}</div>
+                    <div class="qty-controls">
+                        <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
+                        <span>${item.qty}</span>
+                        <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
 
-                cart.forEach((item, index) => {
-                    const itemTotal = item.price * item.quantity;
-                    total += itemTotal;
-                    message += `${index + 1}. *${item.name}* x ${item.quantity} = ₹${itemTotal}\n`;
-                });
-
-                message += `\n*Total Amount: ₹${total}*\n`;
-                message += "\nPlease let me know the payment and delivery details!";
-            }
-
-            const phone = "910000000000"; // Aap yahan apna WhatsApp Phone Number dal sakte hain
-            const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappUrl, '_blank');
-        });
-    });
+    totalEl.innerText = `₹${total.toLocaleString('en-IN')}`;
 }
 
-// ==========================================
-// 7. TOAST NOTIFICATION SYSTEM
-// ==========================================
+function toggleCartDrawer(open) {
+    document.getElementById('cartOverlay').classList.toggle('open', open);
+    if(open) renderCartDrawer();
+}
+
+function checkout() {
+    if(cart.length === 0) return alert("Aapka cart khali hai!");
+    alert("Order successfully place ho gaya hai! Thank you.");
+    cart = [];
+    updateBadges();
+    toggleCartDrawer(false);
+}
+
+// Filters & Searches
+function filterCategory(category, element) {
+    currentCategory = category;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    element.classList.add('active');
+    renderShop();
+}
+
+function filterProducts() {
+    renderShop();
+}
+
+// Badges & Toast Notifications
+function updateBadges() {
+    document.getElementById('wishlistBadge').innerText = wishlist.length;
+    document.getElementById('cartBadge').innerText = cart.reduce((sum, item) => sum + item.qty, 0);
+}
+
 function showToast(message) {
-    let toast = document.createElement('div');
-    toast.className = 'custom-toast';
-    toast.innerText = message;
-
-    // Toast Styling dynamically applied
-    Object.assign(toast.style, {
-        position: 'fixed',
-        bottom: '30px',
-        right: '30px',
-        backgroundColor: '#e50914',
-        color: '#ffffff',
-        padding: '12px 24px',
-        borderRadius: '8px',
-        boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
-        zIndex: '9999',
-        fontSize: '0.9rem',
-        fontWeight: '600',
-        transition: 'all 0.3s ease',
-        opacity: '0',
-        transform: 'translateY(20px)'
-    });
-
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-        toast.style.opacity = '1';
-        toast.style.transform = 'translateY(0)';
-    }, 10);
-
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateY(20px)';
-        setTimeout(() => toast.remove(), 300);
-    }, 3000);
-}
-
-// ==========================================
-// 8. SMOOTH SCROLLING
-// ==========================================
-function initSmoothScroll() {
-    const navAnchors = document.querySelectorAll('a[href^="#"]');
-
-    navAnchors.forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-                e.preventDefault();
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-
-                // Mobile Menu ko band kar dega click hone par
-                const navLinks = document.querySelector('.nav-links');
-                if (navLinks && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                }
-            }
-        });
-    });
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').innerText = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2500);
 }
