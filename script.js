@@ -100,15 +100,69 @@ function buyNow(id) {
 }
 
 // 7. WISHLIST FUNCTIONALITY
-function toggleWishlist(id) {
+// UPDATED WISHLIST FUNCTION WITH VISUAL CHECK/TOGGLE
+function toggleWishlist(id, element) {
     const item = products.find(p => p.id === id);
-    if (!wishlist.some(w => w.id === id)) {
+    if (!item) return;
+
+    const existingIndex = wishlist.findIndex(w => w.id === id);
+
+    if (existingIndex === -1) {
+        // Wishlist mein ADD karein
         wishlist.push(item);
-        localStorage.setItem('wishlist', JSON.stringify(wishlist));
-        updateWishlistUI();
-        alert(`${item.name} Wishlist me add ho gaya!`);
+        alert(`❤️ ${item.name} Wishlist me add ho gaya!`);
+        
+        // Heart icon ko red aur filled banayein
+        if (element) {
+            element.style.color = 'red';
+            element.innerHTML = '<i class="fa-solid fa-heart"></i>';
+        }
     } else {
-        alert(`${item.name} pehle se Wishlist me hai.`);
+        // Wishlist se REMOVE karein
+        wishlist.splice(existingIndex, 1);
+        alert(`💔 ${item.name} Wishlist se hata diya gaya.`);
+        
+        // Heart icon ko regular reset karein
+        if (element) {
+            element.style.color = '#d90429';
+            element.innerHTML = '<i class="fa-regular fa-heart"></i>';
+        }
+    }
+
+    // Save & Sync UI
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    updateWishlistUI();
+}
+
+// UPDATE WISHLIST MODAL/POPUP CONTENT & COUNT
+function updateWishlistUI() {
+    // 1. Badge count update
+    const wishElem = document.getElementById('wishlist-count');
+    if (wishElem) {
+        wishElem.innerText = wishlist.length;
+    }
+
+    // 2. Modal list render
+    const wishlistContainer = document.getElementById('wishlist-items-container');
+    if (wishlistContainer) {
+        if (wishlist.length === 0) {
+            wishlistContainer.innerHTML = `<p style="color:#777; text-align:center;">Abhi koi item add nahi kiya gaya hai.</p>`;
+        } else {
+            wishlistContainer.innerHTML = wishlist.map((item) => `
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #eee;">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <img src="${item.image}" alt="${item.name}" style="width:40px; height:40px; object-fit:contain;">
+                        <div>
+                            <strong style="font-size:14px;">${item.name}</strong><br>
+                            <small style="color:var(--brand-red); font-weight:bold;">₹${item.price}</small>
+                        </div>
+                    </div>
+                    <button onclick="addToCart(${item.id})" class="btn btn-red btn-sm">
+                        <i class="fa-solid fa-cart-plus"></i> Add
+                    </button>
+                </div>
+            `).join('');
+        }
     }
 }
 
