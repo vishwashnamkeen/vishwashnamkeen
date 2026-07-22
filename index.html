@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="gu">
-<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vishwash Namkeen - Pure Taste & Premium Quality</title>
@@ -262,7 +262,7 @@
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
                     <p>"Masala Banana Wafers ekdam crunchy hain. Dediyapada ka best namkeen store!"</p>
-                    <h4>- Amit Vasava</h4>
+                    <h4>- Riya patel</h4>
                     <small>Verified Customer</small>
                 </div>
             </div>
@@ -333,11 +333,7 @@
                     <li><a href="#home">Home</a></li>
                     <li><a href="#products">Products</a></li>
                     <li><a href="#founder">Founder</a></li>
-                   <!-- Pehle aisa hoga: <a href="wishlist.html"> -->
-<!-- Usse badal kar aisa karein: -->
-<button onclick="openWishlistModal()" class="wishlist-btn" style="background:none; border:none; cursor:pointer; font-size:20px; position:relative;">
-    ❤️ <span id="wishlist-count" style="background:red; color:white; border-radius:50%; padding:2px 6px; font-size:12px;">0</span>
-</button>
+   
             </div>
             <div class="footer-col">
                 <h4>Contact Us</h4>
@@ -457,7 +453,7 @@
         document.getElementById('wishlistModal').style.display = 'none';
     }
 </script>
-    <!-- Wishlist Modal Popup Code -->
+  <!-- Wishlist Modal Popup Code -->
 <div id="wishlistModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
     <div style="background:#fff; padding:25px; border-radius:12px; width:90%; max-width:400px; position:relative; box-shadow:0 10px 25px rgba(0,0,0,0.2);">
         <button onclick="closeWishlistModal()" style="position:absolute; top:10px; right:15px; border:none; background:none; font-size:22px; cursor:pointer; font-weight:bold;">&times;</button>
@@ -465,6 +461,9 @@
         <hr style="border:0; border-top:1px solid #eee; margin:15px 0;">
         <div id="wishlist-items-container" style="max-height:250px; overflow-y:auto;">
             <p style="color:#777; text-align:center;">Abhi koi item add nahi kiya gaya hai.</p>
+        </div>
+    </div>
+</div>
         </div>
     </div>
 </div>
