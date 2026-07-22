@@ -171,19 +171,26 @@ color:black;
 /* HERO */
 
 .hero{
-
-padding-top:120px;
-
-min-height:100vh;
-
 display:flex;
-
-align-items:center;
-
 justify-content:space-between;
-
+align-items:center;
 gap:50px;
+}
 
+.left{
+width:50%;
+}
+
+.right{
+width:50%;
+display:flex;
+justify-content:center;
+}
+
+.right img{
+width:420px;
+max-width:100%;
+display:block;
 }
 
 .left{
