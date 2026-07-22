@@ -30,7 +30,7 @@
     <!-- MAIN NAVBAR WITH MOBILE HAMBURGER -->
     <header class="navbar">
         <div class="container nav-container">
-            <a href="#" class="brand-logo">
+            <a href="#" class="brand-logo" onclick="showPage('home-page')">
                 <i class="fas fa-crown logo-icon"></i>
                 Vishwash <span>Namkeen</span>
             </a>
@@ -41,321 +41,389 @@
             </button>
 
             <nav class="nav-menu" id="navMenu">
-                <a href="#home" onclick="closeMenu()">Home</a>
-                <a href="#about-founder" onclick="closeMenu()">Our Founder</a>
-                <a href="#products" onclick="closeMenu()">Products</a>
-                <a href="#wishlist" onclick="closeMenu()">Wishlist (<span id="wishlistCountNav">0</span>)</a>
-                <a href="#checkout" onclick="closeMenu()">Cart (<span id="cartCountNav">0</span>)</a>
+                <a href="#" onclick="showPage('home-page'); closeMenu();">Home</a>
+                <a href="#products" onclick="showPage('home-page'); closeMenu();">Products</a>
+                <a href="#reviews" onclick="showPage('home-page'); closeMenu();">Reviews</a>
+                <a href="#about-founder" onclick="showPage('home-page'); closeMenu();">Founder</a>
+                <a href="#" onclick="showPage('wishlist-page'); closeMenu();" class="nav-highlight">Wishlist (<span id="wishlistCountNav">0</span>)</a>
+                <a href="#" onclick="showPage('checkout-page'); closeMenu();" class="nav-highlight">Cart (<span id="cartCountNav">0</span>)</a>
             </nav>
 
             <div class="header-right-btns">
-                <a href="#wishlist" class="icon-btn wishlist-icon-btn" title="Wishlist">
+                <button class="icon-btn wishlist-icon-btn" onclick="showPage('wishlist-page')" title="Wishlist">
                     <i class="fas fa-heart"></i>
                     <span class="badge" id="wishlistBadge">0</span>
-                </a>
-                <a href="#checkout" class="icon-btn cart-icon-btn" title="Cart">
+                </button>
+                <button class="icon-btn cart-icon-btn" onclick="showPage('checkout-page')" title="Cart">
                     <i class="fas fa-shopping-bag"></i>
                     <span class="badge" id="cartBadge">0</span>
-                </a>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero" id="home">
-        <div class="hero-overlay"></div>
-        <div class="hero-content container">
-            <span class="hero-tag"><i class="fas fa-check-circle"></i> 100% Authentic & Fresh Quality</span>
-            <h1>Swad Aur Vishwas Ka Premium Sangam</h1>
-            <p>Experience the traditional taste of handcrafted Indian Namkeen made with zero compromise on quality.</p>
-            <div class="hero-buttons">
-                <a href="#products" class="btn-primary"><i class="fas fa-store"></i> Explore Products</a>
-                <a href="https://wa.me/918460183525?text=Hello%20Vishwash%20Namkeen" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Direct Support</a>
+    <!-- MAIN HOME PAGE VIEW -->
+    <div id="home-page" class="page-view active">
+        
+        <!-- 1. HERO IMAGE BANNER (TOP) -->
+        <section class="hero" id="home">
+            <div class="hero-overlay"></div>
+            <div class="hero-content container">
+                <span class="hero-tag"><i class="fas fa-check-circle"></i> 100% Authentic & Fresh Quality</span>
+                <h1>Swad Aur Vishwas Ka Premium Sangam</h1>
+                <p>Experience the traditional taste of handcrafted Indian Namkeen made with zero compromise on quality.</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn-primary"><i class="fas fa-store"></i> Explore Products</a>
+                    <a href="https://wa.me/918460183525?text=Hello%20Vishwash%20Namkeen" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Direct Support</a>
+                </div>
             </div>
+        </section>
+
+        <!-- 2. PRODUCTS GRID SECTION (MIDDLE) -->
+        <section class="products-section" id="products">
+            <div class="container">
+                <div class="section-title text-center">
+                    <span class="section-subtitle">OUR COLLECTION</span>
+                    <h2>Explore Our Exclusive Snacks</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <div class="products-grid">
+
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <span class="badge-disc">10% OFF</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist('Special Bhakarwadi', 180, 'BHAKARWADI.PNG.png')"><i class="far fa-heart"></i></button>
+                        <div class="img-box"><img src="BHAKARWADI.PNG.png" alt="Special Bhakarwadi"></div>
+                        <div class="card-body">
+                            <span class="cat">Sweet & Spicy</span>
+                            <h3>Special Bhakarwadi</h3>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(4.9)</span></div>
+                            <p class="desc">Crispy rolled snack filled with sweet, tangy & spicy masala.</p>
+                            <div class="price-box">
+                                <span class="price">₹180</span>
+                                <span class="old-price">₹200</span>
+                                <span class="weight">500g</span>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToOrder('Special Bhakarwadi', 180, 'BHAKARWADI.PNG.png')">
+                                <i class="fas fa-shopping-cart"></i> Buy / Add to Order
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <span class="badge-disc">12% OFF</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist('Bingo Masala Treat', 140, 'BINGOMASALA.PNG.png')"><i class="far fa-heart"></i></button>
+                        <div class="img-box"><img src="BINGOMASALA.PNG.png" alt="Bingo Masala Treat"></div>
+                        <div class="card-body">
+                            <span class="cat">Crunchy Snacks</span>
+                            <h3>Bingo Masala Treat</h3>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span>(4.8)</span></div>
+                            <p class="desc">Chatpata spicy flavour mixed with premium crunchy bites.</p>
+                            <div class="price-box">
+                                <span class="price">₹140</span>
+                                <span class="old-price">₹160</span>
+                                <span class="weight">400g</span>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToOrder('Bingo Masala Treat', 140, 'BINGOMASALA.PNG.png')">
+                                <i class="fas fa-shopping-cart"></i> Buy / Add to Order
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <span class="badge-disc">10% OFF</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist('Bingo Pani Puri Chat', 150, 'BINGOPANIPURI.PNG.png')"><i class="far fa-heart"></i></button>
+                        <div class="img-box"><img src="BINGOPANIPURI.PNG.png" alt="Bingo Pani Puri Chat"></div>
+                        <div class="card-body">
+                            <span class="cat">Street Food Special</span>
+                            <h3>Bingo Pani Puri Chat</h3>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(4.9)</span></div>
+                            <p class="desc">Authentic tangy Pani Puri chatpata flavor in every bite.</p>
+                            <div class="price-box">
+                                <span class="price">₹150</span>
+                                <span class="old-price">₹170</span>
+                                <span class="weight">400g</span>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToOrder('Bingo Pani Puri Chat', 150, 'BINGOPANIPURI.PNG.png')">
+                                <i class="fas fa-shopping-cart"></i> Buy / Add to Order
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <span class="badge-disc">15% OFF</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist('Indori Ratlami Sev', 160, 'Hiro.jpg.png')"><i class="far fa-heart"></i></button>
+                        <div class="img-box"><img src="Hiro.jpg.png" alt="Indori Ratlami Sev"></div>
+                        <div class="card-body">
+                            <span class="cat">Spicy Special</span>
+                            <h3>Indori Ratlami Sev</h3>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(5.0)</span></div>
+                            <p class="desc">Authentic spicy clove-flavored gram flour sev.</p>
+                            <div class="price-box">
+                                <span class="price">₹160</span>
+                                <span class="old-price">₹190</span>
+                                <span class="weight">500g</span>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToOrder('Indori Ratlami Sev', 160, 'Hiro.jpg.png')">
+                                <i class="fas fa-shopping-cart"></i> Buy / Add to Order
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="product-card">
+                        <span class="badge-disc">10% OFF</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist('Masala Banana Wafers', 130, 'MASALABANANAWEFERS.PNG.png')"><i class="far fa-heart"></i></button>
+                        <div class="img-box"><img src="MASALABANANAWEFERS.PNG.png" alt="Masala Banana Wafers"></div>
+                        <div class="card-body">
+                            <span class="cat">Wafer Special</span>
+                            <h3>Masala Banana Wafers</h3>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span>(4.7)</span></div>
+                            <p class="desc">Thin, crispy banana chips sprinkled with spicy peri peri masala.</p>
+                            <div class="price-box">
+                                <span class="price">₹130</span>
+                                <span class="old-price">₹145</span>
+                                <span class="weight">300g</span>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToOrder('Masala Banana Wafers', 130, 'MASALABANANAWEFERS.PNG.png')">
+                                <i class="fas fa-shopping-cart"></i> Buy / Add to Order
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 6 -->
+                    <div class="product-card">
+                        <span class="badge-disc">15% OFF</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist('Crispy Methi Puri', 170, 'METHIPURI.PNG.jpeg')"><i class="far fa-heart"></i></button>
+                        <div class="img-box"><img src="METHIPURI.PNG.jpeg" alt="Crispy Methi Puri"></div>
+                        <div class="card-body">
+                            <span class="cat">Traditional Snack</span>
+                            <h3>Crispy Methi Puri</h3>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(4.9)</span></div>
+                            <p class="desc">Delicious crispy puris seasoned with fragrant dried fenugreek leaves.</p>
+                            <div class="price-box">
+                                <span class="price">₹170</span>
+                                <span class="old-price">₹200</span>
+                                <span class="weight">500g</span>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToOrder('Crispy Methi Puri', 170, 'METHIPURI.PNG.jpeg')">
+                                <i class="fas fa-shopping-cart"></i> Buy / Add to Order
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 7 -->
+                    <div class="product-card">
+                        <span class="badge-disc">10% OFF</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist('Special Nadiyadi Mix', 175, 'NADIYADIMIX.PNG.png')"><i class="far fa-heart"></i></button>
+                        <div class="img-box"><img src="NADIYADIMIX.PNG.png" alt="Special Nadiyadi Mix"></div>
+                        <div class="card-body">
+                            <span class="cat">Gujarati Special</span>
+                            <h3>Special Nadiyadi Mix</h3>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(4.8)</span></div>
+                            <p class="desc">Classic sweet and spicy Gujarati style mixed chevdo.</p>
+                            <div class="price-box">
+                                <span class="price">₹175</span>
+                                <span class="old-price">₹195</span>
+                                <span class="weight">500g</span>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToOrder('Special Nadiyadi Mix', 175, 'NADIYADIMIX.PNG.png')">
+                                <i class="fas fa-shopping-cart"></i> Buy / Add to Order
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product 8 -->
+                    <div class="product-card">
+                        <span class="badge-disc">12% OFF</span>
+                        <button class="wishlist-btn" onclick="toggleWishlist('Spicy Punjabi Mix', 185, 'PUNJABIMIX.PNG.png')"><i class="far fa-heart"></i></button>
+                        <div class="img-box"><img src="PUNJABIMIX.PNG.png" alt="Spicy Punjabi Mix"></div>
+                        <div class="card-body">
+                            <span class="cat">Extra Spicy</span>
+                            <h3>Spicy Punjabi Mix</h3>
+                            <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(5.0)</span></div>
+                            <p class="desc">Rich blend of roasted peanuts, lentils & spicy sev.</p>
+                            <div class="price-box">
+                                <span class="price">₹185</span>
+                                <span class="old-price">₹210</span>
+                                <span class="weight">500g</span>
+                            </div>
+                            <button class="btn-add-cart" onclick="addToOrder('Spicy Punjabi Mix', 185, 'PUNJABIMIX.PNG.png')">
+                                <i class="fas fa-shopping-cart"></i> Buy / Add to Order
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. CUSTOMER REVIEWS SECTION (BELOW PRODUCTS) -->
+        <section class="reviews-section" id="reviews">
+            <div class="container">
+                <div class="section-title text-center">
+                    <span class="section-subtitle">TESTIMONIALS</span>
+                    <h2>What Our Customers Say</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="reviewer-info">
+                            <div class="avatar"><i class="fas fa-user"></i></div>
+                            <div>
+                                <h4>Rajesh Patel</h4>
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Ratlami Sev aur Bhakarwadi ka swad bohot badhiya hai! Direct WhatsApp se order karna bohot easy tha, 2 din me packing ghar pahunch gayi."</p>
+                        <span class="review-date"><i class="fas fa-check-circle"></i> Verified Buyer - Narmada</span>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="reviewer-info">
+                            <div class="avatar"><i class="fas fa-user"></i></div>
+                            <div>
+                                <h4>Pooja Sharma</h4>
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Pani Puri Chat aur Banana Wafers ekdam crispy hain. Fresh feeling aati hai, zero oiliness. Main har festive season me yahin se mangwati hun!"</p>
+                        <span class="review-date"><i class="fas fa-check-circle"></i> Verified Buyer - Surat</span>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="reviewer-info">
+                            <div class="avatar"><i class="fas fa-user"></i></div>
+                            <div>
+                                <h4>Amit Deshmukh</h4>
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">"Nadiyadi Mix ka authentic Gujarati taste lajawab hai. Packaging bohot hygenic aur safe thi. Highly recommended brand!"</p>
+                        <span class="review-date"><i class="fas fa-check-circle"></i> Verified Buyer - Vadodara</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. FOUNDER SECTION (Nikhil Vaishnav) -->
+        <section class="founder-section" id="about-founder">
+            <div class="container">
+                <div class="founder-card">
+                    <div class="founder-img-wrapper">
+                        <div class="img-frame">
+                            <img src="founder.jpg" alt="Nikhil Vaishnav - Founder Vishwash Namkeen">
+                        </div>
+                        <div class="experience-badge">
+                            <i class="fas fa-award"></i>
+                            <span>Quality Guaranteed</span>
+                        </div>
+                    </div>
+                    <div class="founder-info">
+                        <span class="sub-title">FOUNDER & VISIONARY</span>
+                        <h2>Nikhil Vaishnav</h2>
+                        <p class="founder-text">"Vishwash Namkeen ki shuruat swad aur shuddhata ke vaade ke sath hui thi. Humara maksad har ghar tak authentic, fresh aur crispy namkeen pahunchana hai. Hum har batch me wahi paramparik swad maintain karte hain jo aapke har festive aur snack time ko khas banaye."</p>
+                        <div class="founder-footer">
+                            <h4>Vishwash Namkeen Team</h4>
+                            <p class="brand-sub"><i class="fas fa-map-marker-alt" style="color: #d90429;"></i> Dediyapada, Narmada, Gujarat - 393040</p>
+                            
+                            <!-- 5. SOCIAL MEDIA ICONS BELOW FOUNDER -->
+                            <div class="founder-socials">
+                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                                <a href="https://wa.me/918460183525" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- DEDICATED WISHLIST PAGE VIEW -->
+    <div id="wishlist-page" class="page-view container" style="padding: 50px 0;">
+        <div class="section-title text-center">
+            <span class="section-subtitle">YOUR SAVED ITEMS</span>
+            <h2>My Wishlist</h2>
+            <div class="title-underline"></div>
         </div>
-    </section>
-
-    <!-- FOUNDER / BRAND LEGACY SECTION -->
-    <section class="founder-section" id="about-founder">
-        <div class="container">
-            <div class="founder-card">
-                <div class="founder-img-wrapper">
-                    <div class="img-frame">
-                        <img src="founder.jpg" alt="Vishwash Namkeen Founder">
-                    </div>
-                    <div class="experience-badge">
-                        <i class="fas fa-award"></i>
-                        <span>Guaranteed Quality</span>
-                    </div>
-                </div>
-                <div class="founder-info">
-                    <span class="sub-title">BRAND VISIONARY</span>
-                    <h2>Message From Our Founder</h2>
-                    <p class="founder-text">"Vishwash Namkeen ki shuruat swad aur shuddhata ke vaade ke sath hui thi. Humara maksad har ghar tak authentic, fresh aur crispy namkeen pahunchana hai. Hum har batch me wahi paramparik swad maintain karte hain jo aapke har festive aur snack time ko khas banaye."</p>
-                    <div class="founder-footer">
-                        <h4>Management Team</h4>
-                        <p class="brand-sub">Vishwash Namkeen Industry</p>
-                        <div class="founder-socials">
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-facebook"></i></a>
-                            <a href="https://wa.me/918460183525"><i class="fab fa-whatsapp"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="wishlistContainer" class="wishlist-grid">
+            <!-- Dynamic Content loaded via JS -->
         </div>
-    </section>
-
-    <!-- PRODUCTS GRID SECTION -->
-    <section class="products-section" id="products">
-        <div class="container">
-            <div class="section-title text-center">
-                <span class="section-subtitle">OUR COLLECTION</span>
-                <h2>Explore Our Exclusive Snacks</h2>
-                <div class="title-underline"></div>
-            </div>
-
-            <div class="products-grid">
-
-                <!-- Product 1 -->
-                <div class="product-card">
-                    <span class="badge-disc">10% OFF</span>
-                    <button class="wishlist-btn" onclick="toggleWishlist('Special Bhakarwadi', 180, 'BHAKARWADI.PNG.png')"><i class="far fa-heart"></i></button>
-                    <div class="img-box"><img src="BHAKARWADI.PNG.png" alt="Special Bhakarwadi"></div>
-                    <div class="card-body">
-                        <span class="cat">Sweet & Spicy</span>
-                        <h3>Special Bhakarwadi</h3>
-                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(4.9)</span></div>
-                        <p class="desc">Crispy rolled snack filled with sweet, tangy & spicy masala.</p>
-                        <div class="price-box">
-                            <span class="price">₹180</span>
-                            <span class="old-price">₹200</span>
-                            <span class="weight">500g</span>
-                        </div>
-                        <button class="btn-add-cart" onclick="addToOrder('Special Bhakarwadi', 180, 'BHAKARWADI.PNG.png')">
-                            <i class="fas fa-shopping-cart"></i> Buy / Add to Order
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <span class="badge-disc">12% OFF</span>
-                    <button class="wishlist-btn" onclick="toggleWishlist('Bingo Masala Treat', 140, 'BINGOMASALA.PNG.png')"><i class="far fa-heart"></i></button>
-                    <div class="img-box"><img src="BINGOMASALA.PNG.png" alt="Bingo Masala Treat"></div>
-                    <div class="card-body">
-                        <span class="cat">Crunchy Snacks</span>
-                        <h3>Bingo Masala Treat</h3>
-                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span>(4.8)</span></div>
-                        <p class="desc">Chatpata spicy flavour mixed with premium crunchy bites.</p>
-                        <div class="price-box">
-                            <span class="price">₹140</span>
-                            <span class="old-price">₹160</span>
-                            <span class="weight">400g</span>
-                        </div>
-                        <button class="btn-add-cart" onclick="addToOrder('Bingo Masala Treat', 140, 'BINGOMASALA.PNG.png')">
-                            <i class="fas fa-shopping-cart"></i> Buy / Add to Order
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <span class="badge-disc">10% OFF</span>
-                    <button class="wishlist-btn" onclick="toggleWishlist('Bingo Pani Puri Chat', 150, 'BINGOPANIPURI.PNG.png')"><i class="far fa-heart"></i></button>
-                    <div class="img-box"><img src="BINGOPANIPURI.PNG.png" alt="Bingo Pani Puri Chat"></div>
-                    <div class="card-body">
-                        <span class="cat">Street Food Special</span>
-                        <h3>Bingo Pani Puri Chat</h3>
-                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(4.9)</span></div>
-                        <p class="desc">Authentic tangy Pani Puri chatpata flavor in every bite.</p>
-                        <div class="price-box">
-                            <span class="price">₹150</span>
-                            <span class="old-price">₹170</span>
-                            <span class="weight">400g</span>
-                        </div>
-                        <button class="btn-add-cart" onclick="addToOrder('Bingo Pani Puri Chat', 150, 'BINGOPANIPURI.PNG.png')">
-                            <i class="fas fa-shopping-cart"></i> Buy / Add to Order
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="product-card">
-                    <span class="badge-disc">15% OFF</span>
-                    <button class="wishlist-btn" onclick="toggleWishlist('Indori Ratlami Sev', 160, 'Hiro.jpg.png')"><i class="far fa-heart"></i></button>
-                    <div class="img-box"><img src="Hiro.jpg.png" alt="Indori Ratlami Sev"></div>
-                    <div class="card-body">
-                        <span class="cat">Spicy Special</span>
-                        <h3>Indori Ratlami Sev</h3>
-                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(5.0)</span></div>
-                        <p class="desc">Authentic spicy clove-flavored gram flour sev.</p>
-                        <div class="price-box">
-                            <span class="price">₹160</span>
-                            <span class="old-price">₹190</span>
-                            <span class="weight">500g</span>
-                        </div>
-                        <button class="btn-add-cart" onclick="addToOrder('Indori Ratlami Sev', 160, 'Hiro.jpg.png')">
-                            <i class="fas fa-shopping-cart"></i> Buy / Add to Order
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 5 -->
-                <div class="product-card">
-                    <span class="badge-disc">10% OFF</span>
-                    <button class="wishlist-btn" onclick="toggleWishlist('Masala Banana Wafers', 130, 'MASALABANANAWEFERS.PNG.png')"><i class="far fa-heart"></i></button>
-                    <div class="img-box"><img src="MASALABANANAWEFERS.PNG.png" alt="Masala Banana Wafers"></div>
-                    <div class="card-body">
-                        <span class="cat">Wafer Special</span>
-                        <h3>Masala Banana Wafers</h3>
-                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> <span>(4.7)</span></div>
-                        <p class="desc">Thin, crispy banana chips sprinkled with spicy peri peri masala.</p>
-                        <div class="price-box">
-                            <span class="price">₹130</span>
-                            <span class="old-price">₹145</span>
-                            <span class="weight">300g</span>
-                        </div>
-                        <button class="btn-add-cart" onclick="addToOrder('Masala Banana Wafers', 130, 'MASALABANANAWEFERS.PNG.png')">
-                            <i class="fas fa-shopping-cart"></i> Buy / Add to Order
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 6 -->
-                <div class="product-card">
-                    <span class="badge-disc">15% OFF</span>
-                    <button class="wishlist-btn" onclick="toggleWishlist('Crispy Methi Puri', 170, 'METHIPURI.PNG.jpeg')"><i class="far fa-heart"></i></button>
-                    <div class="img-box"><img src="METHIPURI.PNG.jpeg" alt="Crispy Methi Puri"></div>
-                    <div class="card-body">
-                        <span class="cat">Traditional Snack</span>
-                        <h3>Crispy Methi Puri</h3>
-                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(4.9)</span></div>
-                        <p class="desc">Delicious crispy puris seasoned with fragrant dried fenugreek leaves.</p>
-                        <div class="price-box">
-                            <span class="price">₹170</span>
-                            <span class="old-price">₹200</span>
-                            <span class="weight">500g</span>
-                        </div>
-                        <button class="btn-add-cart" onclick="addToOrder('Crispy Methi Puri', 170, 'METHIPURI.PNG.jpeg')">
-                            <i class="fas fa-shopping-cart"></i> Buy / Add to Order
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 7 -->
-                <div class="product-card">
-                    <span class="badge-disc">10% OFF</span>
-                    <button class="wishlist-btn" onclick="toggleWishlist('Special Nadiyadi Mix', 175, 'NADIYADIMIX.PNG.png')"><i class="far fa-heart"></i></button>
-                    <div class="img-box"><img src="NADIYADIMIX.PNG.png" alt="Special Nadiyadi Mix"></div>
-                    <div class="card-body">
-                        <span class="cat">Gujarati Special</span>
-                        <h3>Special Nadiyadi Mix</h3>
-                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(4.8)</span></div>
-                        <p class="desc">Classic sweet and spicy Gujarati style mixed chevdo.</p>
-                        <div class="price-box">
-                            <span class="price">₹175</span>
-                            <span class="old-price">₹195</span>
-                            <span class="weight">500g</span>
-                        </div>
-                        <button class="btn-add-cart" onclick="addToOrder('Special Nadiyadi Mix', 175, 'NADIYADIMIX.PNG.png')">
-                            <i class="fas fa-shopping-cart"></i> Buy / Add to Order
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 8 -->
-                <div class="product-card">
-                    <span class="badge-disc">12% OFF</span>
-                    <button class="wishlist-btn" onclick="toggleWishlist('Spicy Punjabi Mix', 185, 'PUNJABIMIX.PNG.png')"><i class="far fa-heart"></i></button>
-                    <div class="img-box"><img src="PUNJABIMIX.PNG.png" alt="Spicy Punjabi Mix"></div>
-                    <div class="card-body">
-                        <span class="cat">Extra Spicy</span>
-                        <h3>Spicy Punjabi Mix</h3>
-                        <div class="rating"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> <span>(5.0)</span></div>
-                        <p class="desc">Rich blend of roasted peanuts, lentils & spicy sev.</p>
-                        <div class="price-box">
-                            <span class="price">₹185</span>
-                            <span class="old-price">₹210</span>
-                            <span class="weight">500g</span>
-                        </div>
-                        <button class="btn-add-cart" onclick="addToOrder('Spicy Punjabi Mix', 185, 'PUNJABIMIX.PNG.png')">
-                            <i class="fas fa-shopping-cart"></i> Buy / Add to Order
-                        </button>
-                    </div>
-                </div>
-
-            </div>
+        <div class="text-center" style="margin-top: 30px;">
+            <button onclick="showPage('home-page')" class="btn-primary"><i class="fas fa-arrow-left"></i> Continue Shopping</button>
         </div>
-    </section>
+    </div>
 
-    <!-- WISHLIST SECTION -->
-    <section class="wishlist-section" id="wishlist">
-        <div class="container">
-            <div class="section-title text-center">
-                <h2>Your Saved Wishlist</h2>
-                <div class="title-underline"></div>
-            </div>
-            <div id="wishlistContainer" class="wishlist-grid">
-                <p class="empty-msg">Aapne abhi koi product wishlist me save nahi kiya hai.</p>
-            </div>
+    <!-- DEDICATED CHECKOUT / CART PAGE VIEW -->
+    <div id="checkout-page" class="page-view container" style="padding: 50px 0;">
+        <div class="section-title text-center">
+            <span class="section-subtitle">ORDER & PAYMENT</span>
+            <h2>Complete Your Order</h2>
+            <div class="title-underline"></div>
         </div>
-    </section>
 
-    <!-- CHECKOUT SECTION -->
-    <section class="checkout-section" id="checkout">
-        <div class="container">
-            <div class="section-title text-center">
-                <h2>Complete Your Order</h2>
-                <p class="section-desc">Review your items, adjust quantities, and fill in delivery details.</p>
-            </div>
-
-            <div class="checkout-grid">
+        <div class="checkout-grid">
+            <div class="order-summary-box">
+                <h3><i class="fas fa-shopping-basket"></i> Cart Items & Quantity</h3>
+                <div id="cartItemsContainer">
+                    <p class="empty-cart-msg">Aapka order cart abhi khali hai.</p>
+                </div>
                 
-                <div class="order-summary-box">
-                    <h3><i class="fas fa-shopping-basket"></i> Cart Items</h3>
-                    <div id="cartItemsContainer">
-                        <p class="empty-cart-msg">Aapka order cart abhi khali hai. Upar se product add karein!</p>
-                    </div>
-                    
-                    <div class="cart-total-bar">
-                        <span>Grand Total:</span>
-                        <span id="grandTotalDisplay">₹0</span>
-                    </div>
+                <div class="cart-total-bar">
+                    <span>Grand Total:</span>
+                    <span id="grandTotalDisplay">₹0</span>
                 </div>
+            </div>
 
-                <div class="address-form-box">
-                    <h3><i class="fas fa-truck-loading"></i> Shipping Details</h3>
-                    <form id="orderForm" onsubmit="processWhatsAppOrder(event)">
-                        <div class="input-group">
-                            <label><i class="fas fa-user"></i> Full Name *</label>
-                            <input type="text" id="custName" placeholder="Enter your full name" required>
-                        </div>
+            <div class="address-form-box">
+                <h3><i class="fas fa-truck-loading"></i> Shipping & Payment Details</h3>
+                <form id="orderForm" onsubmit="processWhatsAppOrder(event)">
+                    <div class="input-group">
+                        <label><i class="fas fa-user"></i> Full Name *</label>
+                        <input type="text" id="custName" placeholder="Enter your full name" required>
+                    </div>
 
-                        <div class="input-group">
-                            <label><i class="fas fa-phone-alt"></i> Mobile Number *</label>
-                            <input type="tel" id="custPhone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
-                        </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-phone-alt"></i> Mobile Number *</label>
+                        <input type="tel" id="custPhone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                    </div>
 
-                        <div class="input-group">
-                            <label><i class="fas fa-map-marker-alt"></i> Complete Address *</label>
-                            <textarea id="custAddress" rows="3" placeholder="House/Flat No, Street, Area, Landmark" required></textarea>
-                        </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-map-marker-alt"></i> Complete Address *</label>
+                        <textarea id="custAddress" rows="3" placeholder="House/Flat No, Street, Area, Landmark" required></textarea>
+                    </div>
 
-                        <div class="input-group">
-                            <label><i class="fas fa-map-pin"></i> Pincode *</label>
-                            <input type="text" id="custPincode" placeholder="6-digit Pincode" pattern="[0-9]{6}" required>
-                        </div>
+                    <div class="input-group">
+                        <label><i class="fas fa-map-pin"></i> Pincode *</label>
+                        <input type="text" id="custPincode" placeholder="6-digit Pincode" pattern="[0-9]{6}" required>
+                    </div>
 
-                        <button type="submit" class="btn-buy-now">
-                            <i class="fab fa-whatsapp"></i> CONFIRM BUY ON WHATSAPP
-                        </button>
-                    </form>
-                </div>
+                    <div class="payment-option-box" style="margin: 15px 0; background: #fff; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1;">
+                        <label style="font-weight: bold; color: #0a192f; display: block; margin-bottom: 5px;"><i class="fas fa-wallet"></i> Payment Mode:</label>
+                        <span style="font-size: 13px; color: #16a34a; font-weight: bold;"><i class="fas fa-check-circle"></i> Pay via UPI / Cash on WhatsApp Confirmation</span>
+                    </div>
 
+                    <button type="submit" class="btn-buy-now">
+                        <i class="fab fa-whatsapp"></i> CONFIRM BUY ON WHATSAPP
+                    </button>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- FOOTER WITH SOCIAL MEDIA -->
     <footer id="contact">
@@ -376,23 +444,22 @@
             <div class="footer-col">
                 <h4>Quick Links</h4>
                 <ul class="footer-links">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about-founder">Our Founder</a></li>
-                    <li><a href="#products">Products Range</a></li>
-                    <li><a href="#checkout">Checkout Cart</a></li>
+                    <li><a href="#" onclick="showPage('home-page')">Home</a></li>
+                    <li><a href="#" onclick="showPage('wishlist-page')">My Wishlist</a></li>
+                    <li><a href="#" onclick="showPage('checkout-page')">Checkout / Cart</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
-                <h4>Customer Support</h4>
-                <p><i class="fas fa-phone-alt"></i> +91 8460183525</p>
-                <p><i class="fas fa-envelope"></i> vishwashnamkeen@gmail.com</p>
-                <p><i class="fas fa-globe"></i> www.vishwashnamkeen.com</p>
+                <h4>Store & Factory Address</h4>
+                <p><i class="fas fa-user-tie" style="color:var(--accent-gold);"></i> Founder: <b>Nikhil Vaishnav</b></p>
+                <p><i class="fas fa-map-marker-alt" style="color:var(--accent-gold);"></i> Dediyapada, Dist. Narmada, Gujarat - 393040</p>
+                <p><i class="fas fa-phone-alt" style="color:var(--accent-gold);"></i> +91 8460183525</p>
             </div>
         </div>
 
         <div class="footer-bottom text-center">
-            <p>&copy; 2026 Vishwash Namkeen. All rights reserved.</p>
+            <p>&copy; 2026 Vishwash Namkeen, Dediyapada, Narmada. All rights reserved.</p>
         </div>
     </footer>
 
