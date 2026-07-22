@@ -162,12 +162,53 @@ function initProductActions() {
             });
         }
 
-        // 2. Buy Now Button (Instant WhatsApp Order)
-        const buyBtn = card.querySelector('.buy-now-btn');
-        if (buyBtn) {
-            buyBtn.addEventListener('click', () => {
-                buyNowInstant(name, price);
-            });
+      // ==========================================
+// DIRECT BUY NOW WITH SUCCESS POPUP & WHATSAPP
+// ==========================================
+function buyNowInstant(name, price) {
+    // 1. WhatsApp Message Text
+    const phone = "919876543210"; // 👈 Yahan apna WhatsApp Number likhein (Country code ke sath)
+    const message = `Hello Vishwash Namkeen! 👋\n\nI want to place an order for:\n📦 *Product:* ${name}\n💰 *Price:* ₹${price}\n\nPlease share payment & delivery details!`;
+    const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+    // 2. Show Success Notification Popup
+    showSuccessOrderModal(name, price, whatsappUrl);
+}
+
+// Success Modal Popup Function
+function showSuccessOrderModal(productName, price, whatsappUrl) {
+    // Check if modal already exists, remove it
+    const existingModal = document.getElementById('success-order-modal');
+    if (existingModal) existingModal.remove();
+
+    // Create Modal HTML
+    const modal = document.createElement('div');
+    modal.id = 'success-order-modal';
+    modal.className = 'order-success-overlay';
+    modal.innerHTML = `
+        <div class="order-success-card">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h2>Order Initiated Successfully!</h2>
+            <p>Aapne <strong>"${productName}"</strong> (₹${price}) choose kiya hai.</p>
+            <p class="sub-text">WhatsApp open ho raha hai, wahan se message send karke apna order confirm karein.</p>
+            <a href="${whatsappUrl}" target="_blank" class="btn btn-whatsapp-confirm" id="confirm-wa-btn">
+                <i class="fab fa-whatsapp"></i> Continue to WhatsApp
+            </a>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Auto Redirect to WhatsApp after 1.5 Seconds
+    setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+    }, 1500);
+
+    // Close Modal on Click Outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.remove();
+    });
+}
         }
 
         // 3. Wishlist Heart Button
