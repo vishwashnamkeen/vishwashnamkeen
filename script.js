@@ -1,101 +1,105 @@
-/*==================================
-      VISHWASH NAMKEEN
-      PROFESSIONAL SCRIPT
-==================================*/
+/* ===========================
+   VISHWAS NAMKEEN
+   SCRIPT.JS PART 1
+=========================== */
 
 let cart = [];
 let total = 0;
 
-/*==================================
-        ADD TO CART
-==================================*/
+/* Elements */
 
-function addToCart(name, price, image){
+const cartBox = document.getElementById("cartBox");
+const cartItems = document.getElementById("cartItems");
+const totalPrice = document.getElementById("total");
+const cartCount = document.getElementById("cartCount");
 
-    const existing = cart.find(item => item.name === name);
+/* Open Cart */
 
-    if(existing){
+function openCart(){
 
-        existing.quantity++;
-
-    }else{
-
-        cart.push({
-            name: name,
-            price: price,
-            image: image,
-            quantity: 1
-        });
-
-    }
-
-    updateCart();
-
-    showNotification(name + " added to cart");
+cartBox.style.right="0";
 
 }
 
-/*==================================
-        UPDATE CART
-==================================*/
+/* Close Cart */
+
+function closeCart(){
+
+cartBox.style.right="-420px";
+
+}
+
+/* Add To Cart */
+
+document.querySelectorAll(".cart").forEach(function(button){
+
+button.addEventListener("click",function(){
+
+let card=this.closest(".card");
+
+let name=card.querySelector("h3").innerText;
+
+let price=parseInt(card.querySelector("h4").innerText.replace(/[^\d]/g,""));
+
+let found=cart.find(item=>item.name===name);
+
+if(found){
+
+found.qty++;
+
+}else{
+
+cart.push({
+
+name:name,
+
+price:price,
+
+qty:1
+
+});
+
+}
+
+updateCart();
+
+showNotification(name+" Added To Cart");
+
+});
+
+});
+
+/* Update Cart */
 
 function updateCart(){
 
-    const cartItems = document.getElementById("cart-items");
-    const cartCount = document.getElementById("cart-count");
-    const cartTotal = document.getElementById("cart-total");
+cartItems.innerHTML="";
 
-    cartItems.innerHTML = "";
+total=0;
 
-    total = 0;
+let count=0;
 
-    let count = 0;
+cart.forEach(function(item,index){
 
-    if(cart.length === 0){
+count+=item.qty;
 
-        cartItems.innerHTML =
-        "<p class='empty-cart'>Your cart is empty.</p>";
+total+=item.price*item.qty;
 
-        cartCount.innerText = "0";
-        cartTotal.innerText = "0";
+cartItems.innerHTML+=`
 
-        return;
-    }
+<div class="item">
 
-    cart.forEach((item,index)=>{
-
-        total += item.price * item.quantity;
-
-        count += item.quantity;
-
-        cartItems.innerHTML += `
-
-<div class="cart-item">
-
-<img src="${item.image}" alt="${item.name}">
-
-<div class="cart-details">
-
-<h4>${item.name}</h4>
+<h3>${item.name}</h3>
 
 <p>₹${item.price}</p>
 
-<div class="quantity-box">
+<div class="qty">
 
-<button onclick="decreaseQuantity(${index})">-</button>
+<button onclick="minus(${index})">-</button>
 
-<span>${item.quantity}</span>
+<span>${item.qty}</span>
 
-<button onclick="increaseQuantity(${index})">+</button>
-
-</div>
-
-<button class="remove-btn"
-onclick="removeItem(${index})">
-
-Remove
-
-</button>
+<button onclick="plus(${index})">+</button>
 
 </div>
 
@@ -103,288 +107,495 @@ Remove
 
 `;
 
-    });
-
-    cartCount.innerText = count;
-
-    cartTotal.innerText = total;
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-}
-/*==================================
-        INCREASE QUANTITY
-==================================*/
-
-function increaseQuantity(index){
-
-    cart[index].quantity++;
-
-    updateCart();
-
-}
-
-/*==================================
-        DECREASE QUANTITY
-==================================*/
-
-function decreaseQuantity(index){
-
-    if(cart[index].quantity > 1){
-
-        cart[index].quantity--;
-
-    }else{
-
-        cart.splice(index,1);
-
-    }
-
-    updateCart();
-
-}
-
-/*==================================
-        REMOVE ITEM
-==================================*/
-
-function removeItem(index){
-
-    cart.splice(index,1);
-
-    updateCart();
-
-    showNotification("Product Removed");
-
-}
-
-/*==================================
-        CLEAR CART
-==================================*/
-
-function clearCart(){
-
-    if(cart.length===0){
-
-        showNotification("Cart Already Empty");
-
-        return;
-
-    }
-
-    cart=[];
-
-    updateCart();
-
-    localStorage.removeItem("cart");
-
-    showNotification("Cart Cleared");
-
-}
-
-/*==================================
-      LOAD SAVED CART
-==================================*/
-
-window.addEventListener("load",()=>{
-
-    const savedCart=localStorage.getItem("cart");
-
-    if(savedCart){
-
-        cart=JSON.parse(savedCart);
-
-        updateCart();
-
-    }
-
-});
-/*==================================
-        TOGGLE CART
-==================================*/
-
-function toggleCart(){
-
-    document.getElementById("cart").classList.toggle("active");
-
-    document.getElementById("overlay").classList.toggle("active");
-
-}
-
-/*==================================
-        CHECKOUT
-==================================*/
-
-function checkout(){
-
-    if(cart.length===0){
-
-        showNotification("Your Cart is Empty");
-
-        return;
-
-    }
-
-    let message="🛒 *VISHWASH NAMKEEN ORDER*%0A%0A";
-
-    let grandTotal=0;
-
-    cart.forEach(item=>{
-
-        const itemTotal=item.price*item.quantity;
-
-        grandTotal+=itemTotal;
-
-        message+=`📦 ${item.name}%0A`;
-        message+=`Qty : ${item.quantity}%0A`;
-        message+=`Price : ₹${item.price}%0A`;
-        message+=`Subtotal : ₹${itemTotal}%0A%0A`;
-
-    });
-
-    message+=`💰 *Grand Total : ₹${grandTotal}*`;
-
-    window.open(
-    "https://wa.me/918460183525?text="+message,
-    "_blank"
-    );
-
-}
-
-/*==================================
-      OPEN CART BUTTON
-==================================*/
-
-const cartButton=document.getElementById("cart-btn");
-
-if(cartButton){
-
-cartButton.addEventListener("click",toggleCart);
-
-}
-
-/*==================================
-      CLOSE WITH ESC KEY
-==================================*/
-
-document.addEventListener("keydown",function(e){
-
-if(e.key==="Escape"){
-
-document.getElementById("cart").classList.remove("active");
-
-document.getElementById("overlay").classList.remove("active");
-
-}
-
 });
 
-/*==================================
-      CLICK OUTSIDE CART
-==================================*/
+totalPrice.innerHTML=total;
 
-const overlay=document.getElementById("overlay");
-
-if(overlay){
-
-overlay.addEventListener("click",function(){
-
-document.getElementById("cart").classList.remove("active");
-
-overlay.classList.remove("active");
-
-});
-
-}
-/*==================================
-        LIVE SEARCH
-==================================*/
-
-const searchInput = document.querySelector(".search-box input");
-
-if(searchInput){
-
-searchInput.addEventListener("keyup", function(){
-
-const value = this.value.toLowerCase();
-
-const products = document.querySelectorAll(".product-card");
-
-products.forEach(product=>{
-
-const name = product.querySelector("h3").innerText.toLowerCase();
-
-if(name.includes(value)){
-
-product.style.display="block";
-
-}else{
-
-product.style.display="none";
+cartCount.innerHTML=count;
 
 }
 
-});
-
-});
-
-}
-
-/*==================================
-      SHOW NOTIFICATION
-==================================*/
+/* Notification */
 
 function showNotification(message){
 
-const notification=document.getElementById("notification");
+let notify=document.getElementById("notify");
 
-if(!notification) return;
+if(notify){
 
-notification.innerText=message;
+notify.innerHTML=message;
 
-notification.classList.add("show");
+notify.style.right="20px";
 
-setTimeout(()=>{
+setTimeout(function(){
 
-notification.classList.remove("show");
+notify.style.right="-350px";
 
 },2500);
 
 }
 
-/*==================================
-      BACK TO TOP BUTTON
-==================================*/
+}
+/* ===========================
+   SCRIPT.JS PART 2
+   Quantity + Buy Now
+=========================== */
 
-const backTop=document.getElementById("backToTop");
+/* Increase Quantity */
 
-window.addEventListener("scroll",()=>{
+function plus(index){
 
-if(window.scrollY>400){
+cart[index].qty++;
 
-if(backTop){
+updateCart();
 
-backTop.style.display="flex";
+updateCheckout();
 
 }
+
+/* Decrease Quantity */
+
+function minus(index){
+
+if(cart[index].qty>1){
+
+cart[index].qty--;
 
 }else{
 
-if(backTop){
-
-backTop.style.display="none";
+cart.splice(index,1);
 
 }
+
+updateCart();
+
+updateCheckout();
+
+}
+
+/* Update Checkout */
+
+function updateCheckout(){
+
+let items=0;
+
+let amount=0;
+
+cart.forEach(function(item){
+
+items+=item.qty;
+
+amount+=item.price*item.qty;
+
+});
+
+let totalItems=document.getElementById("totalItems");
+
+let checkoutTotal=document.getElementById("checkoutTotal");
+
+if(totalItems){
+
+totalItems.innerHTML=items;
+
+}
+
+if(checkoutTotal){
+
+checkoutTotal.innerHTML=amount;
+
+}
+
+}
+
+/* Buy Now */
+
+const buyButton=document.getElementById("buyNow");
+
+if(buyButton){
+
+buyButton.addEventListener("click",function(){
+
+if(cart.length===0){
+
+alert("Your cart is empty!");
+
+return;
+
+}
+
+let success=document.getElementById("success");
+
+if(success){
+
+success.style.display="flex";
+
+}
+
+cart=[];
+
+updateCart();
+
+updateCheckout();
+
+});
+
+}
+
+/* Close Success Popup */
+
+function closeSuccess(){
+
+let success=document.getElementById("success");
+
+if(success){
+
+success.style.display="none";
+
+}
+
+}
+
+/* Clear Cart */
+
+function clearCart(){
+
+cart=[];
+
+updateCart();
+
+updateCheckout();
+
+}
+
+/* Open Cart Button */
+
+const cartIcon=document.querySelector(".cart-fixed");
+
+if(cartIcon){
+
+cartIcon.addEventListener("click",openCart);
+
+}
+
+/* ESC Key Close Cart */
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+
+closeCart();
+
+}
+
+});
+/* ===========================
+   SCRIPT.JS PART 3
+   Search + Wishlist + Coupon
+=========================== */
+
+/* ---------- SEARCH ---------- */
+
+const searchBox = document.getElementById("searchBox");
+
+if(searchBox){
+
+searchBox.addEventListener("keyup",function(){
+
+let value=this.value.toLowerCase();
+
+document.querySelectorAll(".card").forEach(function(card){
+
+let text=card.innerText.toLowerCase();
+
+if(text.includes(value)){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
 
 }
 
 });
 
-/*==================================
-      SCROLL TO TOP
-==================================*/
+});
 
-function scrollToTop(){
+}
+
+/* ---------- WISHLIST ---------- */
+
+let wishlist=[];
+
+document.querySelectorAll(".wishlistBtn").forEach(function(btn){
+
+btn.addEventListener("click",function(){
+
+let card=this.closest(".card");
+
+let product=card.querySelector("h3").innerText;
+
+if(!wishlist.includes(product)){
+
+wishlist.push(product);
+
+showNotification(product+" Added To Wishlist ❤️");
+
+}else{
+
+showNotification("Already In Wishlist");
+
+}
+
+});
+
+});
+
+/* ---------- COUPON ---------- */
+
+function applyCoupon(){
+
+let code=document.getElementById("couponCode").value.trim().toUpperCase();
+
+let result=document.getElementById("couponResult");
+
+if(code==="VISHWAS10"){
+
+result.innerHTML="✅ 10% Discount Applied";
+
+result.style.color="lime";
+
+}else{
+
+result.innerHTML="❌ Invalid Coupon";
+
+result.style.color="red";
+
+}
+
+}
+
+/* ---------- ORDER TRACK ---------- */
+
+function trackOrder(){
+
+let id=document.getElementById("trackId").value.trim();
+
+let status=document.getElementById("trackStatus");
+
+if(id==="VN1001"){
+
+status.innerHTML="🚚 Order Packed";
+
+status.style.color="orange";
+
+}
+
+else if(id==="VN1002"){
+
+status.innerHTML="🚛 Out For Delivery";
+
+status.style.color="yellow";
+
+}
+
+else if(id==="VN1003"){
+
+status.innerHTML="✅ Delivered Successfully";
+
+status.style.color="lime";
+
+}
+
+else{
+
+status.innerHTML="❌ Order Not Found";
+
+status.style.color="red";
+
+}
+
+}
+/* ===========================
+   SCRIPT.JS PART 4
+   Login + Dark Mode + Slider
+=========================== */
+
+/* ---------- LOGIN ---------- */
+
+function openLogin(){
+
+const popup=document.getElementById("loginPopup");
+
+if(popup){
+
+popup.style.display="flex";
+
+}
+
+}
+
+function closeLogin(){
+
+const popup=document.getElementById("loginPopup");
+
+if(popup){
+
+popup.style.display="none";
+
+}
+
+}
+
+function login(){
+
+let name=document.getElementById("loginName").value.trim();
+
+if(name===""){
+
+alert("Please Enter Your Name");
+
+return;
+
+}
+
+let user=document.getElementById("userName");
+
+if(user){
+
+user.innerHTML=name;
+
+}
+
+alert("Login Successful");
+
+closeLogin();
+
+}
+
+/* ---------- REGISTER ---------- */
+
+function openRegister(){
+
+const popup=document.getElementById("registerPopup");
+
+if(popup){
+
+popup.style.display="flex";
+
+}
+
+}
+
+function closeRegister(){
+
+const popup=document.getElementById("registerPopup");
+
+if(popup){
+
+popup.style.display="none";
+
+}
+
+}
+
+function registerUser(){
+
+alert("Registration Successful");
+
+closeRegister();
+
+}
+
+/* ---------- DARK MODE ---------- */
+
+let darkMode=true;
+
+function toggleTheme(){
+
+darkMode=!darkMode;
+
+if(darkMode){
+
+document.body.style.background="#080808";
+
+document.body.style.color="#ffffff";
+
+}else{
+
+document.body.style.background="#ffffff";
+
+document.body.style.color="#000000";
+
+}
+
+}
+
+/* ---------- HERO AUTO SLIDER ---------- */
+
+const heroImages=[
+
+"HERO.PNG",
+
+"BHAKARWADI.PNG",
+
+"BINGOMASALA.PNG",
+
+"BINGOPANIPURI.PNG",
+
+"MASALABANANAWEFER.PNG",
+
+"METHIPURI.PNG",
+
+"NADIYADIMIX.PNG",
+
+"PUNJABIMIX.PNG"
+
+];
+
+let heroIndex=0;
+
+setInterval(function(){
+
+const hero=document.getElementById("heroImage");
+
+if(hero){
+
+heroIndex++;
+
+if(heroIndex>=heroImages.length){
+
+heroIndex=0;
+
+}
+
+hero.src=heroImages[heroIndex];
+
+}
+
+},3000);
+
+/* ---------- BACK TO TOP ---------- */
+
+const topBtn=document.getElementById("topBtn");
+
+window.addEventListener("scroll",function(){
+
+if(!topBtn) return;
+
+if(window.scrollY>300){
+
+topBtn.style.display="block";
+
+}else{
+
+topBtn.style.display="none";
+
+}
+
+});
+
+function goTop(){
 
 window.scrollTo({
 
@@ -395,59 +606,17 @@ behavior:"smooth"
 });
 
 }
+/* ==========================================
+   VISHWAS NAMKEEN
+   SCRIPT.JS PART 5
+   Premium Effects
+========================================== */
 
-/*==================================
-      STICKY HEADER
-==================================*/
+/* ---------- PAGE LOADER ---------- */
 
-const header=document.querySelector("header");
+window.addEventListener("load",function(){
 
-window.addEventListener("scroll",()=>{
-
-if(window.scrollY>80){
-
-header.classList.add("scrolled");
-
-}else{
-
-header.classList.remove("scrolled");
-
-}
-
-});
-
-/*==================================
-      SMOOTH SECTION SCROLL
-==================================*/
-
-document.querySelectorAll('a[href^="#"]').forEach(link=>{
-
-link.addEventListener("click",function(e){
-
-e.preventDefault();
-
-const target=document.querySelector(this.getAttribute("href"));
-
-if(target){
-
-target.scrollIntoView({
-
-behavior:"smooth"
-
-});
-
-}
-
-});
-
-});
-/*==================================
-        PAGE LOADER
-==================================*/
-
-window.addEventListener("load", function(){
-
-const loader = document.getElementById("loader");
+const loader=document.getElementById("loader");
 
 if(loader){
 
@@ -455,332 +624,358 @@ setTimeout(function(){
 
 loader.style.opacity="0";
 
-loader.style.visibility="hidden";
+setTimeout(function(){
 
-},800);
+loader.style.display="none";
 
-}
+},500);
 
-});
-
-/*==================================
-      SCROLL ANIMATION
-==================================*/
-
-const observer = new IntersectionObserver((entries)=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("show");
+},1200);
 
 }
 
 });
 
-},{
-threshold:0.15
+/* ---------- IMAGE HOVER ZOOM ---------- */
+
+document.querySelectorAll(".card img").forEach(function(img){
+
+img.addEventListener("mouseenter",function(){
+
+this.style.transform="scale(1.08)";
+
+this.style.transition=".4s";
+
 });
 
-document.querySelectorAll(
-".fade-up,.fade-left,.fade-right"
-).forEach(el=>{
+img.addEventListener("mouseleave",function(){
 
-observer.observe(el);
-
-});
-
-/*==================================
-      GALLERY IMAGE ZOOM
-==================================*/
-
-document.querySelectorAll(".gallery-item img").forEach(img=>{
-
-img.addEventListener("click",function(){
-
-const popup=document.createElement("div");
-
-popup.className="image-popup";
-
-popup.innerHTML=`
-<div class="popup-bg">
-<img src="${this.src}">
-<span class="popup-close">&times;</span>
-</div>
-`;
-
-document.body.appendChild(popup);
-
-popup.querySelector(".popup-close")
-.onclick=function(){
-
-popup.remove();
-
-};
-
-popup.onclick=function(e){
-
-if(e.target===popup){
-
-popup.remove();
-
-}
-
-};
+this.style.transform="scale(1)";
 
 });
 
 });
 
-/*==================================
-      SEARCH POPUP
-==================================*/
+/* ---------- REVIEW SLIDER ---------- */
 
-const searchIcon=document.querySelector(".fa-search");
-const searchPopup=document.getElementById("searchPopup");
+let review=0;
 
-if(searchIcon && searchPopup){
+const reviews=document.querySelectorAll(".review-card");
 
-searchIcon.addEventListener("click",()=>{
+function reviewSlider(){
 
-searchPopup.classList.toggle("active");
+if(reviews.length==0) return;
+
+reviews.forEach(function(card){
+
+card.style.display="none";
+
+});
+
+reviews[review].style.display="block";
+
+review++;
+
+if(review>=reviews.length){
+
+review=0;
+
+}
+
+}
+
+setInterval(reviewSlider,3000);
+
+reviewSlider();
+
+/* ---------- GALLERY EFFECT ---------- */
+
+document.querySelectorAll(".gallery img").forEach(function(image){
+
+image.addEventListener("click",function(){
+
+this.style.transform="scale(1.15)";
+
+setTimeout(()=>{
+
+this.style.transform="scale(1)";
+
+},500);
+
+});
+
+});
+
+/* ---------- BUTTON RIPPLE ---------- */
+
+document.querySelectorAll("button").forEach(function(btn){
+
+btn.addEventListener("click",function(e){
+
+let ripple=document.createElement("span");
+
+ripple.className="ripple";
+
+ripple.style.left=e.offsetX+"px";
+
+ripple.style.top=e.offsetY+"px";
+
+this.appendChild(ripple);
+
+setTimeout(function(){
+
+ripple.remove();
+
+},600);
+
+});
+
+});
+
+/* ---------- PREMIUM CARD EFFECT ---------- */
+
+document.querySelectorAll(".card").forEach(function(card){
+
+card.addEventListener("mouseenter",function(){
+
+this.style.transform="translateY(-10px)";
+
+});
+
+card.addEventListener("mouseleave",function(){
+
+this.style.transform="translateY(0px)";
+
+});
+
+});
+
+/* ---------- FOOTER YEAR ---------- */
+
+const year=document.getElementById("year");
+
+if(year){
+
+year.innerHTML=new Date().getFullYear();
+
+}
+/* ==========================================
+   VISHWAS NAMKEEN
+   SCRIPT.JS PART 6
+   Checkout System
+========================================== */
+
+/* Random Order ID */
+
+function generateOrderId(){
+
+return "VN"+Math.floor(Math.random()*900000+100000);
+
+}
+
+/* Payment Method */
+
+function getPaymentMethod(){
+
+let payment=document.getElementById("paymentMethod");
+
+if(payment){
+
+return payment.value;
+
+}
+
+return "Cash On Delivery";
+
+}
+
+/* Place Order */
+
+const placeOrder=document.getElementById("placeOrder");
+
+if(placeOrder){
+
+placeOrder.addEventListener("click",function(){
+
+if(cart.length===0){
+
+alert("Your Cart Is Empty");
+
+return;
+
+}
+
+let name=document.getElementById("customerName");
+
+let phone=document.getElementById("customerPhone");
+
+let address=document.getElementById("customerAddress");
+
+if(!name.value || !phone.value || !address.value){
+
+alert("Please Fill All Required Details");
+
+return;
+
+}
+
+let orderId=generateOrderId();
+
+let payment=getPaymentMethod();
+
+/* Success Popup */
+
+let success=document.getElementById("success");
+
+if(success){
+
+success.style.display="flex";
+
+}
+
+/* Order Details */
+
+console.log("Order ID :",orderId);
+
+console.log("Customer :",name.value);
+
+console.log("Phone :",phone.value);
+
+console.log("Payment :",payment);
+
+console.log("Total :",total);
+
+/* WhatsApp Message Ready */
+
+let message=
+"🛒 Vishwas Namkeen Order%0A"+
+"Order ID : "+orderId+"%0A"+
+"Name : "+name.value+"%0A"+
+"Phone : "+phone.value+"%0A"+
+"Address : "+address.value+"%0A"+
+"Payment : "+payment+"%0A"+
+"Total : ₹"+total;
+
+/*
+Future Use:
+
+window.open(
+"https://wa.me/91XXXXXXXXXX?text="+message,
+"_blank"
+);
+
+*/
+
+showNotification("Order Placed Successfully ✅");
+
+cart=[];
+
+updateCart();
+
+updateCheckout();
 
 });
 
 }
 
-/*==================================
-      CLOSE SEARCH (ESC)
-==================================*/
-
-document.addEventListener("keydown",(e)=>{
-
-if(e.key==="Escape" && searchPopup){
-
-searchPopup.classList.remove("active");
-
-}
-
-});
-
-/*==================================
-      PRELOAD IMAGES
-==================================*/
-
-[
-"HERO.PNG",
-"BHAKARWADI.PNG",
-"BINGOMASALA.PNG",
-"BINGOPANIPURI.PNG",
-"METHIPURI.PNG",
-"PUNJABIMIX.PNG",
-"NADIYADIMIX.PNG",
-"MASALABANANAWEFER.PNG"
-].forEach(src=>{
-
-const img=new Image();
-
-img.src=src;
-
-});
-/*==================================
-      LOGIN / SIGNUP MODAL
-==================================*/
-
-const loginModal=document.getElementById("loginModal");
-
-function openLogin(){
-
-if(loginModal){
-
-loginModal.classList.add("active");
-
-}
-
-}
-
-function closeLogin(){
-
-if(loginModal){
-
-loginModal.classList.remove("active");
-
-}
-
-}
-
-/*==================================
-      SUCCESS MODAL
-==================================*/
-
-const successModal=document.getElementById("successModal");
-
-function openSuccess(){
-
-if(successModal){
-
-successModal.classList.add("active");
-
-}
-
-}
+/* Close Success */
 
 function closeSuccess(){
 
-if(successModal){
+let success=document.getElementById("success");
 
-successModal.classList.remove("active");
+if(success){
+
+success.style.display="none";
+
+}
+
+}
+
+/* Toast Notification */
+
+function toast(text){
+
+let notify=document.getElementById("notify");
+
+if(!notify) return;
+
+notify.innerHTML=text;
+
+notify.style.right="20px";
+
+setTimeout(function(){
+
+notify.style.right="-350px";
+
+},2500);
+
+}
+/* ==========================================
+   VISHWAS NAMKEEN
+   SCRIPT.JS PART 7
+   Wishlist + Local Storage
+========================================== */
+
+/* ---------- SAVE CART ---------- */
+
+function saveCart(){
+
+localStorage.setItem("vishwasCart",JSON.stringify(cart));
+
+}
+
+/* ---------- LOAD CART ---------- */
+
+function loadCart(){
+
+let data=localStorage.getItem("vishwasCart");
+
+if(data){
+
+cart=JSON.parse(data);
+
+updateCart();
+
+updateCheckout();
 
 }
 
 }
 
-/*==================================
-      NEWSLETTER
-==================================*/
+window.addEventListener("load",loadCart);
 
-const newsletter=document.querySelector(".newsletter-form");
+/* ---------- SAVE WISHLIST ---------- */
 
-if(newsletter){
+let wishlist=JSON.parse(localStorage.getItem("wishlist")) || [];
 
-newsletter.addEventListener("submit",function(e){
+function saveWishlist(){
 
-e.preventDefault();
-
-const email=this.querySelector("input").value.trim();
-
-const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-if(email===""){
-
-showNotification("Please Enter Email");
-
-return;
+localStorage.setItem("wishlist",JSON.stringify(wishlist));
 
 }
 
-if(!emailPattern.test(email)){
+/* ---------- ADD WISHLIST ---------- */
 
-showNotification("Invalid Email");
+document.querySelectorAll(".wishlistBtn").forEach(function(btn){
 
-return;
+btn.addEventListener("click",function(){
 
-}
+let card=this.closest(".card");
 
-showNotification("Subscribed Successfully");
+let product=card.querySelector("h3").innerText;
 
-this.reset();
+if(!wishlist.includes(product)){
 
-});
+wishlist.push(product);
 
-}
+saveWishlist();
 
-/*==================================
-      CONTACT FORM
-==================================*/
+toast("❤️ Added To Wishlist");
 
-const contactForm=document.querySelector(".contact-form form");
+}else{
 
-if(contactForm){
-
-contactForm.addEventListener("submit",function(e){
-
-e.preventDefault();
-
-const name=this.querySelector("input[type='text']").value.trim();
-
-const email=this.querySelector("input[type='email']").value.trim();
-
-const phone=this.querySelector("input[type='tel']").value.trim();
-
-if(name.length<3){
-
-showNotification("Enter Valid Name");
-
-return;
-
-}
-
-if(phone.length<10){
-
-showNotification("Enter Valid Mobile Number");
-
-return;
-
-}
-
-showNotification("Message Sent Successfully");
-
-this.reset();
-
-});
-
-}
-
-/*==================================
-      CHECKOUT SUCCESS
-==================================*/
-
-function orderPlaced(){
-
-openSuccess();
-
-clearCart();
-
-showNotification("Order Placed Successfully");
-
-}
-
-/*==================================
-      CLICK SOUND
-==================================*/
-
-const clickSound=document.getElementById("clickSound");
-
-document.querySelectorAll("button").forEach(button=>{
-
-button.addEventListener("click",()=>{
-
-if(clickSound){
-
-clickSound.currentTime=0;
-
-clickSound.play().catch(()=>{});
-
-}
-
-});
-
-});
-/*==================================
-      MOBILE MENU
-==================================*/
-
-const menuBtn=document.querySelector(".menu-toggle");
-const navLinks=document.querySelector(".nav-links");
-
-if(menuBtn){
-
-menuBtn.addEventListener("click",()=>{
-
-navLinks.classList.toggle("active");
-
-});
-
-}
-
-/*==================================
-      CLOSE MENU
-==================================*/
-
-document.querySelectorAll(".nav-links a").forEach(link=>{
-
-link.addEventListener("click",()=>{
-
-if(navLinks){
-
-navLinks.classList.remove("active");
+toast("Already In Wishlist");
 
 }
 
@@ -788,41 +983,70 @@ navLinks.classList.remove("active");
 
 });
 
-/*==================================
-        DARK MODE
-==================================*/
+/* ---------- PRODUCT RATING ---------- */
 
-const darkBtn=document.getElementById("darkMode");
+document.querySelectorAll(".rating").forEach(function(rate){
 
-if(darkBtn){
+rate.addEventListener("click",function(){
 
-darkBtn.addEventListener("click",()=>{
-
-document.body.classList.toggle("dark");
-
-localStorage.setItem(
-"theme",
-document.body.classList.contains("dark")
-?"dark":"light"
-);
+toast("⭐ Thanks For Rating!");
 
 });
 
+});
+
+/* ---------- ORDER HISTORY ---------- */
+
+function saveOrder(orderId,total){
+
+let orders=JSON.parse(localStorage.getItem("orders")) || [];
+
+orders.push({
+
+id:orderId,
+
+price:total,
+
+date:new Date().toLocaleString()
+
+});
+
+localStorage.setItem("orders",JSON.stringify(orders));
+
 }
 
-const savedTheme=localStorage.getItem("theme");
+/* ---------- CLEAR CART ---------- */
 
-if(savedTheme==="dark"){
+function clearCart(){
 
-document.body.classList.add("dark");
+cart=[];
+
+saveCart();
+
+updateCart();
+
+updateCheckout();
 
 }
 
-/*==================================
-        WISHLIST
-==================================*/
+/* ---------- AUTO SAVE ---------- */
 
-let wishlist=[];
+setInterval(function(){
+
+saveCart();
+
+},1000);
+/* ==========================================
+   VISHWAS NAMKEEN
+   SCRIPT.JS PART 7
+   Wishlist + Local Storage + Orders
+========================================== */
+
+/* Wishlist */
+
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+/* Add Wishlist */
 
 function addWishlist(product){
 
@@ -830,38 +1054,328 @@ if(!wishlist.includes(product)){
 
 wishlist.push(product);
 
-showNotification(product+" added to Wishlist");
+localStorage.setItem("wishlist",JSON.stringify(wishlist));
+
+showNotification(product + " Added To Wishlist ❤️");
 
 }else{
 
-showNotification("Already in Wishlist");
+showNotification("Already In Wishlist");
 
 }
 
 }
 
-/*==================================
-      PRODUCT FILTER
-==================================*/
+/* Wishlist Button */
+
+document.querySelectorAll(".wishlistBtn").forEach(function(btn){
+
+btn.addEventListener("click",function(){
+
+let card=this.closest(".card");
+
+let product=card.querySelector("h3").innerText;
+
+addWishlist(product);
+
+});
+
+});
+
+/* Save Cart */
+
+function saveCart(){
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+}
+
+/* Load Cart */
+
+function loadCart(){
+
+let data=localStorage.getItem("cart");
+
+if(data){
+
+cart=JSON.parse(data);
+
+updateCart();
+
+if(typeof updateCheckout==="function"){
+
+updateCheckout();
+
+}
+
+}
+
+}
+
+window.addEventListener("load",loadCart);
+
+/* Save Order */
+
+function saveOrder(orderId){
+
+let orders=JSON.parse(localStorage.getItem("orders")) || [];
+
+orders.push({
+
+id:orderId,
+
+date:new Date().toLocaleDateString(),
+
+total:total
+
+});
+
+localStorage.setItem("orders",JSON.stringify(orders));
+
+}
+
+/* View Orders */
+
+function viewOrders(){
+
+let orders=JSON.parse(localStorage.getItem("orders")) || [];
+
+console.log(orders);
+
+}
+
+/* Auto Save Cart */
+
+setInterval(function(){
+
+saveCart();
+
+},1000);
+
+/* Product Rating */
+
+document.querySelectorAll(".rating").forEach(function(star){
+
+star.addEventListener("click",function(){
+
+showNotification("⭐ Thank You For Rating!");
+
+});
+
+});
+/* ==========================================
+   VISHWAS NAMKEEN
+   SCRIPT.JS PART 8
+========================================== */
+
+/* ---------- DARK MODE SAVE ---------- */
+
+let theme = localStorage.getItem("theme") || "dark";
+
+function loadTheme(){
+
+if(theme=="light"){
+
+document.body.classList.add("light-mode");
+
+}else{
+
+document.body.classList.remove("light-mode");
+
+}
+
+}
+
+loadTheme();
+
+function toggleTheme(){
+
+document.body.classList.toggle("light-mode");
+
+if(document.body.classList.contains("light-mode")){
+
+localStorage.setItem("theme","light");
+
+}else{
+
+localStorage.setItem("theme","dark");
+
+}
+
+}
+
+/* ---------- USER PROFILE ---------- */
+
+function saveProfile(){
+
+let name=document.getElementById("loginName");
+
+if(!name) return;
+
+localStorage.setItem("userName",name.value);
+
+}
+
+function loadProfile(){
+
+let user=localStorage.getItem("userName");
+
+if(user){
+
+let box=document.getElementById("userName");
+
+if(box){
+
+box.innerHTML=user;
+
+}
+
+}
+
+}
+
+window.addEventListener("load",loadProfile);
+
+/* ---------- MOBILE MENU ---------- */
+
+function toggleMenu(){
+
+let nav=document.querySelector("nav");
+
+if(!nav) return;
+
+nav.classList.toggle("active");
+
+}
+
+/* ---------- PREMIUM NOTIFICATION ---------- */
+
+function notify(text){
+
+let box=document.getElementById("notify");
+
+if(!box) return;
+
+box.innerHTML=text;
+
+box.style.right="20px";
+
+setTimeout(function(){
+
+box.style.right="-350px";
+
+},2500);
+
+}
+
+/* ---------- BUTTON ANIMATION ---------- */
+
+document.querySelectorAll("button").forEach(function(btn){
+
+btn.addEventListener("mouseenter",function(){
+
+this.style.transform="scale(1.05)";
+
+});
+
+btn.addEventListener("mouseleave",function(){
+
+this.style.transform="scale(1)";
+
+});
+
+});
+
+/* ---------- PERFORMANCE ---------- */
+
+window.addEventListener("load",function(){
+
+document.querySelectorAll("img").forEach(function(img){
+
+img.loading="lazy";
+
+});
+
+});
+
+/* ---------- SCROLL HEADER ---------- */
+
+window.addEventListener("scroll",function(){
+
+let header=document.querySelector("header");
+
+if(!header) return;
+
+if(window.scrollY>80){
+
+header.style.background="#000";
+
+header.style.boxShadow="0 5px 20px rgba(0,0,0,.5)";
+
+}else{
+
+header.style.background="#111";
+
+header.style.boxShadow="none";
+
+}
+
+});
+/* ==========================================
+   VISHWAS NAMKEEN
+   SCRIPT.JS PART 9
+========================================== */
+
+/* ---------- ADVANCED SEARCH ---------- */
+
+const searchInput = document.getElementById("searchBox");
+
+if(searchInput){
+
+searchInput.addEventListener("keyup",function(){
+
+let value=this.value.toLowerCase();
+
+document.querySelectorAll(".card").forEach(function(card){
+
+let product=card.querySelector("h3").innerText.toLowerCase();
+
+if(product.indexOf(value)>-1){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+});
+
+}
+
+/* ---------- CATEGORY FILTER ---------- */
 
 function filterProducts(category){
 
-const cards=document.querySelectorAll(".product-card");
+document.querySelectorAll(".card").forEach(function(card){
 
-cards.forEach(card=>{
+let type=card.getAttribute("data-category");
 
-const productCategory=card.dataset.category;
-
-if(category==="all"){
+if(category=="all"){
 
 card.style.display="block";
 
 }
-else if(productCategory===category){
+
+else if(type==category){
 
 card.style.display="block";
 
 }
+
 else{
 
 card.style.display="none";
@@ -872,128 +1386,134 @@ card.style.display="none";
 
 }
 
-/*==================================
-      PAGE SCROLL PROGRESS
-==================================*/
+/* ---------- FAVORITE COUNTER ---------- */
 
-window.addEventListener("scroll",()=>{
+function updateWishlistCount(){
 
-const totalHeight=
-document.documentElement.scrollHeight-
-window.innerHeight;
+let count=document.getElementById("wishlistCount");
 
-const progress=
-(window.pageYOffset/totalHeight)*100;
+if(count){
 
-const bar=document.getElementById("progressBar");
+count.innerHTML=wishlist.length;
 
-if(bar){
+}
 
-bar.style.width=progress+"%";
+}
+
+updateWishlistCount();
+
+/* ---------- DASHBOARD ---------- */
+
+function updateDashboard(){
+
+let product=document.getElementById("productCount");
+
+let customer=document.getElementById("customerCount");
+
+let order=document.getElementById("orderCount");
+
+if(product){
+
+product.innerHTML=document.querySelectorAll(".card").length;
+
+}
+
+if(customer){
+
+customer.innerHTML="500+";
+
+}
+
+if(order){
+
+order.innerHTML=localStorage.getItem("orders")?
+
+JSON.parse(localStorage.getItem("orders")).length:
+
+0;
+
+}
+
+}
+
+updateDashboard();
+
+/* ---------- SAVE LAST VISIT ---------- */
+
+localStorage.setItem(
+
+"lastVisit",
+
+new Date().toLocaleString()
+
+);
+
+/* ---------- SHOW LAST VISIT ---------- */
+
+const visit=document.getElementById("lastVisit");
+
+if(visit){
+
+visit.innerHTML=localStorage.getItem("lastVisit");
+
+}
+
+/* ---------- AUTO CLOSE POPUP ---------- */
+
+setTimeout(function(){
+
+let popup=document.getElementById("success");
+
+if(popup){
+
+popup.style.display="none";
+
+}
+
+},5000);
+
+/* ---------- CONSOLE MESSAGE ---------- */
+
+console.log("✅ Vishwas Namkeen Premium Website Loaded Successfully");
+/* ==========================================
+   VISHWAS NAMKEEN
+   SCRIPT.JS PART 10
+   FINAL PREMIUM VERSION
+========================================== */
+
+/* ---------- LOADER ---------- */
+
+window.addEventListener("load",function(){
+
+const loader=document.getElementById("loader");
+
+if(loader){
+
+setTimeout(function(){
+
+loader.style.opacity="0";
+
+setTimeout(function(){
+
+loader.style.display="none";
+
+},500);
+
+},1200);
 
 }
 
 });
-/*==================================
-      AUTO HERO SLIDER
-==================================*/
 
-const heroImages=[
-"HERO.PNG",
-"BHAKARWADI.PNG",
-"PUNJABIMIX.PNG",
-"NADIYADIMIX.PNG"
-];
+/* ---------- SCROLL ANIMATION ---------- */
 
-let heroIndex=0;
+const observer=new IntersectionObserver(function(entries){
 
-const heroImage=document.querySelector(".hero-image img");
-
-if(heroImage){
-
-setInterval(()=>{
-
-heroIndex++;
-
-if(heroIndex>=heroImages.length){
-
-heroIndex=0;
-
-}
-
-heroImage.style.opacity="0";
-
-setTimeout(()=>{
-
-heroImage.src=heroImages[heroIndex];
-
-heroImage.style.opacity="1";
-
-},300);
-
-},4000);
-
-}
-
-/*==================================
-      PRODUCT SORTING
-==================================*/
-
-function sortProducts(type){
-
-const container=document.querySelector(".product-container");
-
-if(!container) return;
-
-const cards=[...container.querySelectorAll(".product-card")];
-
-cards.sort((a,b)=>{
-
-const priceA=parseInt(
-a.querySelector(".price").innerText.replace(/[^\d]/g,"")
-);
-
-const priceB=parseInt(
-b.querySelector(".price").innerText.replace(/[^\d]/g,"")
-);
-
-if(type==="low"){
-
-return priceA-priceB;
-
-}
-
-if(type==="high"){
-
-return priceB-priceA;
-
-}
-
-return 0;
-
-});
-
-cards.forEach(card=>container.appendChild(card));
-
-}
-
-/*==================================
-      LAZY IMAGE LOADING
-==================================*/
-
-const lazyImages=document.querySelectorAll("img");
-
-const imageObserver=new IntersectionObserver(entries=>{
-
-entries.forEach(entry=>{
+entries.forEach(function(entry){
 
 if(entry.isIntersecting){
 
-const img=entry.target;
-
-img.loading="lazy";
-
-imageObserver.unobserve(img);
+entry.classList.add("show");
 
 }
 
@@ -1001,389 +1521,140 @@ imageObserver.unobserve(img);
 
 });
 
-lazyImages.forEach(img=>{
+document.querySelectorAll("section").forEach(function(section){
 
-imageObserver.observe(img);
+section.classList.add("fade");
 
-});
-
-/*==================================
-      PRODUCT HOVER EFFECT
-==================================*/
-
-document.querySelectorAll(".product-card").forEach(card=>{
-
-card.addEventListener("mouseenter",()=>{
-
-card.style.transform="translateY(-12px) scale(1.02)";
+observer.observe(section);
 
 });
 
-card.addEventListener("mouseleave",()=>{
+/* ---------- BUTTON RIPPLE ---------- */
 
-card.style.transform="";
+document.querySelectorAll("button").forEach(function(btn){
 
-});
+btn.addEventListener("click",function(e){
 
-});
+const ripple=document.createElement("span");
 
-/*==================================
-      SCROLL REVEAL
-==================================*/
+ripple.className="ripple";
 
-window.addEventListener("scroll",()=>{
+ripple.style.left=e.offsetX+"px";
 
-document.querySelectorAll("section").forEach(section=>{
+ripple.style.top=e.offsetY+"px";
 
-const top=section.getBoundingClientRect().top;
+this.appendChild(ripple);
 
-if(top<window.innerHeight-120){
+setTimeout(function(){
 
-section.classList.add("fade-up","show");
+ripple.remove();
 
-}
+},600);
 
 });
 
 });
 
-/*==================================
-      PRODUCT IMAGE CLICK
-==================================*/
+/* ---------- IMAGE HOVER ---------- */
 
-document.querySelectorAll(".product-card img").forEach(img=>{
+document.querySelectorAll(".card img").forEach(function(img){
 
-img.style.cursor="pointer";
+img.addEventListener("mouseenter",function(){
 
-img.addEventListener("click",()=>{
+this.style.transform="scale(1.08) rotate(2deg)";
 
-window.scrollTo({
+this.style.transition=".4s";
 
-top:0,
+});
 
-behavior:"smooth"
+img.addEventListener("mouseleave",function(){
+
+this.style.transform="scale(1)";
 
 });
 
 });
 
-});
-/*==================================
-        COUPON SYSTEM
-==================================*/
+/* ---------- CARD ANIMATION ---------- */
 
-let couponDiscount = 0;
+document.querySelectorAll(".card").forEach(function(card){
 
-function applyCoupon(){
+card.addEventListener("mouseenter",function(){
 
-const coupon=document.getElementById("couponCode");
+this.style.transform="translateY(-10px)";
 
-if(!coupon){
-
-showNotification("Coupon Box Not Found");
-
-return;
-
-}
-
-const code=coupon.value.trim().toUpperCase();
-
-if(code==="VISHWASH10"){
-
-couponDiscount=10;
-
-showNotification("10% Discount Applied");
-
-}
-else if(code==="WELCOME20"){
-
-couponDiscount=20;
-
-showNotification("20% Discount Applied");
-
-}
-else{
-
-couponDiscount=0;
-
-showNotification("Invalid Coupon");
-
-}
-
-updateFinalBill();
-
-}
-
-/*==================================
-      FINAL BILL
-==================================*/
-
-function updateFinalBill(){
-
-let subtotal=0;
-
-cart.forEach(item=>{
-
-subtotal+=item.price*item.quantity;
+this.style.boxShadow="0 0 25px rgba(255,215,0,.35)";
 
 });
 
-const delivery=subtotal>=500?0:40;
+card.addEventListener("mouseleave",function(){
 
-const discount=(subtotal*couponDiscount)/100;
+this.style.transform="translateY(0)";
 
-const gst=((subtotal-discount)*5)/100;
-
-const grandTotal=subtotal-discount+delivery+gst;
-
-const totalBox=document.getElementById("cart-total");
-
-if(totalBox){
-
-totalBox.innerText=Math.round(grandTotal);
-
-}
-
-}
-
-/*==================================
-      INVOICE
-==================================*/
-
-function generateInvoice(){
-
-let invoice="";
-
-invoice+="===== VISHWASH NAMKEEN =====\n\n";
-
-cart.forEach(item=>{
-
-invoice+=item.name+" x "+item.quantity;
-
-invoice+=" = ₹"+(item.price*item.quantity);
-
-invoice+="\n";
+this.style.boxShadow="none";
 
 });
 
-invoice+="\n";
+});
 
-invoice+="Total : ₹"+document.getElementById("cart-total").innerText;
+/* ---------- AUTO SAVE ---------- */
 
-alert(invoice);
+window.addEventListener("beforeunload",function(){
 
-}
+localStorage.setItem("cart",JSON.stringify(cart));
 
-/*==================================
-      FINAL CHECKOUT
-==================================*/
+});
 
-function finalCheckout(){
+/* ---------- ONLINE / OFFLINE ---------- */
 
-if(cart.length===0){
+window.addEventListener("online",function(){
 
-showNotification("Cart is Empty");
+notify("✅ Internet Connected");
 
-return;
+});
 
-}
+window.addEventListener("offline",function(){
 
-generateInvoice();
+notify("❌ No Internet Connection");
 
-checkout();
+});
 
-}
+/* ---------- YEAR ---------- */
 
-/*==================================
-      SAVE LAST ORDER
-==================================*/
+const year=document.getElementById("year");
 
-function saveLastOrder(){
+if(year){
 
-localStorage.setItem(
-
-"lastOrder",
-
-JSON.stringify(cart)
-
-);
+year.innerHTML=new Date().getFullYear();
 
 }
 
-/*==================================
-      CLEAR AFTER ORDER
-==================================*/
+/* ---------- WELCOME ---------- */
 
-function completeOrder(){
+setTimeout(function(){
 
-saveLastOrder();
-
-clearCart();
-
-showNotification("Thank You For Your Order");
-
-}
-
-/*==================================
-      AUTO BILL UPDATE
-==================================*/
-
-setInterval(()=>{
-
-updateFinalBill();
+notify("Welcome To Vishwas Namkeen ❤️");
 
 },1000);
-/*==================================
-      FINAL INITIALIZATION
-==================================*/
 
-document.addEventListener("DOMContentLoaded",()=>{
+/* ---------- ERROR HANDLER ---------- */
 
-console.log("Vishwash Namkeen Website Loaded");
+window.onerror=function(){
 
-if(localStorage.getItem("cart")){
+console.log("JavaScript Error Handled");
 
-cart=JSON.parse(localStorage.getItem("cart"));
-
-updateCart();
-
-}
-
-});
-
-/*==================================
-      GLOBAL ERROR HANDLER
-==================================*/
-
-window.addEventListener("error",(event)=>{
-
-console.error(
-"Error:",
-event.message
-);
-
-});
-
-/*==================================
-      SAFE QUERY SELECTOR
-==================================*/
-
-function safeElement(selector){
-
-try{
-
-return document.querySelector(selector);
-
-}catch{
-
-return null;
-
-}
-
-}
-
-/*==================================
-      CART AUTO SAVE
-==================================*/
-
-function saveCart(){
-
-localStorage.setItem(
-
-"cart",
-
-JSON.stringify(cart)
-
-);
-
-}
-
-setInterval(()=>{
-
-saveCart();
-
-},3000);
-
-/*==================================
-      PRODUCT COUNTER
-==================================*/
-
-function totalProducts(){
-
-let total=0;
-
-cart.forEach(item=>{
-
-total+=item.quantity;
-
-});
-
-return total;
-
-}
-
-/*==================================
-      WEBSITE STATS
-==================================*/
-
-console.log(
-"Professional Vishwash Namkeen Store Ready"
-);
-
-/*==================================
-      ONLINE / OFFLINE STATUS
-==================================*/
-
-window.addEventListener("online",()=>{
-
-showNotification("Internet Connected");
-
-});
-
-window.addEventListener("offline",()=>{
-
-showNotification("Internet Disconnected");
-
-});
-
-/*==================================
-      PREVENT FORM RESUBMIT
-==================================*/
-
-if(window.history.replaceState){
-
-window.history.replaceState(
-null,
-null,
-window.location.href
-);
-
-}
-
-/*==================================
-      IMAGE ERROR FIX
-==================================*/
-
-document.querySelectorAll("img").forEach(img=>{
-
-img.onerror=function(){
-
-this.src="HERO.PNG";
+return true;
 
 };
 
-});
+/* ---------- WEBSITE READY ---------- */
 
-/*==================================
-      PERFORMANCE
-==================================*/
+console.log("====================================");
 
-window.requestIdleCallback?.(()=>{
+console.log("VISHWAS NAMKEEN PREMIUM WEBSITE");
 
-console.log("Website Optimized");
+console.log("Version : 1.0");
 
-});
+console.log("Status : Ready");
 
-/*==================================
-      END OF SCRIPT.JS
-==================================*/
+console.log("====================================");
