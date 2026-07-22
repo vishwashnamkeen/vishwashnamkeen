@@ -39,41 +39,51 @@ function playOrderSuccessVoice() {
 }
 
 // 4. RENDER PRODUCTS TO HOME GRID
+// 4. RENDER PRODUCTS TO HOME GRID (WITH WORKING WISHLIST CLICK)
 function renderProducts() {
     const grid = document.getElementById('product-list');
     if (!grid) return;
 
-    grid.innerHTML = products.map(p => `
-        <div class="product-card">
-            <div class="card-top">
-                <span class="card-badge">Fresh</span>
-                <span class="wishlist-icon-btn" onclick="toggleWishlist(${p.id})" title="Add to Wishlist">
-                    <i class="fa-solid fa-heart"></i>
-                </span>
-                <img src="${p.image}" alt="${p.name}">
-            </div>
-            <div class="card-info">
-                <h3>${p.name}</h3>
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+    grid.innerHTML = products.map(p => {
+        // Check karein ki kya yeh product pehle se wishlist me hai
+        const isWishlisted = wishlist.some(w => w.id === p.id);
+
+        return `
+            <div class="product-card">
+                <div class="card-top">
+                    <span class="card-badge">Fresh</span>
+                    
+                    <!-- WISHLIST BUTTON WITH CLICK EVENT & VISUAL CHECK -->
+                    <span class="wishlist-icon-btn" onclick="toggleWishlist(${p.id}, this)" title="Add to Wishlist">
+                        <i class="${isWishlisted ? 'fa-solid fa-heart' : 'fa-regular fa-heart'}" 
+                           style="${isWishlisted ? 'color:red;' : ''}"></i>
+                    </span>
+
+                    <img src="${p.image}" alt="${p.name}">
                 </div>
-                <small style="color:#777;">Weight: ${p.weight}</small>
-                <div class="price-tag">₹${p.price}</div>
+                <div class="card-info">
+                    <h3>${p.name}</h3>
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <small style="color:#777;">Weight: ${p.weight}</small>
+                    <div class="price-tag">₹${p.price}</div>
+                </div>
+                <div class="card-actions">
+                    <button onclick="addToCart(${p.id})" class="btn btn-outline btn-sm btn-block">
+                        <i class="fa-solid fa-cart-plus"></i> Add
+                    </button>
+                    <button onclick="buyNow(${p.id})" class="btn btn-red btn-sm btn-block">
+                        <i class="fa-solid fa-bolt"></i> Buy Now
+                    </button>
+                </div>
             </div>
-            <div class="card-actions">
-                <button onclick="addToCart(${p.id})" class="btn btn-outline btn-sm btn-block">
-                    <i class="fa-solid fa-cart-plus"></i> Add
-                </button>
-                <button onclick="buyNow(${p.id})" class="btn btn-red btn-sm btn-block">
-                    <i class="fa-solid fa-bolt"></i> Buy Now
-                </button>
-            </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 // 5. ADD TO CART
