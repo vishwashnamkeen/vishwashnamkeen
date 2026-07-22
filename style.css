@@ -2479,22 +2479,41 @@ section{
 
 }
 
-/*=====================================
-END OF STYLE.CSS
+.product-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
 
-Website:
-VISHWASH NAMKEEN
+.cart-btn,
+.buy-btn{
+    flex:1;
+    border:none;
+    padding:12px;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:15px;
+    font-weight:700;
+    transition:.3s;
+}
 
-Founder:
-NIKHIL VAISHNAV
+.cart-btn{
+    background:#222;
+    color:#fff;
+    border:2px solid #ffb300;
+}
 
-Theme:
-Black • Red • Gold
+.cart-btn:hover{
+    background:#ffb300;
+    color:#000;
+}
 
-Mobile Responsive ✔
-Desktop Responsive ✔
-Professional Design ✔
+.buy-btn{
+    background:linear-gradient(90deg,#ff0000,#ff6600);
+    color:#fff;
+}
 
-=====================================*/
-
+.buy-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(255,0,0,.4);
 }
