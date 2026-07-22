@@ -457,5 +457,16 @@
         document.getElementById('wishlistModal').style.display = 'none';
     }
 </script>
+    <!-- Wishlist Modal Popup Code -->
+<div id="wishlistModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:#fff; padding:25px; border-radius:12px; width:90%; max-width:400px; position:relative; box-shadow:0 10px 25px rgba(0,0,0,0.2);">
+        <button onclick="closeWishlistModal()" style="position:absolute; top:10px; right:15px; border:none; background:none; font-size:22px; cursor:pointer; font-weight:bold;">&times;</button>
+        <h3 style="margin-top:0; color:#333; font-family:'Playfair Display', serif;">❤️ Aapki Wishlist</h3>
+        <hr style="border:0; border-top:1px solid #eee; margin:15px 0;">
+        <div id="wishlist-items-container" style="max-height:250px; overflow-y:auto;">
+            <p style="color:#777; text-align:center;">Abhi koi item add nahi kiya gaya hai.</p>
+        </div>
+    </div>
+</div>
 </body>
 </html>
