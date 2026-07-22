@@ -614,7 +614,7 @@ subtotal = 0;
 
 cart.forEach(item=>{
 
-const price = parseInt(item.price.replace("₹",""));
+const price = Number(string(item.price.replace("₹","")); 0;
 
 subtotal += price * item.qty;
 
