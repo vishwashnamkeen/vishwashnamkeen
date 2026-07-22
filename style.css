@@ -581,3 +581,100 @@ body {
         grid-template-columns: 1fr;
     }
 }
+/* Slider Styles */
+.hero-slider-wrapper {
+    position: relative;
+    max-width: 450px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 12px;
+}
+.hero-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.slide {
+    min-width: 100%;
+    text-align: center;
+}
+.slide img {
+    max-height: 320px;
+    object-fit: contain;
+}
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    color: var(--gold-primary);
+    border: 1px solid var(--gold-primary);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.prev-btn { left: 10px; }
+.next-btn { right: 10px; }
+
+/* Product Action Buttons */
+.card-btn-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+.btn-card {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.add-cart-btn { background: #222; color: #fff; border: 1px solid #444; }
+.add-cart-btn:hover { background: #333; }
+.buy-now-btn { background: var(--red-primary); color: #fff; }
+.buy-now-btn:hover { background: var(--red-hover); }
+
+/* Founder Section */
+.founder-section {
+    background: var(--card-bg);
+    padding: 60px 0;
+    border-top: 1px solid var(--border-color);
+}
+.founder-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    align-items: center;
+    gap: 40px;
+}
+.founder-img-box img {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 12px;
+    border: 2px solid var(--gold-primary);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* Sliding Cart Drawer */
+.cart-drawer-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: none;
+    z-index: 1001;
+}
+.cart-drawer {
+    position: fixed;
+    top: 0; right: -400px;
+    width: 380px; height: 100%;
+    background: #141414;
+    z-index: 1002;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.cart-drawer.open { right: 0; }
+.cart-drawer-overlay.active { display: block; }
