@@ -1,32 +1,64 @@
 // ==========================================
-// 1. GLOBAL STATE & DATA
+// 1. GLOBAL STATE (CART & WISHLIST)
 // ==========================================
-let cart = [];
+let cartState = [];
+let wishlistState = [];
+let currentTab = 'cart'; // 'cart' or 'wishlist'
+let currentSlideIndex = 0;
 
 // ==========================================
-// 2. DOM LOADED INITIALIZATION
+// 2. DOM CONTENT LOADED INITIALIZATION
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+    initHeroSlider();
     initMobileMenu();
-    initCartButtons();
-    initQuickView();
-    initWhatsAppOrder();
+    initSearchOverlay();
+    initDrawerSystem();
+    initProductActions();
     initSmoothScroll();
 });
 
 // ==========================================
-// 3. MOBILE MENU TOGGLE
+// 3. HERO IMAGE SLIDER FUNCTIONALITY
+// ==========================================
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.slide-item');
+    const prevBtn = document.getElementById('slider-prev-btn');
+    const nextBtn = document.getElementById('slider-next-btn');
+
+    if (!slides.length) return;
+
+    function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        
+        currentSlideIndex = (index + slides.length) % slides.length;
+        slides[currentSlideIndex].classList.add('active');
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => showSlide(currentSlideIndex + 1));
+    }
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => showSlide(currentSlideIndex - 1));
+    }
+
+    // Auto Slide every 4 seconds
+    setInterval(() => {
+        showSlide(currentSlideIndex + 1);
+    }, 4000);
+}
+
+// ==========================================
+// 4. MOBILE MENU TOGGLE
 // ==========================================
 function initMobileMenu() {
-    const menuToggle = document.getElementById('mobile-menu');
-    const navLinks = document.querySelector('.nav-links');
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const navMenu = document.getElementById('nav-menu');
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            
-            // Toggle menu icon between bars & times (X)
-            const icon = menuToggle.querySelector('i');
+    if (menuBtn && navMenu) {
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
             if (icon) {
                 icon.classList.toggle('fa-bars');
                 icon.classList.toggle('fa-times');
@@ -36,176 +68,333 @@ function initMobileMenu() {
 }
 
 // ==========================================
-// 4. CART SYSTEM (ADD TO CART)
+// 5. SEARCH OVERLAY TOGGLE
 // ==========================================
-function initCartButtons() {
-    const cartBtns = document.querySelectorAll('.cart-btn');
+function initSearchOverlay() {
+    const searchToggle = document.getElementById('search-toggle-btn');
+    const closeSearch = document.getElementById('close-search-btn');
+    const searchOverlay = document.getElementById('search-overlay');
 
-    cartBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const productCard = e.target.closest('.product-card');
-            if (!productCard) return;
-
-            const productName = productCard.querySelector('h3').innerText;
-            const priceText = productCard.querySelector('.price .current').innerText;
-            const price = parseInt(priceText.replace('₹', '').trim());
-            const imgSrc = productCard.querySelector('img').src;
-
-            addToCart(productName, price, imgSrc);
+    if (searchToggle && searchOverlay) {
+        searchToggle.addEventListener('click', () => {
+            searchOverlay.classList.add('active');
+            document.getElementById('search-input')?.focus();
         });
+    }
+
+    if (closeSearch && searchOverlay) {
+        closeSearch.addEventListener('click', () => {
+            searchOverlay.classList.remove('active');
+        });
+    }
+}
+
+// ==========================================
+// 6. SLIDING DRAWER SYSTEM (CART & WISHLIST)
+// ==========================================
+function initDrawerSystem() {
+    const cartBtn = document.getElementById('cart-drawer-btn');
+    const wishlistBtn = document.getElementById('wishlist-btn');
+    const closeBtn = document.getElementById('close-drawer-btn');
+    const drawer = document.getElementById('sliding-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+
+    const tabCartBtn = document.getElementById('tab-cart-btn');
+    const tabWishlistBtn = document.getElementById('tab-wishlist-btn');
+
+    function openDrawer(tab = 'cart') {
+        currentTab = tab;
+        switchTab(tab);
+        drawer?.classList.add('open');
+        overlay?.classList.add('active');
+        renderDrawerContent();
+    }
+
+    function closeDrawer() {
+        drawer?.classList.remove('open');
+        overlay?.classList.remove('active');
+    }
+
+    function switchTab(tab) {
+        currentTab = tab;
+        if (tab === 'cart') {
+            tabCartBtn?.classList.add('active');
+            tabWishlistBtn?.classList.remove('active');
+        } else {
+            tabWishlistBtn?.classList.add('active');
+            tabCartBtn?.classList.remove('active');
+        }
+        renderDrawerContent();
+    }
+
+    cartBtn?.addEventListener('click', () => openDrawer('cart'));
+    wishlistBtn?.addEventListener('click', () => openDrawer('wishlist'));
+    closeBtn?.addEventListener('click', closeDrawer);
+    overlay?.addEventListener('click', closeDrawer);
+
+    tabCartBtn?.addEventListener('click', () => switchTab('cart'));
+    tabWishlistBtn?.addEventListener('click', () => switchTab('wishlist'));
+
+    // Checkout via WhatsApp
+    const checkoutBtn = document.getElementById('whatsapp-checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', handleWhatsAppCheckout);
+    }
+}
+
+// ==========================================
+// 7. PRODUCT BUTTON ACTIONS (ADD, BUY, WISHLIST)
+// ==========================================
+function initProductActions() {
+    const productCards = document.querySelectorAll('.product-card');
+
+    productCards.forEach(card => {
+        const id = card.dataset.id;
+        const name = card.dataset.name;
+        const price = parseFloat(card.dataset.price);
+        const img = card.dataset.img;
+
+        // 1. Add to Cart Button
+        const addBtn = card.querySelector('.add-to-cart-btn');
+        if (addBtn) {
+            addBtn.addEventListener('click', () => {
+                addToCart(id, name, price, img);
+            });
+        }
+
+        // 2. Buy Now Button (Instant WhatsApp Order)
+        const buyBtn = card.querySelector('.buy-now-btn');
+        if (buyBtn) {
+            buyBtn.addEventListener('click', () => {
+                buyNowInstant(name, price);
+            });
+        }
+
+        // 3. Wishlist Heart Button
+        const wishlistBtn = card.querySelector('.card-wishlist-btn');
+        if (wishlistBtn) {
+            wishlistBtn.addEventListener('click', () => {
+                toggleWishlist(id, name, price, img, wishlistBtn);
+            });
+        }
     });
 }
 
-function addToCart(name, price, img) {
-    const existingItem = cart.find(item => item.name === name);
-
-    if (existingItem) {
-        existingItem.quantity += 1;
+// Add Item to Cart
+function addToCart(id, name, price, img) {
+    const existing = cartState.find(item => item.id === id);
+    if (existing) {
+        existing.quantity += 1;
     } else {
-        cart.push({
-            name: name,
-            price: price,
-            img: img,
-            quantity: 1
-        });
+        cartState.push({ id, name, price, img, quantity: 1 });
+    }
+    updateBadges();
+    showNotification(`"${name}" added to Cart! 🛒`);
+}
+
+// Toggle Wishlist Item
+function toggleWishlist(id, name, price, img, btnElement) {
+    const index = wishlistState.findIndex(item => item.id === id);
+    const icon = btnElement.querySelector('i');
+
+    if (index > -1) {
+        wishlistState.splice(index, 1);
+        icon.className = 'fa-regular fa-heart';
+        btnElement.classList.remove('active');
+        showNotification(`Removed "${name}" from Wishlist`);
+    } else {
+        wishlistState.push({ id, name, price, img });
+        icon.className = 'fa-solid fa-heart';
+        btnElement.classList.add('active');
+        showNotification(`Added "${name}" to Wishlist! ❤️`);
+    }
+    updateBadges();
+}
+
+// Direct Buy Now Action
+function buyNowInstant(name, price) {
+    const message = `Hello Vishwash Namkeen! 👋\nI want to BUY NOW:\n\n*Product:* ${name}\n*Price:* ₹${price}\n\nPlease share payment and delivery details.`;
+    const phone = "919876543210"; // Apne WhatsApp number se replace karein
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+}
+
+// ==========================================
+// 8. UPDATE BADGES & CALCULATION
+// ==========================================
+function updateBadges() {
+    const cartCount = document.getElementById('cart-count');
+    const wishCount = document.getElementById('wishlist-count');
+    const drawerCartNum = document.getElementById('drawer-cart-num');
+    const drawerWishNum = document.getElementById('drawer-wishlist-num');
+
+    const totalCartQty = cartState.reduce((sum, item) => sum + item.quantity, 0);
+
+    if (cartCount) cartCount.innerText = totalCartQty;
+    if (wishCount) wishCount.innerText = wishlistState.length;
+    if (drawerCartNum) drawerCartNum.innerText = totalCartQty;
+    if (drawerWishNum) drawerWishNum.innerText = wishlistState.length;
+}
+
+// ==========================================
+// 9. RENDER DRAWER CONTENT dynamically
+// ==========================================
+function renderDrawerContent() {
+    const body = document.getElementById('drawer-body');
+    const footer = document.getElementById('drawer-footer');
+    if (!body) return;
+
+    body.innerHTML = '';
+
+    const activeList = currentTab === 'cart' ? cartState : wishlistState;
+
+    if (activeList.length === 0) {
+        body.innerHTML = `
+            <div class="empty-state" style="text-align: center; padding: 40px 10px; color: #888;">
+                <i class="fas ${currentTab === 'cart' ? 'fa-shopping-basket' : 'fa-heart-broken'}" style="font-size: 2.5rem; color: #d4af37; margin-bottom: 10px;"></i>
+                <p>Your ${currentTab} is empty!</p>
+            </div>
+        `;
+        if (footer) footer.style.display = 'none';
+        return;
     }
 
-    updateCartUI();
-    showToast(`"${name}" added to cart! 🛒`);
+    if (footer) footer.style.display = currentTab === 'cart' ? 'block' : 'none';
+
+    activeList.forEach(item => {
+        const itemRow = document.createElement('div');
+        itemRow.className = 'drawer-item';
+        itemRow.style.cssText = 'display: flex; align-items: center; justify-content: space-between; padding: 10px; border-bottom: 1px solid #222; margin-bottom: 10px;';
+
+        if (currentTab === 'cart') {
+            itemRow.innerHTML = `
+                <img src="${item.img}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: contain; border-radius: 6px;">
+                <div style="flex: 1; margin-left: 10px;">
+                    <h5 style="color: #fff; font-size: 0.85rem; margin: 0;">${item.name}</h5>
+                    <span style="color: #e50914; font-weight: bold; font-size: 0.8rem;">₹${item.price}</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                    <button onclick="changeQty('${item.id}', -1)" style="background: #222; border: 1px solid #444; color: #fff; width: 22px; height: 22px; border-radius: 4px; cursor: pointer;">-</button>
+                    <span style="color: #fff; font-size: 0.85rem; min-width: 15px; text-align: center;">${item.quantity}</span>
+                    <button onclick="changeQty('${item.id}', 1)" style="background: #222; border: 1px solid #444; color: #fff; width: 22px; height: 22px; border-radius: 4px; cursor: pointer;">+</button>
+                </div>
+                <button onclick="removeItem('${item.id}', 'cart')" style="background: transparent; border: none; color: #888; font-size: 1rem; margin-left: 10px; cursor: pointer;"><i class="fas fa-trash-alt"></i></button>
+            `;
+        } else {
+            itemRow.innerHTML = `
+                <img src="${item.img}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: contain; border-radius: 6px;">
+                <div style="flex: 1; margin-left: 10px;">
+                    <h5 style="color: #fff; font-size: 0.85rem; margin: 0;">${item.name}</h5>
+                    <span style="color: #d4af37; font-weight: bold; font-size: 0.8rem;">₹${item.price}</span>
+                </div>
+                <button onclick="moveWishlistToCart('${item.id}')" style="background: #e50914; border: none; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem; cursor: pointer;">Add to Cart</button>
+                <button onclick="removeItem('${item.id}', 'wishlist')" style="background: transparent; border: none; color: #888; font-size: 1rem; margin-left: 8px; cursor: pointer;"><i class="fas fa-trash-alt"></i></button>
+            `;
+        }
+        body.appendChild(itemRow);
+    });
+
+    calculateTotals();
 }
 
-function updateCartUI() {
-    const cartBadge = document.querySelector('.cart-icon .badge');
-    if (cartBadge) {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        cartBadge.innerText = totalItems;
-
-        // Pulse Animation for Cart Badge
-        cartBadge.style.transform = 'scale(1.3)';
-        setTimeout(() => cartBadge.style.transform = 'scale(1)', 200);
+// Global Quantity & Remove Handlers
+window.changeQty = function(id, delta) {
+    const item = cartState.find(i => i.id === id);
+    if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+            cartState = cartState.filter(i => i.id !== id);
+        }
+        updateBadges();
+        renderDrawerContent();
     }
+};
+
+window.removeItem = function(id, type) {
+    if (type === 'cart') {
+        cartState = cartState.filter(i => i.id !== id);
+    } else {
+        wishlistState = wishlistState.filter(i => i.id !== id);
+    }
+    updateBadges();
+    renderDrawerContent();
+};
+
+window.moveWishlistToCart = function(id) {
+    const item = wishlistState.find(i => i.id === id);
+    if (item) {
+        addToCart(item.id, item.name, item.price, item.img);
+        removeItem(id, 'wishlist');
+    }
+};
+
+// Automatic Subtotal & Total Calculation
+function calculateTotals() {
+    const subtotal = cartState.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const subtotalEl = document.getElementById('cart-subtotal');
+    const grandTotalEl = document.getElementById('cart-grand-total');
+
+    if (subtotalEl) subtotalEl.innerText = `₹${subtotal}`;
+    if (grandTotalEl) grandTotalEl.innerText = `₹${subtotal}`;
 }
 
-// ==========================================
-// 5. QUICK VIEW & BUY NOW FUNCTIONALITY
-// ==========================================
-function initQuickView() {
-    const viewBtns = document.querySelectorAll('.view-btn');
+// WhatsApp Checkout with List
+function handleWhatsAppCheckout() {
+    if (cartState.length === 0) {
+        showNotification('Your cart is empty!');
+        return;
+    }
 
-    viewBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const productCard = e.target.closest('.product-card');
-            if (!productCard) return;
+    let message = "Hello Vishwash Namkeen! 👋\nI would like to order the following items:\n\n";
+    let grandTotal = 0;
 
-            const productName = productCard.querySelector('h3').innerText;
-            const price = productCard.querySelector('.price .current').innerText;
-            
-            // Direct Order Link for WhatsApp
-            const message = `Hello Vishwash Namkeen, I want to inquire about: *${productName}* (${price})`;
-            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappUrl, '_blank');
-        });
+    cartState.forEach((item, index) => {
+        const total = item.price * item.quantity;
+        grandTotal += total;
+        message += `${index + 1}. *${item.name}* x ${item.quantity} = ₹${total}\n`;
     });
+
+    message += `\n*Grand Total: ₹${grandTotal}*\n`;
+    message += "Please provide delivery confirmation.";
+
+    const phone = "919876543210"; // Apne WhatsApp Number se badlein
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
 }
 
-// ==========================================
-// 6. WHATSAPP DIRECT ORDER BUTTONS
-// ==========================================
-function initWhatsAppOrder() {
-    const orderBtns = document.querySelectorAll('.btn-whatsapp, .btn-whatsapp-large');
-
-    orderBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            // Agar Cart me items hain toh Cart details bhejega, warna normal message
-            let message = "Hello Vishwash Namkeen! 👋\nI want to place an order.";
-
-            if (cart.length > 0) {
-                message = "Hello Vishwash Namkeen! 👋\nI would like to order the following items:\n\n";
-                let total = 0;
-
-                cart.forEach((item, index) => {
-                    const itemTotal = item.price * item.quantity;
-                    total += itemTotal;
-                    message += `${index + 1}. *${item.name}* x ${item.quantity} = ₹${itemTotal}\n`;
-                });
-
-                message += `\n*Total Amount: ₹${total}*\n`;
-                message += "\nPlease let me know the payment and delivery details!";
-            }
-
-            const phone = "910000000000"; // Aap yahan apna WhatsApp Phone Number dal sakte hain
-            const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappUrl, '_blank');
-        });
-    });
-}
-
-// ==========================================
-// 7. TOAST NOTIFICATION SYSTEM
-// ==========================================
-function showToast(message) {
+// Notification Toast Popup
+function showNotification(msg) {
     let toast = document.createElement('div');
-    toast.className = 'custom-toast';
-    toast.innerText = message;
-
-    // Toast Styling dynamically applied
+    toast.innerText = msg;
     Object.assign(toast.style, {
         position: 'fixed',
-        bottom: '30px',
-        right: '30px',
+        bottom: '25px',
+        right: '25px',
         backgroundColor: '#e50914',
-        color: '#ffffff',
-        padding: '12px 24px',
+        color: '#fff',
+        padding: '12px 20px',
         borderRadius: '8px',
-        boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
-        zIndex: '9999',
-        fontSize: '0.9rem',
-        fontWeight: '600',
-        transition: 'all 0.3s ease',
-        opacity: '0',
-        transform: 'translateY(20px)'
+        fontSize: '0.85rem',
+        fontWeight: 'bold',
+        zIndex: '99999',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.5)',
+        transition: 'all 0.3s ease'
     });
-
     document.body.appendChild(toast);
-
-    setTimeout(() => {
-        toast.style.opacity = '1';
-        toast.style.transform = 'translateY(0)';
-    }, 10);
-
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateY(20px)';
-        setTimeout(() => toast.remove(), 300);
-    }, 3000);
+    setTimeout(() => toast.style.opacity = '0', 2500);
+    setTimeout(() => toast.remove(), 2800);
 }
 
-// ==========================================
-// 8. SMOOTH SCROLLING
-// ==========================================
+// Smooth Scrolling
 function initSmoothScroll() {
-    const navAnchors = document.querySelectorAll('a[href^="#"]');
-
-    navAnchors.forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
+            const target = document.querySelector(targetId);
+            if (target) {
                 e.preventDefault();
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-
-                // Mobile Menu ko band kar dega click hone par
-                const navLinks = document.querySelector('.nav-links');
-                if (navLinks && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                }
+                target.scrollIntoView({ behavior: 'smooth' });
             }
         });
     });
