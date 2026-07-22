@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Snack Store</title>
+<title>Vishwas Namkeen</title>
 
 <style>
 
@@ -13,7 +13,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:Arial,Helvetica,sans-serif;
 scroll-behavior:smooth;
 }
 
@@ -21,13 +21,13 @@ body{
 
 background:#000;
 
-color:white;
+color:#fff;
 
 overflow-x:hidden;
 
 }
 
-/* Scroll Bar */
+/* Scrollbar */
 
 ::-webkit-scrollbar{
 
@@ -45,7 +45,7 @@ background:#111;
 
 background:red;
 
-border-radius:10px;
+border-radius:20px;
 
 }
 
@@ -63,31 +63,29 @@ width:100%;
 
 height:80px;
 
-background:black;
-
 display:flex;
-
-align-items:center;
 
 justify-content:space-between;
 
-padding:0 80px;
+align-items:center;
+
+padding:0 60px;
+
+background:#000;
 
 border-bottom:3px solid yellow;
 
-z-index:1000;
+z-index:999;
 
 }
 
 .logo{
 
-font-size:35px;
+font-size:34px;
 
 font-weight:bold;
 
 color:yellow;
-
-letter-spacing:2px;
 
 }
 
@@ -131,19 +129,19 @@ color:yellow;
 
 .cart-btn{
 
-padding:12px 25px;
+padding:12px 28px;
 
 background:red;
-
-color:white;
 
 border:none;
 
 border-radius:30px;
 
+color:white;
+
 cursor:pointer;
 
-font-size:18px;
+font-size:17px;
 
 transition:.4s;
 
@@ -161,47 +159,49 @@ color:black;
 
 .hero{
 
-height:100vh;
+width:100%;
+
+min-height:100vh;
 
 display:flex;
 
-justify-content:center;
-
 align-items:center;
 
-padding:100px;
+justify-content:space-between;
 
-background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8));
+padding:120px 80px;
+
+background:linear-gradient(to right,#000,#1b0000);
 
 }
 
-.left{
+.hero-text{
 
 width:50%;
 
 }
 
-.left h1{
+.hero-text h1{
 
-font-size:65px;
+font-size:70px;
 
 color:yellow;
 
 }
 
-.left h2{
+.hero-text h2{
 
-font-size:40px;
+margin-top:15px;
 
-margin-top:10px;
+font-size:38px;
 
 color:red;
 
 }
 
-.left p{
+.hero-text p{
 
-margin-top:20px;
+margin-top:25px;
 
 font-size:20px;
 
@@ -209,21 +209,21 @@ line-height:35px;
 
 }
 
-.shop{
+.hero-text button{
 
 margin-top:30px;
 
-padding:15px 40px;
+padding:16px 45px;
 
 background:red;
 
-border:none;
-
 color:white;
 
-font-size:20px;
+border:none;
 
-border-radius:50px;
+border-radius:40px;
+
+font-size:18px;
 
 cursor:pointer;
 
@@ -231,7 +231,7 @@ transition:.4s;
 
 }
 
-.shop:hover{
+.hero-text button:hover{
 
 background:yellow;
 
@@ -239,19 +239,19 @@ color:black;
 
 }
 
-.right{
+.hero-image{
 
-width:50%;
+width:45%;
 
 text-align:center;
 
 }
 
-.right img{
+.hero-image img{
 
-width:500px;
+width:100%;
 
-max-width:100%;
+max-width:520px;
 
 animation:float 3s infinite;
 
@@ -259,37 +259,27 @@ animation:float 3s infinite;
 
 @keyframes float{
 
-0%{
+0%{transform:translateY(0px);}
 
-transform:translateY(0);
+50%{transform:translateY(-15px);}
 
-}
-
-50%{
-
-transform:translateY(-20px);
+100%{transform:translateY(0px);}
 
 }
 
-100%{
-
-transform:translateY(0);
-
-}
-
-}
+/* Section */
 
 section{
 
-padding:100px 80px;
+padding:80px;
 
 }
 
 .heading{
 
-text-align:center;
-
 font-size:45px;
+
+text-align:center;
 
 color:yellow;
 
@@ -302,195 +292,7 @@ margin-bottom:50px;
 color:red;
 
 }
-
-.products{
-
-display:grid;
-
-grid-template-columns:repeat(4,1fr);
-
-gap:30px;
-
-}
-
-.card{
-
-background:#111;
-
-border:2px solid red;
-
-border-radius:20px;
-
-padding:20px;
-
-transition:.5s;
-
-}
-
-.card:hover{
-
-transform:translateY(-10px);
-
-border-color:yellow;
-
-}
-
-.card img{
-
-width:100%;
-
-height:220px;
-
-object-fit:contain;
-
-}
-
-.card h3{
-
-margin-top:15px;
-
-text-align:center;
-
-color:yellow;
-
-font-size:24px;
-
-}
-
-.card p{
-
-text-align:center;
-
-margin:10px 0;
-
-font-size:18px;
-
-}
-
-.price{
-
-color:red;
-
-font-size:25px;
-
-font-weight:bold;
-
-text-align:center;
-
-}
-
-.buy{
-
-width:100%;
-
-margin-top:15px;
-
-padding:12px;
-
-background:red;
-
-border:none;
-
-color:white;
-
-font-size:18px;
-
-border-radius:30px;
-
-cursor:pointer;
-
-}
-
-.buy:hover{
-
-background:yellow;
-
-color:black;
-
-}
-
-</style>
-
-</head>
-
-<body>
-
-<nav>
-
-<div class="logo">
-
-Snack<span>Store</span>
-
-</div>
-
-<ul>
-
-<li><a href="#">Home</a></li>
-
-<li><a href="#">Products</a></li>
-
-<li><a href="#">Offers</a></li>
-
-<li><a href="#">Contact</a></li>
-
-</ul>
-
-<button class="cart-btn">
-
-🛒 Cart (0)
-
-</button>
-
-</nav>
-
-<section class="hero">
-
-<div class="left">
-
-<h1>Premium Snacks</h1>
-
-<h2>Fresh • Crispy • Delicious</h2>
-
-<p>
-
-Welcome to our Premium Snack Store.
-
-Enjoy the best quality snacks with amazing taste and premium packaging.
-
-</p>
-
-<button class="shop">
-
-Shop Now
-
-</button>
-
-</div>
-
-<div class="right">
-
-<img src="HERO.PNG" alt="Hero">
-
-</div>
-
-</section>
-
-<section>
-
-<h1 class="heading">
-
-Our <span>Products</span>
-
-</h1>
-
-<!-- Part 2 se product cards shuru honge -->
-
-</section>
-
-</body>
-
-</html>
-<div class="products">
+  <div class="products">
 
 <!-- Product 1 -->
 
@@ -500,11 +302,11 @@ Our <span>Products</span>
 
 <h3>Bhakarwadi</h3>
 
-<p>Crispy & Spicy Traditional Snack</p>
+<p>Fresh & Crispy Traditional Bhakarwadi.</p>
 
 <div class="price">₹80</div>
 
-<button class="buy">Buy Now</button>
+<button class="buy">Add to Cart</button>
 
 </div>
 
@@ -516,11 +318,11 @@ Our <span>Products</span>
 
 <h3>Bingo Masala</h3>
 
-<p>Masala Flavour Crispy Chips</p>
+<p>Crunchy Masala Flavour Chips.</p>
 
 <div class="price">₹20</div>
 
-<button class="buy">Buy Now</button>
+<button class="buy">Add to Cart</button>
 
 </div>
 
@@ -532,11 +334,11 @@ Our <span>Products</span>
 
 <h3>Bingo Pani Puri</h3>
 
-<p>Pani Puri Flavour Chips</p>
+<p>Delicious Pani Puri Flavour Chips.</p>
 
 <div class="price">₹20</div>
 
-<button class="buy">Buy Now</button>
+<button class="buy">Add to Cart</button>
 
 </div>
 
@@ -548,11 +350,11 @@ Our <span>Products</span>
 
 <h3>Masala Banana Wafer</h3>
 
-<p>Crunchy Banana Wafer</p>
+<p>Premium Crispy Banana Wafer.</p>
 
 <div class="price">₹60</div>
 
-<button class="buy">Buy Now</button>
+<button class="buy">Add to Cart</button>
 
 </div>
 
@@ -564,11 +366,11 @@ Our <span>Products</span>
 
 <h3>Methi Puri</h3>
 
-<p>Fresh & Crispy Methi Puri</p>
+<p>Traditional Methi Puri Snack.</p>
 
 <div class="price">₹70</div>
 
-<button class="buy">Buy Now</button>
+<button class="buy">Add to Cart</button>
 
 </div>
 
@@ -580,11 +382,11 @@ Our <span>Products</span>
 
 <h3>Nadiyadi Mix</h3>
 
-<p>Traditional Mix Namkeen</p>
+<p>Special Gujarati Mix Namkeen.</p>
 
 <div class="price">₹90</div>
 
-<button class="buy">Buy Now</button>
+<button class="buy">Add to Cart</button>
 
 </div>
 
@@ -596,11 +398,11 @@ Our <span>Products</span>
 
 <h3>Punjabi Mix</h3>
 
-<p>Spicy Punjabi Namkeen</p>
+<p>Spicy & Crunchy Punjabi Mix.</p>
 
 <div class="price">₹100</div>
 
-<button class="buy">Buy Now</button>
+<button class="buy">Add to Cart</button>
 
 </div>
 
@@ -612,62 +414,100 @@ Our <span>Products</span>
 
 <h3>Bhakarwadi Family Pack</h3>
 
-<p>Extra Large Family Pack</p>
+<p>Large Family Pack with Extra Taste.</p>
 
 <div class="price">₹150</div>
 
-<button class="buy">Buy Now</button>
+<button class="buy">Add to Cart</button>
+
+</div>
+
+</div>
+
+<section id="offers">
+
+<h1 class="heading">
+
+Special <span>Offers</span>
+
+</h1>
+
+<div class="products">
+
+<div class="card">
+
+<h3>🔥 Flat 10% OFF</h3>
+
+<p>On Purchase of 2 Products</p>
+
+<button class="buy">Shop Offer</button>
+
+</div>
+
+<div class="card">
+
+<h3>🎁 Free Delivery</h3>
+
+<p>On Orders Above ₹999</p>
+
+<button class="buy">Order Now</button>
+
+</div>
+
+<div class="card">
+
+<h3>⭐ Premium Combo</h3>
+
+<p>Buy 3 Products & Save More</p>
+
+<button class="buy">View Combo</button>
+
+</div>
+
+<div class="card">
+
+<h3>💥 Today's Special</h3>
+
+<p>Best Deals on Namkeen</p>
+
+<button class="buy">Explore</button>
 
 </div>
 
 </div>
 
 </section>
-
-<!-- Part 3 me Shopping Cart, Quantity (+/-), Cart Sidebar aur Buy Success Popup add hoga. -->
-<!-- ========================= -->
-<!-- SHOPPING CART SIDEBAR -->
-<!-- ========================= -->
+<!-- ===================== -->
+<!-- SHOPPING CART -->
+<!-- ===================== -->
 
 <div id="cartBox">
 
 <h2>🛒 Shopping Cart</h2>
 
-<hr>
-
 <div id="cartItems">
 
-<p>Your cart is empty.</p>
+<p>Your Cart Is Empty.</p>
 
 </div>
 
-<div class="cartTotal">
+<hr>
 
 <h3>Total : ₹<span id="totalPrice">0</span></h3>
 
-</div>
+<button id="buyNow">Buy Now</button>
 
-<button id="buyAll">
-
-Buy Now
-
-</button>
-
-<button id="closeCart">
-
-Close
-
-</button>
+<button id="closeCart">Close</button>
 
 </div>
 
-<!-- ========================= -->
+<!-- ===================== -->
 <!-- SUCCESS POPUP -->
-<!-- ========================= -->
+<!-- ===================== -->
 
 <div id="successPopup">
 
-<div class="popupBox">
+<div class="popup">
 
 <h1>✅</h1>
 
@@ -675,7 +515,7 @@ Close
 
 <p>
 
-Thank You For Shopping.
+Thank You For Shopping With Vishwas Namkeen.
 
 </p>
 
@@ -689,409 +529,225 @@ OK
 
 </div>
 
-<!-- ========================= -->
-<!-- QUANTITY TEMPLATE -->
-<!-- ========================= -->
+<!-- ===================== -->
+<!-- CART CSS -->
+<!-- ===================== -->
 
-<div style="display:none;">
+<style>
 
-<div class="quantityBox">
+#cartBox{
 
-<button class="minus">
+position:fixed;
 
--
+top:0;
 
-</button>
+right:-420px;
 
-<input
-type="number"
-value="1"
-min="1"
-class="qty">
+width:400px;
 
-<button class="plus">
-
-+
-
-</button>
-
-</div>
-
-</div>
-
-<!-- ========================= -->
-<!-- SEARCH BAR -->
-<!-- ========================= -->
-
-<section>
-
-<h1 class="heading">
-
-Search <span>Products</span>
-
-</h1>
-
-<center>
-
-<input
-type="text"
-id="search"
-placeholder="Search Product..."
-style="
-
-width:60%;
-
-height:55px;
-
-border-radius:40px;
-
-border:2px solid yellow;
-
-padding-left:25px;
-
-font-size:20px;
+height:100%;
 
 background:#111;
 
-color:white;
+border-left:4px solid yellow;
 
-outline:none;
+padding:20px;
 
-">
+overflow:auto;
 
-</center>
+transition:.5s;
 
-</section>
+z-index:9999;
 
-<!-- ========================= -->
-<!-- OFFER SECTION -->
-<!-- ========================= -->
+}
 
-<section>
+#cartBox h2{
 
-<h1 class="heading">
-
-Special <span>Offers</span>
-
-</h1>
-
-<div class="products">
-
-<div class="card">
-
-<h3>Flat 10% OFF</h3>
-
-<p>
-
-Buy Any 2 Products
-
-</p>
-
-<button class="buy">
-
-Claim Offer
-
-</button>
-
-</div>
-
-<div class="card">
-
-<h3>Flat 20% OFF</h3>
-
-<p>
-
-Orders Above ₹500
-
-</p>
-
-<button class="buy">
-
-Claim Offer
-
-</button>
-
-</div>
-
-<div class="card">
-
-<h3>Free Delivery</h3>
-
-<p>
-
-Above ₹999
-
-</p>
-
-<button class="buy">
-
-Shop Now
-
-</button>
-
-</div>
-
-<div class="card">
-
-<h3>Premium Pack</h3>
-
-<p>
-
-Special Combo Offer
-
-</p>
-
-<button class="buy">
-
-Buy Combo
-
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ========================= -->
-<!-- ABOUT SECTION -->
-<!-- ========================= -->
-
-<section>
-
-<h1 class="heading">
-
-About <span>Us</span>
-
-</h1>
-
-<p style="
-
-font-size:20px;
-
-line-height:40px;
+color:yellow;
 
 text-align:center;
 
-max-width:1100px;
+margin-bottom:20px;
 
-margin:auto;
+}
 
-">
+#cartItems div{
 
-We provide premium quality snacks made with fresh ingredients.
-Our products are crispy, tasty and prepared with high quality standards.
-Customer satisfaction is our first priority.
+border-bottom:1px solid #444;
 
-</p>
+padding:15px 0;
 
-</section>
+}
 
-<!-- ========================= -->
-<!-- Part 4 -->
-<!-- Contact Section -->
-<!-- Customer Reviews -->
-<!-- Footer -->
-<!-- Newsletter -->
-<!-- Gallery -->
-<!-- Extra Premium Sections -->
-<!-- ========================= -->
-<!-- ========================= -->
-<!-- CUSTOMER REVIEWS -->
-<!-- ========================= -->
+.qtyBtn{
 
-<section id="reviews">
+width:35px;
 
-<h1 class="heading">
+height:35px;
 
-Customer <span>Reviews</span>
+border:none;
 
-</h1>
+background:red;
 
-<div class="products">
+color:white;
 
-<div class="card">
+font-size:18px;
 
-<h3>⭐⭐⭐⭐⭐</h3>
+cursor:pointer;
 
-<p>
+border-radius:50%;
 
-Very Fresh Snacks.
-Amazing Taste.
+}
 
-</p>
+.qty{
 
-<h4>- Rahul</h4>
+margin:0 15px;
 
-</div>
+font-size:20px;
 
-<div class="card">
+}
 
-<h3>⭐⭐⭐⭐⭐</h3>
+#buyNow{
 
-<p>
+width:100%;
 
-Fast Delivery.
-Excellent Quality.
+margin-top:20px;
 
-</p>
+padding:15px;
 
-<h4>- Priya</h4>
+background:red;
 
-</div>
+border:none;
 
-<div class="card">
+color:white;
 
-<h3>⭐⭐⭐⭐⭐</h3>
+font-size:20px;
 
-<p>
+border-radius:30px;
 
-Best Bhakarwadi Ever.
+cursor:pointer;
 
-</p>
+}
 
-<h4>- Amit</h4>
+#closeCart{
 
-</div>
+width:100%;
 
-<div class="card">
+margin-top:15px;
 
-<h3>⭐⭐⭐⭐⭐</h3>
+padding:15px;
 
-<p>
+background:#333;
 
-Loved Punjabi Mix.
+border:none;
 
-</p>
+color:white;
 
-<h4>- Neha</h4>
+font-size:18px;
 
-</div>
+border-radius:30px;
 
-</div>
+cursor:pointer;
 
-</section>
+}
 
-<!-- ========================= -->
-<!-- CONTACT -->
-<!-- ========================= -->
+#successPopup{
 
-<section id="contact">
+display:none;
 
-<h1 class="heading">
+position:fixed;
 
-Contact <span>Us</span>
+top:0;
 
-</h1>
+left:0;
 
-<center>
+width:100%;
 
-<form>
+height:100%;
 
-<input type="text"
-placeholder="Your Name"
-required><br><br>
+background:rgba(0,0,0,.8);
 
-<input type="email"
-placeholder="Your Email"
-required><br><br>
+justify-content:center;
 
-<input type="tel"
-placeholder="Mobile Number"
-required><br><br>
+align-items:center;
 
-<textarea
-rows="6"
-placeholder="Your Message"></textarea>
+z-index:10000;
 
-<br><br>
+}
 
-<button class="buy">
+.popup{
 
-Send Message
+background:#111;
 
-</button>
+padding:40px;
 
-</form>
+border:3px solid yellow;
 
-</center>
+border-radius:20px;
 
-</section>
+text-align:center;
 
-<!-- ========================= -->
-<!-- NEWSLETTER -->
-<!-- ========================= -->
+width:350px;
 
-<section>
+}
 
-<h1 class="heading">
+.popup h1{
 
-Subscribe <span>Newsletter</span>
+font-size:70px;
 
-</h1>
+}
 
-<center>
+.popup h2{
 
-<input
-type="email"
-placeholder="Enter Email"
-style="width:60%;height:55px;border-radius:40px;padding-left:20px;font-size:18px;">
+color:yellow;
 
-<br><br>
+margin:15px 0;
 
-<button class="buy">
+}
 
-Subscribe
+.popup button{
 
-</button>
+margin-top:20px;
 
-</center>
+padding:12px 35px;
 
-</section>
+background:red;
 
-<!-- ========================= -->
-<!-- FOOTER -->
-<!-- ========================= -->
+border:none;
 
-<footer style="background:#111;padding:40px;text-align:center;border-top:3px solid yellow;">
+border-radius:30px;
 
-<h2 style="color:yellow;">
+color:white;
 
-Snack <span style="color:red;">Store</span>
+cursor:pointer;
 
-</h2>
+}
 
-<p style="margin-top:20px;">
+</style>
 
-Premium Quality Snacks
-
-</p>
-
-<p>
-
-Fresh • Crispy • Delicious
-
-</p>
-
-<hr style="margin:30px 0;">
-
-<p>
-
-© 2025 Snack Store
-
-</p>
-
-</footer>
-
-<!-- ========================= -->
-<!-- JAVASCRIPT START -->
-<!-- ========================= -->
+<!-- ===================== -->
+<!-- JAVASCRIPT -->
+<!-- ===================== -->
 
 <script>
 
-function closePopup(){
+let cart=[];
 
-document.getElementById("successPopup").style.display="none";
+let total=0;
+
+const cartItems=document.getElementById("cartItems");
+
+const totalPrice=document.getElementById("totalPrice");
+
+document.querySelector(".cart-btn").onclick=function(){
+
+document.getElementById("cartBox").style.right="0";
+
+}
+
+document.getElementById("closeCart").onclick=function(){
+
+document.getElementById("cartBox").style.right="-420px";
 
 }
 
@@ -1099,56 +755,15 @@ document.querySelectorAll(".buy").forEach(function(btn){
 
 btn.onclick=function(){
 
-document.getElementById("successPopup").style.display="flex";
+let card=this.parentElement;
 
-}
+let name=card.querySelector("h3").innerText;
 
-});
-
-</script>
-<script>
-
-// ===============================
-// SHOPPING CART
-// ===============================
-
-let cart = [];
-let total = 0;
-
-const cartItems = document.getElementById("cartItems");
-const totalPrice = document.getElementById("totalPrice");
-
-// Open Cart
-document.querySelector(".cart-btn").onclick = function(){
-
-document.getElementById("cartBox").style.right="0";
-
-}
-
-// Close Cart
-document.getElementById("closeCart").onclick = function(){
-
-document.getElementById("cartBox").style.right="-450px";
-
-}
-
-// ===============================
-// ADD TO CART
-// ===============================
-
-document.querySelectorAll(".card").forEach(function(card){
-
-const product = card.querySelector("h3").innerText;
-
-const price = parseInt(card.querySelector(".price").innerText.replace("₹",""));
-
-const button = card.querySelector(".buy");
-
-button.addEventListener("click",function(){
+let price=parseInt(card.querySelector(".price").innerText.replace("₹",""));
 
 cart.push({
 
-name:product,
+name:name,
 
 price:price,
 
@@ -1158,13 +773,9 @@ qty:1
 
 updateCart();
 
-});
+}
 
 });
-
-// ===============================
-// UPDATE CART
-// ===============================
 
 function updateCart(){
 
@@ -1174,21 +785,21 @@ total=0;
 
 cart.forEach(function(item,index){
 
-total += item.price * item.qty;
+total+=item.price*item.qty;
 
-cartItems.innerHTML += `
+cartItems.innerHTML+=`
 
-<div style="margin-bottom:20px;border-bottom:1px solid #555;padding-bottom:15px;">
+<div>
 
 <h3>${item.name}</h3>
 
 <p>₹${item.price}</p>
 
-<button onclick="minusQty(${index})">-</button>
+<button class="qtyBtn" onclick="minus(${index})">-</button>
 
-<span style="margin:0 15px;">${item.qty}</span>
+<span class="qty">${item.qty}</span>
 
-<button onclick="plusQty(${index})">+</button>
+<button class="qtyBtn" onclick="plus(${index})">+</button>
 
 </div>
 
@@ -1200,11 +811,7 @@ totalPrice.innerHTML=total;
 
 }
 
-// ===============================
-// PLUS
-// ===============================
-
-function plusQty(i){
+function plus(i){
 
 cart[i].qty++;
 
@@ -1212,11 +819,7 @@ updateCart();
 
 }
 
-// ===============================
-// MINUS
-// ===============================
-
-function minusQty(i){
+function minus(i){
 
 if(cart[i].qty>1){
 
@@ -1232,15 +835,11 @@ updateCart();
 
 }
 
-// ===============================
-// BUY BUTTON
-// ===============================
-
-document.getElementById("buyAll").onclick=function(){
+document.getElementById("buyNow").onclick=function(){
 
 if(cart.length==0){
 
-alert("Cart is Empty");
+alert("Your Cart Is Empty");
 
 return;
 
@@ -1254,11 +853,266 @@ updateCart();
 
 }
 
-// ===============================
-// SEARCH
-// ===============================
+function closePopup(){
 
-document.getElementById("search").addEventListener("keyup",function(){
+document.getElementById("successPopup").style.display="none";
+
+}
+
+</script>
+  <!-- ============================= -->
+<!-- SEARCH SECTION -->
+<!-- ============================= -->
+
+<section id="searchSection">
+
+<h1 class="heading">
+
+Search <span>Products</span>
+
+</h1>
+
+<center>
+
+<input
+type="text"
+id="searchBox"
+placeholder="Search Products..."
+style="
+
+width:70%;
+height:55px;
+border-radius:40px;
+padding-left:20px;
+font-size:18px;
+border:2px solid yellow;
+background:#111;
+color:white;
+outline:none;
+
+">
+
+</center>
+
+</section>
+
+<!-- ============================= -->
+<!-- ABOUT -->
+<!-- ============================= -->
+
+<section id="about">
+
+<h1 class="heading">
+
+About <span>Vishwas Namkeen</span>
+
+</h1>
+
+<p style="
+
+font-size:20px;
+line-height:38px;
+text-align:center;
+max-width:1000px;
+margin:auto;
+
+">
+
+Vishwas Namkeen brings premium quality snacks made with the finest ingredients.
+Our mission is to deliver fresh, crispy and delicious namkeen to every customer.
+Quality, hygiene and taste are our highest priorities.
+
+</p>
+
+</section>
+
+<!-- ============================= -->
+<!-- CUSTOMER REVIEWS -->
+<!-- ============================= -->
+
+<section>
+
+<h1 class="heading">
+
+Customer <span>Reviews</span>
+
+</h1>
+
+<div class="products">
+
+<div class="card">
+
+<h3>⭐⭐⭐⭐⭐</h3>
+
+<p>
+
+Amazing Taste.
+
+Fresh Products.
+
+</p>
+
+<h4>- Rahul Patel</h4>
+
+</div>
+
+<div class="card">
+
+<h3>⭐⭐⭐⭐⭐</h3>
+
+<p>
+
+Best Bhakarwadi.
+
+Very Crispy.
+
+</p>
+
+<h4>- Neha Shah</h4>
+
+</div>
+
+<div class="card">
+
+<h3>⭐⭐⭐⭐⭐</h3>
+
+<p>
+
+Excellent Packing.
+
+Fast Delivery.
+
+</p>
+
+<h4>- Amit Kumar</h4>
+
+</div>
+
+<div class="card">
+
+<h3>⭐⭐⭐⭐⭐</h3>
+
+<p>
+
+Punjabi Mix Is My Favourite.
+
+</p>
+
+<h4>- Priya Joshi</h4>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ============================= -->
+<!-- CONTACT -->
+<!-- ============================= -->
+
+<section id="contact">
+
+<h1 class="heading">
+
+Contact <span>Us</span>
+
+</h1>
+
+<center>
+
+<form>
+
+<input
+type="text"
+placeholder="Your Name"
+required
+style="width:70%;height:50px;margin:10px;padding-left:20px;">
+
+<br>
+
+<input
+type="email"
+placeholder="Email Address"
+required
+style="width:70%;height:50px;margin:10px;padding-left:20px;">
+
+<br>
+
+<input
+type="tel"
+placeholder="Mobile Number"
+required
+style="width:70%;height:50px;margin:10px;padding-left:20px;">
+
+<br>
+
+<textarea
+placeholder="Your Message"
+rows="6"
+style="width:70%;margin:10px;padding:20px;"></textarea>
+
+<br>
+
+<button class="buy">
+
+Send Message
+
+</button>
+
+</form>
+
+</center>
+
+</section>
+
+<!-- ============================= -->
+<!-- FOOTER -->
+<!-- ============================= -->
+
+<footer style="
+
+background:#111;
+padding:40px;
+text-align:center;
+border-top:3px solid yellow;
+
+">
+
+<h2 style="color:yellow;">
+
+Vishwas <span style="color:red;">Namkeen</span>
+
+</h2>
+
+<p style="margin-top:20px;">
+
+Premium Quality Namkeen & Snacks
+
+</p>
+
+<p>
+
+Fresh • Crispy • Delicious
+
+</p>
+
+<hr style="margin:25px 0;">
+
+<p>
+
+© 2025 Vishwas Namkeen. All Rights Reserved.
+
+</p>
+
+</footer>
+
+<!-- ============================= -->
+<!-- SEARCH SCRIPT -->
+<!-- ============================= -->
+
+<script>
+
+document.getElementById("searchBox").addEventListener("keyup",function(){
 
 let value=this.value.toLowerCase();
 
@@ -1278,306 +1132,16 @@ card.style.display="none";
 
 });
 
-</style>
+});
 
+</script>
+  <!-- ========================= -->
+<!-- CART BADGE -->
+<!-- ========================= -->
 
-/* ========================= */
-/* PREMIUM CART */
-/* ========================= */
+<span id="cartCount"
 
-#cartBox{
-
-position:fixed;
-
-top:0;
-
-right:-450px;
-
-width:400px;
-
-height:100vh;
-
-background:#111;
-
-border-left:4px solid yellow;
-
-padding:20px;
-
-overflow-y:auto;
-
-transition:.5s;
-
-z-index:9999;
-
-box-shadow:-5px 0 20px rgba(255,0,0,.4);
-
-}
-
-#cartBox h2{
-
-color:yellow;
-
-text-align:center;
-
-margin-bottom:20px;
-
-}
-
-#cartItems{
-
-margin-top:20px;
-
-}
-
-#cartItems div{
-
-background:#1b1b1b;
-
-padding:15px;
-
-border-radius:15px;
-
-margin-bottom:15px;
-
-border:1px solid red;
-
-}
-
-#cartItems h3{
-
-color:yellow;
-
-margin-bottom:10px;
-
-}
-
-#cartItems p{
-
-color:#fff;
-
-margin-bottom:10px;
-
-font-size:18px;
-
-}
-
-#cartItems button{
-
-width:35px;
-
-height:35px;
-
-border:none;
-
-border-radius:50%;
-
-background:red;
-
-color:#fff;
-
-font-size:20px;
-
-cursor:pointer;
-
-transition:.3s;
-
-}
-
-#cartItems button:hover{
-
-background:yellow;
-
-color:#000;
-
-}
-
-.cartTotal{
-
-margin-top:20px;
-
-padding:20px;
-
-background:#000;
-
-border:2px solid yellow;
-
-border-radius:15px;
-
-text-align:center;
-
-}
-
-.cartTotal h3{
-
-color:yellow;
-
-font-size:25px;
-
-}
-
-#buyAll{
-
-width:100%;
-
-margin-top:20px;
-
-padding:15px;
-
-background:red;
-
-color:#fff;
-
-font-size:20px;
-
-border:none;
-
-border-radius:30px;
-
-cursor:pointer;
-
-transition:.4s;
-
-}
-
-#buyAll:hover{
-
-background:yellow;
-
-color:#000;
-
-}
-
-#closeCart{
-
-width:100%;
-
-margin-top:15px;
-
-padding:15px;
-
-background:#333;
-
-color:white;
-
-border:none;
-
-border-radius:30px;
-
-cursor:pointer;
-
-}
-
-/* ========================= */
-/* SUCCESS POPUP */
-/* ========================= */
-
-#successPopup{
-
-position:fixed;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-display:none;
-
-justify-content:center;
-
-align-items:center;
-
-background:rgba(0,0,0,.8);
-
-z-index:99999;
-
-}
-
-.popupBox{
-
-background:#111;
-
-padding:40px;
-
-border-radius:20px;
-
-border:3px solid yellow;
-
-text-align:center;
-
-width:350px;
-
-animation:zoom .4s;
-
-}
-
-.popupBox h1{
-
-font-size:70px;
-
-}
-
-.popupBox h2{
-
-color:yellow;
-
-margin:20px 0;
-
-}
-
-.popupBox button{
-
-margin-top:20px;
-
-padding:12px 35px;
-
-border:none;
-
-border-radius:30px;
-
-background:red;
-
-color:white;
-
-font-size:18px;
-
-cursor:pointer;
-
-}
-
-@keyframes zoom{
-
-from{
-
-transform:scale(.5);
-
-opacity:0;
-
-}
-
-to{
-
-transform:scale(1);
-
-opacity:1;
-
-}
-
-}
-
-/* ========================= */
-/* CART BADGE */
-/* ========================= */
-
-.cart-btn{
-
-position:relative;
-
-}
-
-#cartCount{
+style="
 
 position:absolute;
 
@@ -1601,35 +1165,341 @@ justify-content:center;
 
 align-items:center;
 
-font-size:14px;
-
 font-weight:bold;
 
+font-size:14px;
+
+">
+
+0
+
+</span>
+
+<!-- ========================= -->
+<!-- ORDER SUMMARY -->
+<!-- ========================= -->
+
+<div id="orderSummary"
+
+style="
+
+margin-top:20px;
+
+padding:20px;
+
+background:#1a1a1a;
+
+border:2px solid yellow;
+
+border-radius:15px;
+
+">
+
+<h3 style="color:yellow;">
+
+Order Summary
+
+</h3>
+
+<hr>
+
+<p>
+
+Items :
+
+<span id="itemCount">
+
+0
+
+</span>
+
+</p>
+
+<p>
+
+Total :
+
+₹<span id="summaryTotal">
+
+0
+
+</span>
+
+</p>
+
+</div>
+
+<script>
+
+//==========================
+
+// UPDATE CART
+
+//==========================
+
+function updateCart(){
+
+cartItems.innerHTML="";
+
+total=0;
+
+let count=0;
+
+cart.forEach(function(item,index){
+
+count+=item.qty;
+
+total+=item.price*item.qty;
+
+cartItems.innerHTML+=`
+
+<div>
+
+<h3>${item.name}</h3>
+
+<p>₹${item.price}</p>
+
+<button class="qtyBtn"
+
+onclick="minus(${index})">
+
+-
+
+</button>
+
+<span class="qty">
+
+${item.qty}
+
+</span>
+
+<button class="qtyBtn"
+
+onclick="plus(${index})">
+
++
+
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("cartCount").innerHTML=count;
+
+document.getElementById("itemCount").innerHTML=count;
+
+document.getElementById("summaryTotal").innerHTML=total;
+
+totalPrice.innerHTML=total;
+
+if(cart.length==0){
+
+cartItems.innerHTML="<p>Your Cart Is Empty.</p>";
+
 }
 
-/* ========================= */
-/* RESPONSIVE */
-/* ========================= */
+}
 
-@media(max-width:991px){
+//==========================
 
-.products{
+// BUY BUTTON
 
-grid-template-columns:repeat(2,1fr);
+//==========================
+
+document.getElementById("buyNow").onclick=function(){
+
+if(cart.length==0){
+
+alert("Cart Is Empty");
+
+return;
 
 }
 
-.hero{
+document.getElementById("successPopup").style.display="flex";
+
+cart=[];
+
+updateCart();
+
+}
+
+//==========================
+
+// SUCCESS CLOSE
+
+//==========================
+
+function closePopup(){
+
+document.getElementById("successPopup").style.display="none";
+
+}
+
+</script>
+  <!-- ================================= -->
+<!-- MOBILE MENU BUTTON -->
+<!-- ================================= -->
+
+<div id="menuBtn"
+
+style="
+
+display:none;
+position:fixed;
+top:20px;
+right:20px;
+font-size:35px;
+color:yellow;
+cursor:pointer;
+z-index:10001;
+
+">
+
+☰
+
+</div>
+
+<!-- ================================= -->
+<!-- PAGE LOADER -->
+<!-- ================================= -->
+
+<div id="loader">
+
+<div class="loaderCircle"></div>
+
+<h2>Loading Vishwas Namkeen...</h2>
+
+</div>
+
+<style>
+
+/* ========================= */
+/* LOADER */
+/* ========================= */
+
+#loader{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:#000;
+
+display:flex;
 
 flex-direction:column;
 
-text-align:center;
+justify-content:center;
+
+align-items:center;
+
+z-index:999999;
 
 }
 
-.left,.right{
+.loaderCircle{
+
+width:80px;
+
+height:80px;
+
+border:8px solid #333;
+
+border-top:8px solid yellow;
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
+
+}
+
+#loader h2{
+
+margin-top:25px;
+
+color:white;
+
+}
+
+@keyframes spin{
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* ========================= */
+/* WISHLIST BUTTON */
+/* ========================= */
+
+.wishlist{
+
+margin-top:12px;
 
 width:100%;
+
+padding:10px;
+
+background:transparent;
+
+border:2px solid yellow;
+
+color:yellow;
+
+border-radius:30px;
+
+cursor:pointer;
+
+transition:.4s;
+
+}
+
+.wishlist:hover{
+
+background:yellow;
+
+color:black;
+
+}
+
+/* ========================= */
+/* PRODUCT IMAGE ZOOM */
+/* ========================= */
+
+.card img{
+
+transition:.5s;
+
+}
+
+.card:hover img{
+
+transform:scale(1.1);
+
+}
+
+/* ========================= */
+/* MOBILE */
+/* ========================= */
+
+@media(max-width:768px){
+
+#menuBtn{
+
+display:block;
 
 }
 
@@ -1643,11 +1513,47 @@ nav ul{
 
 display:none;
 
-}
+flex-direction:column;
+
+position:absolute;
+
+top:80px;
+
+left:0;
+
+width:100%;
+
+background:#111;
 
 }
 
-@media(max-width:600px){
+nav ul.active{
+
+display:flex;
+
+}
+
+nav ul li{
+
+margin:20px;
+
+}
+
+.hero{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.hero-text,
+
+.hero-image{
+
+width:100%;
+
+}
 
 .products{
 
@@ -1655,41 +1561,1091 @@ grid-template-columns:1fr;
 
 }
 
-.heading{
+}
 
-font-size:35px;
+</style>
+
+<script>
+
+/* ========================= */
+/* PAGE LOADER */
+/* ========================= */
+
+window.onload=function(){
+
+setTimeout(function(){
+
+document.getElementById("loader").style.display="none";
+
+},1500);
 
 }
 
-.left h1{
+/* ========================= */
+/* MOBILE MENU */
+/* ========================= */
 
-font-size:40px;
+document.getElementById("menuBtn").onclick=function(){
+
+document.querySelector("nav ul").classList.toggle("active");
 
 }
 
-.left h2{
+/* ========================= */
+/* HERO IMAGE SLIDER */
+/* ========================= */
+
+let heroImages=[
+
+"HERO.PNG",
+
+"HERO.PNG",
+
+"HERO.PNG"
+
+];
+
+let heroIndex=0;
+
+setInterval(function(){
+
+heroIndex++;
+
+if(heroIndex>=heroImages.length){
+
+heroIndex=0;
+
+}
+
+document.querySelector(".hero-image img").src=heroImages[heroIndex];
+
+},3000);
+
+/* ========================= */
+/* WISHLIST */
+/* ========================= */
+
+document.querySelectorAll(".card").forEach(function(card){
+
+let btn=document.createElement("button");
+
+btn.className="wishlist";
+
+btn.innerHTML="❤ Add To Wishlist";
+
+btn.onclick=function(){
+
+alert("Added To Wishlist");
+
+};
+
+card.appendChild(btn);
+
+});
+
+</script>
+  <!-- ================================= -->
+<!-- PRODUCT CATEGORIES -->
+<!-- ================================= -->
+
+<section id="categories">
+
+<h1 class="heading">
+
+Product <span>Categories</span>
+
+</h1>
+
+<div class="products">
+
+<div class="card">
+
+<h3>Namkeen</h3>
+
+<p>Premium Gujarati Namkeen Collection</p>
+
+<button class="buy">View</button>
+
+</div>
+
+<div class="card">
+
+<h3>Wafer</h3>
+
+<p>Fresh & Crispy Wafer Collection</p>
+
+<button class="buy">View</button>
+
+</div>
+
+<div class="card">
+
+<h3>Chips</h3>
+
+<p>Masala & Pani Puri Chips</p>
+
+<button class="buy">View</button>
+
+</div>
+
+<div class="card">
+
+<h3>Special Mix</h3>
+
+<p>Punjabi & Nadiyadi Mix</p>
+
+<button class="buy">View</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================================= -->
+<!-- COUPON SECTION -->
+<!-- ================================= -->
+
+<section>
+
+<h1 class="heading">
+
+Discount <span>Coupon</span>
+
+</h1>
+
+<center>
+
+<input
+
+type="text"
+
+id="coupon"
+
+placeholder="Enter Coupon Code"
+
+style="
+
+width:320px;
+
+height:50px;
+
+padding-left:20px;
+
+border-radius:30px;
+
+border:2px solid yellow;
+
+background:#111;
+
+color:white;
+
+">
+
+<br><br>
+
+<button
+
+class="buy"
+
+onclick="applyCoupon()">
+
+Apply Coupon
+
+</button>
+
+<p id="couponMsg"
+
+style="margin-top:20px;color:yellow;">
+
+</p>
+
+</center>
+
+</section>
+
+<!-- ================================= -->
+<!-- FAQ -->
+<!-- ================================= -->
+
+<section>
+
+<h1 class="heading">
+
+Frequently <span>Asked Questions</span>
+
+</h1>
+
+<div class="card">
+
+<h3>Do You Deliver All Over India?</h3>
+
+<p>
+
+Yes, delivery is available across India.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Are Products Fresh?</h3>
+
+<p>
+
+Yes, all products are packed fresh.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>Payment Options?</h3>
+
+<p>
+
+Cash On Delivery & Online Payment.
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ================================= -->
+<!-- BACK TO TOP -->
+<!-- ================================= -->
+
+<button
+
+id="topBtn"
+
+onclick="topFunction()"
+
+style="
+
+position:fixed;
+
+bottom:25px;
+
+right:25px;
+
+width:55px;
+
+height:55px;
+
+border:none;
+
+border-radius:50%;
+
+background:red;
+
+color:white;
+
+font-size:24px;
+
+cursor:pointer;
+
+display:none;
+
+z-index:9999;
+
+">
+
+↑
+
+</button>
+
+<script>
+
+/* Coupon */
+
+function applyCoupon(){
+
+let code=document.getElementById("coupon").value;
+
+if(code=="VISHWAS10"){
+
+document.getElementById("couponMsg").innerHTML="Coupon Applied Successfully! 10% Discount";
+
+}else{
+
+document.getElementById("couponMsg").innerHTML="Invalid Coupon Code";
+
+}
+
+}
+
+/* Back To Top */
+
+window.onscroll=function(){
+
+if(document.documentElement.scrollTop>300){
+
+document.getElementById("topBtn").style.display="block";
+
+}else{
+
+document.getElementById("topBtn").style.display="none";
+
+}
+
+}
+
+function topFunction(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+</script>
+  <!-- ================================= -->
+<!-- IMAGE GALLERY -->
+<!-- ================================= -->
+
+<section id="gallery">
+
+<h1 class="heading">
+
+Image <span>Gallery</span>
+
+</h1>
+
+<div class="products">
+
+<div class="card">
+<img src="BHAKARWADI.PNG">
+</div>
+
+<div class="card">
+<img src="BINGOMASALA.PNG">
+</div>
+
+<div class="card">
+<img src="BINGOPANIPURI.PNG">
+</div>
+
+<div class="card">
+<img src="MASALABANANAWEFER.PNG">
+</div>
+
+<div class="card">
+<img src="METHIPURI.PNG">
+</div>
+
+<div class="card">
+<img src="NADIYADIMIX.PNG">
+</div>
+
+<div class="card">
+<img src="PUNJABIMIX.PNG">
+</div>
+
+<div class="card">
+<img src="HERO.PNG">
+</div>
+
+</div>
+
+</section>
+
+<!-- ================================= -->
+<!-- ORDER TRACKING -->
+<!-- ================================= -->
+
+<section>
+
+<h1 class="heading">
+
+Order <span>Tracking</span>
+
+</h1>
+
+<center>
+
+<input
+
+type="text"
+
+id="track"
+
+placeholder="Enter Order ID"
+
+style="
+
+width:320px;
+
+height:50px;
+
+padding-left:20px;
+
+border-radius:30px;
+
+border:2px solid yellow;
+
+background:#111;
+
+color:white;
+
+">
+
+<br><br>
+
+<button
+
+class="buy"
+
+onclick="trackOrder()">
+
+Track Order
+
+</button>
+
+<p
+
+id="trackResult"
+
+style="
+
+margin-top:20px;
+
+font-size:20px;
+
+color:yellow;
+
+">
+
+</p>
+
+</center>
+
+</section>
+
+<!-- ================================= -->
+<!-- NOTIFICATION -->
+<!-- ================================= -->
+
+<div
+
+id="notify"
+
+style="
+
+position:fixed;
+
+top:20px;
+
+right:20px;
+
+background:red;
+
+padding:15px 25px;
+
+border-radius:10px;
+
+display:none;
+
+color:white;
+
+z-index:99999;
+
+">
+
+Welcome To Vishwas Namkeen
+
+</div>
+
+<!-- ================================= -->
+<!-- FLOATING CALL BUTTON -->
+<!-- ================================= -->
+
+<a
+
+href="tel:+911234567890"
+
+style="
+
+position:fixed;
+
+left:20px;
+
+bottom:90px;
+
+width:60px;
+
+height:60px;
+
+background:green;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
 
 font-size:28px;
 
+text-decoration:none;
+
+color:white;
+
+z-index:9999;
+
+">
+
+📞
+
+</a>
+
+<!-- ================================= -->
+<!-- FLOATING EMAIL BUTTON -->
+<!-- ================================= -->
+
+<a
+
+href="mailto:info@vishwasnamkeen.com"
+
+style="
+
+position:fixed;
+
+left:20px;
+
+bottom:20px;
+
+width:60px;
+
+height:60px;
+
+background:#ff9800;
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:28px;
+
+text-decoration:none;
+
+color:white;
+
+z-index:9999;
+
+">
+
+✉
+
+</a>
+
+<script>
+
+/* Notification */
+
+setTimeout(function(){
+
+document.getElementById("notify").style.display="block";
+
+},1000);
+
+setTimeout(function(){
+
+document.getElementById("notify").style.display="none";
+
+},5000);
+
+/* Order Tracking */
+
+function trackOrder(){
+
+let id=document.getElementById("track").value;
+
+if(id=="12345"){
+
+document.getElementById("trackResult").innerHTML="Your Order Is Out For Delivery 🚚";
+
+}else{
+
+document.getElementById("trackResult").innerHTML="Order Not Found.";
+
 }
 
-.right img{
-
-width:280px;
-
 }
 
-#cartBox{
+</script>
+  <!-- ================================= -->
+<!-- LOGIN POPUP -->
+<!-- ================================= -->
+
+<div id="loginPopup" class="popupWindow">
+
+<div class="popupContent">
+
+<h2>Login</h2>
+
+<input type="text" placeholder="Username" id="loginUser">
+
+<input type="password" placeholder="Password" id="loginPass">
+
+<button onclick="loginUser()">Login</button>
+
+<button onclick="closeLogin()">Close</button>
+
+</div>
+
+</div>
+
+<!-- ================================= -->
+<!-- REGISTER POPUP -->
+<!-- ================================= -->
+
+<div id="registerPopup" class="popupWindow">
+
+<div class="popupContent">
+
+<h2>Register</h2>
+
+<input type="text" placeholder="Full Name">
+
+<input type="email" placeholder="Email">
+
+<input type="password" placeholder="Password">
+
+<button onclick="registerUser()">Register</button>
+
+<button onclick="closeRegister()">Close</button>
+
+</div>
+
+</div>
+
+<!-- ================================= -->
+<!-- USER PROFILE -->
+<!-- ================================= -->
+
+<section>
+
+<h1 class="heading">
+
+User <span>Profile</span>
+
+</h1>
+
+<center>
+
+<img src="HERO.PNG"
+
+style="
+
+width:120px;
+
+height:120px;
+
+border-radius:50%;
+
+border:4px solid yellow;
+
+">
+
+<h2 id="profileName">
+
+Guest User
+
+</h2>
+
+<button class="buy"
+
+onclick="openLogin()">
+
+Login
+
+</button>
+
+<button class="buy"
+
+onclick="openRegister()">
+
+Register
+
+</button>
+
+</center>
+
+</section>
+
+<!-- ================================= -->
+<!-- DARK / LIGHT MODE -->
+<!-- ================================= -->
+
+<center>
+
+<button
+
+class="buy"
+
+onclick="toggleMode()">
+
+🌙 Dark / ☀ Light
+
+</button>
+
+</center>
+
+<style>
+
+.popupWindow{
+
+display:none;
+
+position:fixed;
+
+top:0;
+
+left:0;
 
 width:100%;
 
-}
+height:100%;
+
+background:rgba(0,0,0,.8);
+
+justify-content:center;
+
+align-items:center;
+
+z-index:99999;
 
 }
 
-/* ========================= */
-/* HOVER EFFECTS */
-/* ========================= */
+.popupContent{
+
+background:#111;
+
+padding:30px;
+
+border-radius:20px;
+
+border:3px solid yellow;
+
+width:350px;
+
+text-align:center;
+
+}
+
+.popupContent input{
+
+width:100%;
+
+height:45px;
+
+margin:10px 0;
+
+padding-left:15px;
+
+border-radius:10px;
+
+border:1px solid yellow;
+
+background:#000;
+
+color:white;
+
+}
+
+.popupContent button{
+
+margin-top:10px;
+
+width:100%;
+
+height:45px;
+
+background:red;
+
+border:none;
+
+border-radius:25px;
+
+color:white;
+
+cursor:pointer;
+
+}
+
+</style>
+
+<script>
+
+/* Login */
+
+function openLogin(){
+
+document.getElementById("loginPopup").style.display="flex";
+
+}
+
+function closeLogin(){
+
+document.getElementById("loginPopup").style.display="none";
+
+}
+
+function loginUser(){
+
+let name=document.getElementById("loginUser").value;
+
+if(name!=""){
+
+document.getElementById("profileName").innerHTML=name;
+
+alert("Login Successful");
+
+closeLogin();
+
+}
+
+}
+
+/* Register */
+
+function openRegister(){
+
+document.getElementById("registerPopup").style.display="flex";
+
+}
+
+function closeRegister(){
+
+document.getElementById("registerPopup").style.display="none";
+
+}
+
+function registerUser(){
+
+alert("Registration Successful");
+
+closeRegister();
+
+}
+
+/* Dark / Light */
+
+let dark=true;
+
+function toggleMode(){
+
+if(dark){
+
+document.body.style.background="#ffffff";
+
+document.body.style.color="#000000";
+
+dark=false;
+
+}else{
+
+document.body.style.background="#000000";
+
+document.body.style.color="#ffffff";
+
+dark=true;
+
+}
+
+}
+
+</script>
+  <!-- ================================= -->
+<!-- FINAL PREMIUM JAVASCRIPT -->
+<!-- ================================= -->
+
+<script>
+
+/* Welcome */
+
+window.addEventListener("load",function(){
+
+console.log("Welcome To Vishwas Namkeen");
+
+});
+
+/* Button Ripple Effect */
+
+document.querySelectorAll("button").forEach(function(btn){
+
+btn.addEventListener("click",function(e){
+
+let circle=document.createElement("span");
+
+circle.style.position="absolute";
+
+circle.style.width="20px";
+
+circle.style.height="20px";
+
+circle.style.background="rgba(255,255,255,.5)";
+
+circle.style.borderRadius="50%";
+
+circle.style.left=e.offsetX+"px";
+
+circle.style.top=e.offsetY+"px";
+
+circle.style.animation="ripple .6s linear";
+
+this.appendChild(circle);
+
+setTimeout(function(){
+
+circle.remove();
+
+},600);
+
+});
+
+});
+
+/* Product Hover Animation */
+
+document.querySelectorAll(".card").forEach(function(card){
+
+card.addEventListener("mouseenter",function(){
+
+this.style.transform="translateY(-10px) scale(1.03)";
+
+});
+
+card.addEventListener("mouseleave",function(){
+
+this.style.transform="translateY(0) scale(1)";
+
+});
+
+});
+
+/* Smooth Scroll */
+
+document.querySelectorAll("a").forEach(function(link){
+
+link.addEventListener("click",function(e){
+
+let href=this.getAttribute("href");
+
+if(href && href.startsWith("#")){
+
+e.preventDefault();
+
+document.querySelector(href).scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+}
+
+});
+
+});
+
+/* Footer Year */
+
+let year=new Date().getFullYear();
+
+let footer=document.querySelector("footer p:last-child");
+
+if(footer){
+
+footer.innerHTML="© "+year+" Vishwas Namkeen. All Rights Reserved.";
+
+}
+
+/* Buy Success */
+
+function orderSuccess(){
+
+document.getElementById("successPopup").style.display="flex";
+
+setTimeout(function(){
+
+document.getElementById("successPopup").style.display="none";
+
+},3000);
+
+}
+
+/* Keyboard Shortcut */
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+
+document.getElementById("cartBox").style.right="-420px";
+
+closePopup();
+
+}
+
+});
+
+</script>
+
+<style>
+
+/* Ripple */
+
+button{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+@keyframes ripple{
+
+0%{
+
+transform:scale(0);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:scale(15);
+
+opacity:0;
+
+}
+
+}
+
+/* Footer */
+
+footer{
+
+background:#000;
+
+border-top:3px solid yellow;
+
+}
+
+/* Final Animation */
 
 .card{
 
@@ -1697,22 +2653,10 @@ transition:.4s;
 
 }
 
-.card:hover{
+</style>
 
-transform:translateY(-10px) scale(1.03);
+</body>
 
-box-shadow:0 0 20px red;
-
-}
-
-.buy{
-
-transition:.4s;
-
-}
-
-.buy:hover{
-
-letter-spacing:1px;
-
-}
+</html>
+  
+  
