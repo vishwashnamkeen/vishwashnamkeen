@@ -469,5 +469,64 @@
     </a>
 
     <script src="script.js"></script>
+    <!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - Vishwash Namkeen</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-offwhite">
+
+    <header class="navbar">
+        <div class="logo">
+            <h2>VISHWASH <span>NAMKEEN</span></h2>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Back to Main Store</a>
+        </nav>
+    </header>
+
+    <main class="container page-padding">
+        <h1 class="section-title"><i class="fa-solid fa-heart red-icon"></i> My Favorite Products</h1>
+        <div class="product-grid" id="wishlist-container">
+            <!-- Wishlist items loaded from LocalStorage -->
+        </div>
+    </main>
+
+    <script>
+        // Load Wishlist Items on page load
+        document.addEventListener("DOMContentLoaded", () => {
+            const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            const container = document.getElementById('wishlist-container');
+            
+            if (wishlist.length === 0) {
+                container.innerHTML = `<p class="empty-msg">Aapki Wishlist abhi khali hai! Main website par jaakar items heart click karke add karein.</p>`;
+                return;
+            }
+
+            container.innerHTML = wishlist.map((item, index) => `
+                <div class="product-card">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="card-body">
+                        <h3>${item.name}</h3>
+                        <p class="price">₹${item.price}</p>
+                        <button onclick="removeFromWishlist(${index})" class="btn btn-red-outline">Remove</button>
+                    </div>
+                </div>
+            `).join('');
+        });
+
+        function removeFromWishlist(index) {
+            let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            wishlist.splice(index, 1);
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
 </body>
 </html>
