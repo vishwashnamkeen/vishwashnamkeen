@@ -1170,7 +1170,7 @@ const suggestions = [
 
 ];
 
-const searchInput = document.querySelector(".search-box input");
+const searchInput2= document.querySelector(".search-box input");
 
 if(searchInput){
 
