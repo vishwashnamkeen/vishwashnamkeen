@@ -1,12 +1,14 @@
-:root {
-    --primary-navy: #0a192f;
-    --accent-gold: #d4af37;
-    --brand-red: #d90429;
-    --whatsapp-green: #25D366;
-    --bg-light: #f4f6f9;
-    --card-bg: #ffffff;
-    --text-dark: #1e293b;
-    --text-muted: #64748b;
+
+  :root {
+    --primary-navy: #000000;    /* Main Header & Footer background ko deep BLACK banaya */
+    --accent-gold: #FFD700;     /* Accents, Badges aur Icons ko Bright YELLOW banaya */
+    --brand-red: #E60000;        /* Main Buttons aur Headlines ko Crimson RED banaya */
+    --whatsapp-green: #25D366;  /* WhatsApp Button */
+    --bg-light: #111111;        /* Overall Website ka Background dark BLACK/GRAY banaya */
+    --card-bg: #1a1a1a;         /* Product Cards ka background dark rakha */
+    --text-dark: #FFFFFF;       /* Sabhi TEXT ko Pure WHITE rakha taaki Black par saaf dikhe */
+    --text-muted: #FFD700;      /* Secondary details ko YELLOW highlight diya */
+}
 }
 
 * {
