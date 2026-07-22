@@ -3,246 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishwash Namkeen - Swad Jo Dil Jeet Le | www.vishwashnamkeen.com</title>
-    <!-- FontAwesome Icons -->
+    <title>Vishwash Namkeen | Premium Quality Snacks | www.vishwashnamkeen.com</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- TOP BAR -->
+    <!-- TOP ANNOUNCEMENT BAR -->
     <div class="top-bar">
         <div class="container top-bar-content">
-            <div class="top-info">
-                <span><i class="fas fa-phone-alt"></i> +91 8460183525</span>
-                <span><i class="fas fa-envelope"></i> vishwashnamkeen@gmail.com</span>
-            </div>
-            <div class="top-link">
-                <span><i class="fas fa-globe"></i> www.vishwashnamkeen.com</span>
-            </div>
+            <div><i class="fas fa-phone-alt"></i> +91 8460183525 | <i class="fas fa-envelope"></i> vishwashnamkeen@gmail.com</div>
+            <div class="top-domain"><i class="fas fa-globe"></i> www.vishwashnamkeen.com</div>
         </div>
     </div>
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="main-header">
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <h2>Vishwash <span>Namkeen</span></h2>
-            </a>
-            <nav class="nav-links">
+    <!-- NAVIGATION HEADER -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="brand-logo">Vishwash <span>Namkeen</span></a>
+            <nav class="nav-menu" id="navMenu">
                 <a href="#home">Home</a>
-                <a href="#products">Our Products</a>
-                <a href="#about">About Us</a>
+                <a href="#products">Products</a>
+                <a href="#checkout">Order Cart (<span id="cartCountNav">0</span>)</a>
                 <a href="#contact">Contact Support</a>
             </nav>
-            <div class="header-right">
-                <a href="https://wa.me/918460183525" class="btn-whatsapp-header" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                </a>
-            </div>
+            <a href="#checkout" class="cart-icon-btn">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </a>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero-section" id="home">
-        <div class="container hero-content">
-            <span class="badge">100% Fresh & Authentic Taste</span>
-            <h1>Swaad Aur Vishwas Ka Anokha Sangam</h1>
-            <p>Ghar jaisa pure aur crispy namkeen direct aapke ghar tak. Order karein WhatsApp par ek click me!</p>
-            <div class="hero-btns">
-                <a href="#products" class="btn-primary">View Products</a>
-                <a href="https://wa.me/918460183525?text=Hello%20Vishwash%20Namkeen,%20I%20want%20to%20know%20more%20about%20your%20products." class="btn-whatsapp-lg" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Quick WhatsApp Inquiry
-                </a>
+    <!-- HERO BANNER -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="hero-tag">100% Authentic & Fresh Snacks</span>
+            <h1>Swad Aur Vishwas Ka Anokha Sangam</h1>
+            <p>Directly from our kitchen to your home. Taste the crispiness of authentic Indian namkeen.</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn-primary"><i class="fas fa-store"></i> Explore Menu</a>
+                <a href="https://wa.me/918460183525?text=Hello%20Vishwash%20Namkeen,%20I%20have%20a%20query" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> Chat Support</a>
             </div>
         </div>
     </section>
 
-    <!-- PRODUCTS SECTION -->
+    <!-- PRODUCTS GRID SECTION -->
     <section class="products-section" id="products">
         <div class="container">
-            <div class="section-title text-center">
-                <span class="sub-heading">OUR EXCLUSIVE RANGE</span>
-                <h2>Swad Jo Dil Jeet Le</h2>
-                <div class="gold-divider"><i class="fas fa-crown"></i></div>
+            <div class="section-title">
+                <h2>Our Exclusive Range</h2>
+                <div class="title-underline"></div>
             </div>
 
             <div class="products-grid">
-                
-                <!-- Product 1: Bhakarwadi -->
-                <div class="product-card" data-name="Special Bhakarwadi" data-price="180">
-                    <span class="discount-badge">10% OFF</span>
-                    <div class="product-img-holder">
-                        <img src="BHAKARWADI.PNG.png" alt="Special Bhakarwadi">
-                    </div>
-                    <div class="product-details">
-                        <span class="category-tag">Sweet & Spicy</span>
+
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <span class="badge-disc">10% OFF</span>
+                    <div class="img-box"><img src="BHAKARWADI.PNG.png" alt="Special Bhakarwadi"></div>
+                    <div class="card-body">
+                        <span class="cat">Sweet & Spicy</span>
                         <h3>Special Bhakarwadi</h3>
                         <p class="desc">Crispy rolled snack filled with sweet, tangy & spicy masala.</p>
-                        <div class="price-row">
-                            <div><span class="current-price">₹180</span><span class="original-price">₹200</span></div>
-                            <span class="weight-tag">500g</span>
+                        <div class="price-box">
+                            <span class="price">₹180</span>
+                            <span class="old-price">₹200</span>
+                            <span class="weight">500g</span>
                         </div>
-                        <div class="card-action-btns">
-                            <button class="btn-card buy-whatsapp-btn" onclick="orderOnWhatsApp('Special Bhakarwadi', '180')">
-                                <i class="fab fa-whatsapp"></i> Order on WhatsApp
-                            </button>
-                        </div>
+                        <button class="btn-add-cart" onclick="addToOrder('Special Bhakarwadi', 180, 'BHAKARWADI.PNG.png')">
+                            <i class="fas fa-cart-plus"></i> Buy / Add to Order
+                        </button>
                     </div>
                 </div>
 
-                <!-- Product 2: Bingo Masala -->
-                <div class="product-card" data-name="Bingo Masala Treat" data-price="140">
-                    <span class="discount-badge">12% OFF</span>
-                    <div class="product-img-holder">
-                        <img src="BINGOMASALA.PNG.png" alt="Bingo Masala Treat">
-                    </div>
-                    <div class="product-details">
-                        <span class="category-tag">Crunchy Snacks</span>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <span class="badge-disc">12% OFF</span>
+                    <div class="img-box"><img src="BINGOMASALA.PNG.png" alt="Bingo Masala Treat"></div>
+                    <div class="card-body">
+                        <span class="cat">Crunchy Snacks</span>
                         <h3>Bingo Masala Treat</h3>
                         <p class="desc">Chatpata spicy flavour mixed with premium crunchy bites.</p>
-                        <div class="price-row">
-                            <div><span class="current-price">₹140</span><span class="original-price">₹160</span></div>
-                            <span class="weight-tag">400g</span>
+                        <div class="price-box">
+                            <span class="price">₹140</span>
+                            <span class="old-price">₹160</span>
+                            <span class="weight">400g</span>
                         </div>
-                        <div class="card-action-btns">
-                            <button class="btn-card buy-whatsapp-btn" onclick="orderOnWhatsApp('Bingo Masala Treat', '140')">
-                                <i class="fab fa-whatsapp"></i> Order on WhatsApp
-                            </button>
-                        </div>
+                        <button class="btn-add-cart" onclick="addToOrder('Bingo Masala Treat', 140, 'BINGOMASALA.PNG.png')">
+                            <i class="fas fa-cart-plus"></i> Buy / Add to Order
+                        </button>
                     </div>
                 </div>
 
-                <!-- Product 3: Bingo Pani Puri -->
-                <div class="product-card" data-name="Bingo Pani Puri Chat" data-price="150">
-                    <span class="discount-badge">10% OFF</span>
-                    <div class="product-img-holder">
-                        <img src="BINGOPANIPURI.PNG.png" alt="Bingo Pani Puri Chat">
-                    </div>
-                    <div class="product-details">
-                        <span class="category-tag">Street Food Flavour</span>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <span class="badge-disc">10% OFF</span>
+                    <div class="img-box"><img src="BINGOPANIPURI.PNG.png" alt="Bingo Pani Puri Chat"></div>
+                    <div class="card-body">
+                        <span class="cat">Street Food Special</span>
                         <h3>Bingo Pani Puri Chat</h3>
                         <p class="desc">Authentic tangy Pani Puri chatpata flavor in every bite.</p>
-                        <div class="price-row">
-                            <div><span class="current-price">₹150</span><span class="original-price">₹170</span></div>
-                            <span class="weight-tag">400g</span>
+                        <div class="price-box">
+                            <span class="price">₹150</span>
+                            <span class="old-price">₹170</span>
+                            <span class="weight">400g</span>
                         </div>
-                        <div class="card-action-btns">
-                            <button class="btn-card buy-whatsapp-btn" onclick="orderOnWhatsApp('Bingo Pani Puri Chat', '150')">
-                                <i class="fab fa-whatsapp"></i> Order on WhatsApp
-                            </button>
-                        </div>
+                        <button class="btn-add-cart" onclick="addToOrder('Bingo Pani Puri Chat', 150, 'BINGOPANIPURI.PNG.png')">
+                            <i class="fas fa-cart-plus"></i> Buy / Add to Order
+                        </button>
                     </div>
                 </div>
 
-                <!-- Product 4: Hiro (Ratlami Sev) -->
-                <div class="product-card" data-name="Indori Ratlami Sev" data-price="160">
-                    <span class="discount-badge">15% OFF</span>
-                    <div class="product-img-holder">
-                        <img src="Hiro.jpg.png" alt="Indori Ratlami Sev">
-                    </div>
-                    <div class="product-details">
-                        <span class="category-tag">Spicy Special</span>
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <span class="badge-disc">15% OFF</span>
+                    <div class="img-box"><img src="Hiro.jpg.png" alt="Indori Ratlami Sev"></div>
+                    <div class="card-body">
+                        <span class="cat">Spicy Special</span>
                         <h3>Indori Ratlami Sev</h3>
                         <p class="desc">Authentic spicy clove-flavored gram flour sev.</p>
-                        <div class="price-row">
-                            <div><span class="current-price">₹160</span><span class="original-price">₹190</span></div>
-                            <span class="weight-tag">500g</span>
+                        <div class="price-box">
+                            <span class="price">₹160</span>
+                            <span class="old-price">₹190</span>
+                            <span class="weight">500g</span>
                         </div>
-                        <div class="card-action-btns">
-                            <button class="btn-card buy-whatsapp-btn" onclick="orderOnWhatsApp('Indori Ratlami Sev', '160')">
-                                <i class="fab fa-whatsapp"></i> Order on WhatsApp
-                            </button>
-                        </div>
+                        <button class="btn-add-cart" onclick="addToOrder('Indori Ratlami Sev', 160, 'Hiro.jpg.png')">
+                            <i class="fas fa-cart-plus"></i> Buy / Add to Order
+                        </button>
                     </div>
                 </div>
 
-                <!-- Product 5: Masala Banana Wafers -->
-                <div class="product-card" data-name="Masala Banana Wafers" data-price="130">
-                    <span class="discount-badge">10% OFF</span>
-                    <div class="product-img-holder">
-                        <img src="MASALABANANAWEFERS.PNG.png" alt="Masala Banana Wafers">
-                    </div>
-                    <div class="product-details">
-                        <span class="category-tag">Wafer Special</span>
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <span class="badge-disc">10% OFF</span>
+                    <div class="img-box"><img src="MASALABANANAWEFERS.PNG.png" alt="Masala Banana Wafers"></div>
+                    <div class="card-body">
+                        <span class="cat">Wafer Special</span>
                         <h3>Masala Banana Wafers</h3>
                         <p class="desc">Thin, crispy banana chips sprinkled with spicy peri peri masala.</p>
-                        <div class="price-row">
-                            <div><span class="current-price">₹130</span><span class="original-price">₹145</span></div>
-                            <span class="weight-tag">300g</span>
+                        <div class="price-box">
+                            <span class="price">₹130</span>
+                            <span class="old-price">₹145</span>
+                            <span class="weight">300g</span>
                         </div>
-                        <div class="card-action-btns">
-                            <button class="btn-card buy-whatsapp-btn" onclick="orderOnWhatsApp('Masala Banana Wafers', '130')">
-                                <i class="fab fa-whatsapp"></i> Order on WhatsApp
-                            </button>
-                        </div>
+                        <button class="btn-add-cart" onclick="addToOrder('Masala Banana Wafers', 130, 'MASALABANANAWEFERS.PNG.png')">
+                            <i class="fas fa-cart-plus"></i> Buy / Add to Order
+                        </button>
                     </div>
                 </div>
 
-                <!-- Product 6: Methi Puri -->
-                <div class="product-card" data-name="Crispy Methi Puri" data-price="170">
-                    <span class="discount-badge">15% OFF</span>
-                    <div class="product-img-holder">
-                        <img src="METHIPURI.PNG.jpeg" alt="Crispy Methi Puri">
-                    </div>
-                    <div class="product-details">
-                        <span class="category-tag">Traditional Snack</span>
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <span class="badge-disc">15% OFF</span>
+                    <div class="img-box"><img src="METHIPURI.PNG.jpeg" alt="Crispy Methi Puri"></div>
+                    <div class="card-body">
+                        <span class="cat">Traditional Snack</span>
                         <h3>Crispy Methi Puri</h3>
                         <p class="desc">Delicious crispy puris seasoned with fragrant dried fenugreek leaves.</p>
-                        <div class="price-row">
-                            <div><span class="current-price">₹170</span><span class="original-price">₹200</span></div>
-                            <span class="weight-tag">500g</span>
+                        <div class="price-box">
+                            <span class="price">₹170</span>
+                            <span class="old-price">₹200</span>
+                            <span class="weight">500g</span>
                         </div>
-                        <div class="card-action-btns">
-                            <button class="btn-card buy-whatsapp-btn" onclick="orderOnWhatsApp('Crispy Methi Puri', '170')">
-                                <i class="fab fa-whatsapp"></i> Order on WhatsApp
-                            </button>
-                        </div>
+                        <button class="btn-add-cart" onclick="addToOrder('Crispy Methi Puri', 170, 'METHIPURI.PNG.jpeg')">
+                            <i class="fas fa-cart-plus"></i> Buy / Add to Order
+                        </button>
                     </div>
                 </div>
 
-                <!-- Product 7: Nadiyadi Mix -->
-                <div class="product-card" data-name="Special Nadiyadi Mix" data-price="175">
-                    <span class="discount-badge">10% OFF</span>
-                    <div class="product-img-holder">
-                        <img src="NADIYADIMIX.PNG.png" alt="Special Nadiyadi Mix">
-                    </div>
-                    <div class="product-details">
-                        <span class="category-tag">Gujarati Special</span>
+                <!-- Product 7 -->
+                <div class="product-card">
+                    <span class="badge-disc">10% OFF</span>
+                    <div class="img-box"><img src="NADIYADIMIX.PNG.png" alt="Special Nadiyadi Mix"></div>
+                    <div class="card-body">
+                        <span class="cat">Gujarati Special</span>
                         <h3>Special Nadiyadi Mix</h3>
                         <p class="desc">Classic sweet and spicy Gujarati style mixed chevdo.</p>
-                        <div class="price-row">
-                            <div><span class="current-price">₹175</span><span class="original-price">₹195</span></div>
-                            <span class="weight-tag">500g</span>
+                        <div class="price-box">
+                            <span class="price">₹175</span>
+                            <span class="old-price">₹195</span>
+                            <span class="weight">500g</span>
                         </div>
-                        <div class="card-action-btns">
-                            <button class="btn-card buy-whatsapp-btn" onclick="orderOnWhatsApp('Special Nadiyadi Mix', '175')">
-                                <i class="fab fa-whatsapp"></i> Order on WhatsApp
-                            </button>
-                        </div>
+                        <button class="btn-add-cart" onclick="addToOrder('Special Nadiyadi Mix', 175, 'NADIYADIMIX.PNG.png')">
+                            <i class="fas fa-cart-plus"></i> Buy / Add to Order
+                        </button>
                     </div>
                 </div>
 
-                <!-- Product 8: Punjabi Mix -->
-                <div class="product-card" data-name="Spicy Punjabi Mix" data-price="185">
-                    <span class="discount-badge">12% OFF</span>
-                    <div class="product-img-holder">
-                        <img src="PUNJABIMIX.PNG.png" alt="Spicy Punjabi Mix">
-                    </div>
-                    <div class="product-details">
-                        <span class="category-tag">Extra Spicy</span>
+                <!-- Product 8 -->
+                <div class="product-card">
+                    <span class="badge-disc">12% OFF</span>
+                    <div class="img-box"><img src="PUNJABIMIX.PNG.png" alt="Spicy Punjabi Mix"></div>
+                    <div class="card-body">
+                        <span class="cat">Extra Spicy</span>
                         <h3>Spicy Punjabi Mix</h3>
                         <p class="desc">Rich blend of roasted peanuts, lentils & spicy sev.</p>
-                        <div class="price-row">
-                            <div><span class="current-price">₹185</span><span class="original-price">₹210</span></div>
-                            <span class="weight-tag">500g</span>
+                        <div class="price-box">
+                            <span class="price">₹185</span>
+                            <span class="old-price">₹210</span>
+                            <span class="weight">500g</span>
                         </div>
-                        <div class="card-action-btns">
-                            <button class="btn-card buy-whatsapp-btn" onclick="orderOnWhatsApp('Spicy Punjabi Mix', '185')">
-                                <i class="fab fa-whatsapp"></i> Order on WhatsApp
-                            </button>
-                        </div>
+                        <button class="btn-add-cart" onclick="addToOrder('Spicy Punjabi Mix', 185, 'PUNJABIMIX.PNG.png')">
+                            <i class="fas fa-cart-plus"></i> Buy / Add to Order
+                        </button>
                     </div>
                 </div>
 
@@ -250,53 +215,99 @@
         </div>
     </section>
 
-    <!-- CUSTOMER SUPPORT / CONTACT SECTION -->
-    <section class="contact-section" id="contact">
+    <!-- DYNAMIC ORDER & CHECKOUT SECTION -->
+    <section class="checkout-section" id="checkout">
         <div class="container">
-            <div class="section-title text-center">
-                <span class="sub-heading">GET IN TOUCH</span>
-                <h2>Customer Support</h2>
-                <div class="gold-divider"><i class="fas fa-crown"></i></div>
+            <div class="section-title">
+                <h2>Your Order & Delivery Details</h2>
+                <p>Verify your items, adjust quantities, and fill in your shipping details below.</p>
             </div>
 
-            <div class="contact-grid">
-                <div class="contact-box">
-                    <i class="fas fa-phone-alt contact-icon"></i>
-                    <h3>Phone Support</h3>
-                    <p>Direct call ya order enquiry ke liye call karein:</p>
-                    <a href="tel:8460183525" class="contact-link">+91 8460183525</a>
+            <div class="checkout-grid">
+                
+                <!-- ORDER ITEMS SUMMARY TABLE -->
+                <div class="order-summary-box">
+                    <h3><i class="fas fa-shopping-bag"></i> Selected Items</h3>
+                    <div id="cartItemsContainer">
+                        <p class="empty-cart-msg">Aapka order cart abhi khali hai. Upar se product select karein!</p>
+                    </div>
+                    
+                    <div class="cart-total-bar">
+                        <span>Grand Total:</span>
+                        <span id="grandTotalDisplay">₹0</span>
+                    </div>
                 </div>
 
-                <div class="contact-box">
-                    <i class="fab fa-whatsapp contact-icon"></i>
-                    <h3>WhatsApp Chat</h3>
-                    <p>Instant chat aur order confirmation ke liye:</p>
-                    <a href="https://wa.me/918460183525" class="contact-link" target="_blank">Chat +91 8460183525</a>
+                <!-- ADDRESS & BUY FORM -->
+                <div class="address-form-box">
+                    <h3><i class="fas fa-truck"></i> Delivery Address</h3>
+                    <form id="orderForm" onsubmit="processWhatsAppOrder(event)">
+                        <div class="input-group">
+                            <label><i class="fas fa-user"></i> Full Name *</label>
+                            <input type="text" id="custName" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-phone"></i> Mobile Number *</label>
+                            <input type="tel" id="custPhone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-map-marker-alt"></i> Complete Address *</label>
+                            <textarea id="custAddress" rows="3" placeholder="House/Flat No, Street, Landmark, Area" required></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label><i class="fas fa-mail-bulk"></i> Pincode *</label>
+                            <input type="text" id="custPincode" placeholder="6-digit Pincode" pattern="[0-9]{6}" required>
+                        </div>
+
+                        <button type="submit" class="btn-buy-now">
+                            <i class="fab fa-whatsapp"></i> CONFIRM BUY ON WHATSAPP
+                        </button>
+                    </form>
                 </div>
 
-                <div class="contact-box">
-                    <i class="fas fa-envelope contact-icon"></i>
-                    <h3>Email Support</h3>
-                    <p>Bulk order ya query ke liye email karein:</p>
-                    <a href="mailto:vishwashnamkeen@gmail.com" class="contact-link">vishwashnamkeen@gmail.com</a>
-                </div>
             </div>
         </div>
     </section>
 
-    <!-- FLOATING WHATSAPP BUTTON -->
-    <a href="https://wa.me/918460183525?text=Hello%20Vishwash%20Namkeen,%20I%20want%20to%20order%20products." class="floating-whatsapp" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
+    <!-- SUPPORT / CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+        <div class="container text-center">
+            <h2>Need Assistance?</h2>
+            <div class="contact-cards">
+                <div class="c-card">
+                    <i class="fas fa-headset"></i>
+                    <h4>Phone Support</h4>
+                    <p>+91 8460183525</p>
+                </div>
+                <div class="c-card">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email Support</h4>
+                    <p>vishwashnamkeen@gmail.com</p>
+                </div>
+                <div class="c-card">
+                    <i class="fas fa-globe"></i>
+                    <h4>Website</h4>
+                    <p>www.vishwashnamkeen.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- FOOTER -->
     <footer>
         <div class="container text-center">
-            <p>&copy; 2026 Vishwash Namkeen. All Rights Reserved. | <a href="http://www.vishwashnamkeen.com" style="color: #ffd700; text-decoration: none;">www.vishwashnamkeen.com</a></p>
+            <p>&copy; 2026 Vishwash Namkeen. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Custom JS -->
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/918460183525" class="floating-wa" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script src="script.js"></script>
 </body>
 </html>
