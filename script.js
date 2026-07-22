@@ -253,11 +253,74 @@ function toggleWishlist(id, name, price, img, btnElement) {
 }
 
 // Direct Buy Now Action
-function buyNowInstant(name, price) {
-    const message = `Hello Vishwash Namkeen! 👋\nI want to BUY NOW:\n\n*Product:* ${name}\n*Price:* ₹${price}\n\nPlease share payment and delivery details.`;
-    const phone = "919876543210"; // Apne WhatsApp number se replace karein
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+// ==========================================
+// DIRECT BUY NOW WITH POPUP & WHATSAPP REDIRECT
+// ==========================================
+
+// Global Direct Buy Function (Works for both HTML inline & Event Listeners)
+window.buyNowInstant = function(name, price) {
+    // 1. Apna WhatsApp Number Yahan Set Karein (Country Code ke sath, without + or spaces)
+    const phone = "919876543210"; // 👈 Yahan apna WhatsApp Number dalein
+    
+    // 2. Message Format
+    const message = `Hello Vishwash Namkeen! 👋\n\nI want to BUY NOW:\n📦 *Product:* ${name}\n💰 *Price:* ₹${price}\n\nPlease share payment and delivery details!`;
+    const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+    // 3. Show Instant Success Modal
+    showSuccessOrderModal(name, price, whatsappUrl);
+};
+
+// Success Popup Modal
+function showSuccessOrderModal(productName, price, whatsappUrl) {
+    // Purana modal ho toh pehle remove karein
+    const existingModal = document.getElementById('success-order-modal');
+    if (existingModal) existingModal.remove();
+
+    // Naya Modal create karein
+    const modal = document.createElement('div');
+    modal.id = 'success-order-modal';
+    modal.className = 'order-success-overlay';
+    modal.innerHTML = `
+        <div class="order-success-card">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h2>Order Initiated Successfully!</h2>
+            <p>Aapne Choose Kiya Hai: <strong>"${productName}"</strong> (₹${price})</p>
+            <p class="sub-text">Redirecting to WhatsApp for order confirmation...</p>
+            <a href="${whatsappUrl}" target="_blank" class="btn btn-whatsapp-confirm" id="confirm-wa-btn">
+                <i class="fab fa-whatsapp"></i> Open WhatsApp Now
+            </a>
+        </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // 1.5 Second me automatic WhatsApp redirect karein
+    setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+    }, 1500);
+
+    // Click outside to close
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.remove();
+    });
+}
+
+// Event Listener Fix for Product Cards
+function initProductActions() {
+    // Event Delegation use kar rahe hain taaki har Buy Now Button 100% kaam kare
+    document.body.addEventListener('click', (e) => {
+        const buyBtn = e.target.closest('.buy-now-btn');
+        if (buyBtn) {
+            e.preventDefault();
+            const card = buyBtn.closest('.product-card');
+            
+            // Product Data extract karein
+            const name = card?.dataset.name || buyBtn.getAttribute('data-name') || "Namkeen Item";
+            const price = card?.dataset.price || buyBtn.getAttribute('data-price') || "0";
+            
+            buyNowInstant(name, price);
+        }
+    });
 }
 
 // ==========================================
