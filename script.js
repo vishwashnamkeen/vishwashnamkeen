@@ -399,3 +399,89 @@ function initSmoothScroll() {
         });
     });
 }
+// ==========================================
+// 10. DYNAMIC REVIEW MODAL & STAR SYSTEM
+// ==========================================
+let selectedRating = 5;
+
+document.addEventListener('DOMContentLoaded', () => {
+    initReviewSystem();
+});
+
+function initReviewSystem() {
+    const modal = document.getElementById('review-modal-overlay');
+    const openBtn = document.getElementById('open-review-modal-btn');
+    const closeBtn = document.getElementById('close-review-modal');
+    const form = document.getElementById('review-form');
+    const starContainer = document.getElementById('star-select');
+
+    // Open/Close Modal
+    openBtn?.addEventListener('click', () => modal?.classList.add('active'));
+    closeBtn?.addEventListener('click', () => modal?.classList.remove('active'));
+
+    modal?.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+    });
+
+    // Star Selection Handler
+    if (starContainer) {
+        const stars = starContainer.querySelectorAll('i');
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                selectedRating = parseInt(this.dataset.rating);
+                stars.forEach((s, idx) => {
+                    if (idx < selectedRating) {
+                        s.className = 'fas fa-star';
+                    } else {
+                        s.className = 'far fa-star';
+                    }
+                });
+            });
+        });
+    }
+
+    // Submit Review Dynamically
+    form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('reviewer-name').value;
+        const text = document.getElementById('reviewer-text').value;
+
+        if (!name || !text) return;
+
+        // Render new review dynamically
+        addNewReviewCard(name, text, selectedRating);
+
+        // Reset and Close Modal
+        form.reset();
+        modal?.classList.remove('active');
+        showNotification('Dhanyawad! Aapka review publish ho gaya h. ⭐');
+    });
+}
+
+function addNewReviewCard(name, text, rating) {
+    const container = document.getElementById('reviews-container');
+    if (!container) return;
+
+    let starsHtml = '';
+    for (let i = 0; i < 5; i++) {
+        starsHtml += i < rating ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
+    }
+
+    const reviewCard = document.createElement('div');
+    reviewCard.className = 'review-card';
+    reviewCard.innerHTML = `
+        <div class="review-user-info">
+            <div class="user-avatar gold">${name.charAt(0).toUpperCase()}</div>
+            <div>
+                <h4>${name}</h4>
+                <span class="verified-tag"><i class="fas fa-check-circle"></i> Verified Buyer</span>
+            </div>
+        </div>
+        <div class="rating-stars">${starsHtml}</div>
+        <p class="review-text">"${text}"</p>
+        <span class="review-date">Abhi abhi</span>
+    `;
+
+    // Add on top of list
+    container.prepend(reviewCard);
+}
