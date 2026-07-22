@@ -781,6 +781,101 @@
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2500);
         }
+        <!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE STORE | Premium Shopping Experience</title>
+    <!-- Icons & Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS File Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo" onclick="switchTab('shop')">LUXE<span>.</span></div>
+        
+        <div class="search-container">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Search products..." onkeyup="filterProducts()">
+        </div>
+
+        <div class="nav-tabs">
+            <button class="tab-btn active" id="tab-shop" onclick="switchTab('shop')">
+                <i class="fa-solid fa-store"></i> Shop
+            </button>
+            <button class="tab-btn" id="tab-wishlist" onclick="switchTab('wishlist')">
+                <i class="fa-solid fa-heart"></i> Wishlist
+                <span class="badge-count wishlist-count" id="wishlistBadge">0</span>
+            </button>
+            <button class="tab-btn" onclick="toggleCartDrawer(true)">
+                <i class="fa-solid fa-bag-shopping"></i> Cart
+                <span class="badge-count" id="cartBadge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        
+        <!-- SHOP VIEW -->
+        <section id="shopView" class="view-section active">
+            <div class="category-filters">
+                <button class="filter-btn active" onclick="filterCategory('All', this)">All Items</button>
+                <button class="filter-btn" onclick="filterCategory('Electronics', this)">Electronics</button>
+                <button class="filter-btn" onclick="filterCategory('Accessories', this)">Accessories</button>
+                <button class="filter-btn" onclick="filterCategory('Fashion', this)">Fashion</button>
+            </div>
+
+            <div class="products-grid" id="shopGrid"></div>
+        </section>
+
+        <!-- WISHLIST TAB VIEW -->
+        <section id="wishlistView" class="view-section">
+            <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 1.5rem;">My Wishlist</h2>
+            <div class="products-grid" id="wishlistGrid"></div>
+            
+            <div class="empty-state" id="wishlistEmpty" style="display: none;">
+                <i class="fa-regular fa-heart"></i>
+                <h3>Your Wishlist is Empty!</h3>
+                <p>Explore our store and save your favorite items here.</p>
+                <button class="btn-shop" onclick="switchTab('shop')">Explore Products</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Slide-over Cart Drawer -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCartDrawer(false)">
+        <div class="cart-drawer" onclick="event.stopPropagation()">
+            <div class="cart-header">
+                <h3>Shopping Bag</h3>
+                <button class="qty-btn" onclick="toggleCartDrawer(false)"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="cart-body" id="cartItems"></div>
+            <div class="cart-footer">
+                <div class="total-row">
+                    <span>Total Amount:</span>
+                    <span id="cartTotal">₹0</span>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast">
+        <i class="fa-solid fa-circle-check" style="color: var(--success);"></i>
+        <span id="toastMsg">Action completed!</span>
+    </div>
+
+    <!-- JS File Link -->
+    <script src="script.js"></script>
+</body>
+</html>
     </script>
 </body>
 </html>
