@@ -234,6 +234,267 @@
             <a href="https://wa.me/" class="btn btn-whatsapp-large"><i class="fab fa-whatsapp"></i> ORDER NOW</a>
         </div>
     </section>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishwash Namkeen - Pure Taste, True Trust</title>
+    <!-- Font Awesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container navbar">
+            <div class="logo">
+                <h2>VISHWASH</h2>
+                <span>- NAMKEEN -</span>
+            </div>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#home" class="active">HOME</a>
+                <a href="#about">ABOUT</a>
+                <a href="#products">PRODUCTS</a>
+                <a href="#founder">FOUNDER</a>
+                <a href="#contact">CONTACT</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="javascript:void(0)" class="icon-btn" id="search-btn"><i class="fas fa-search"></i></a>
+                <!-- Cart Trigger Icon -->
+                <a href="javascript:void(0)" class="icon-btn cart-icon" id="cart-drawer-toggle">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="badge" id="cart-count">0</span>
+                </a>
+                <a href="https://wa.me/" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> ORDER NOW</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Image Slider -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-text">
+                <span class="sub-title"><i class="fas fa-leaf"></i> PREMIUM QUALITY</span>
+                <h1>Pure Taste,<br>True Trust</h1>
+                <p class="tagline">Har Bite Me Desi Swad Ka Maza!</p>
+
+                <div class="hero-features">
+                    <div class="feat-item"><i class="fas fa-leaf"></i> <span>100% VEG</span></div>
+                    <div class="feat-item"><i class="fas fa-award"></i> <span>PREMIUM QUALITY</span></div>
+                    <div class="feat-item"><i class="fas fa-seedling"></i> <span>FRESH & CRISPY</span></div>
+                </div>
+
+                <div class="hero-btns">
+                    <a href="#products" class="btn btn-primary"><i class="fas fa-shopping-cart"></i> SHOP NOW</a>
+                    <a href="#about" class="btn btn-outline">EXPLORE MORE &rarr;</a>
+                </div>
+            </div>
+
+            <!-- HERO IMAGE SLIDER -->
+            <div class="hero-slider-wrapper">
+                <div class="hero-slider" id="heroSlider">
+                    <div class="slide active">
+                        <img src="Hiro.jpg.png" alt="Vishwash Namkeen Special">
+                    </div>
+                    <div class="slide">
+                        <img src="BHAKARWADI.PNG.png" alt="Bhakarwadi Special">
+                    </div>
+                    <div class="slide">
+                        <img src="NADIYADIMIX.PNG.png" alt="Nadiyadi Mix">
+                    </div>
+                </div>
+                <!-- Slider Nav Controls -->
+                <button class="slider-btn prev-btn" id="prevSlide">&lt;</button>
+                <button class="slider-btn next-btn" id="nextSlide">&gt;</button>
+
+                <div class="veg-badge">
+                    <span>100%</span>
+                    <span>VEG</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>OUR PRODUCTS</h2>
+                <p>Taste the goodness of our premium namkeen</p>
+            </div>
+
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-id="1" data-name="Bhakarwadi" data-price="180" data-img="BHAKARWADI.PNG.png">
+                    <span class="discount-tag">10% OFF</span>
+                    <div class="product-img">
+                        <img src="BHAKARWADI.PNG.png" alt="Bhakarwadi">
+                    </div>
+                    <h3>BHAKARWADI</h3>
+                    <p class="desc">Crispy & Spicy</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price">
+                        <span class="current">₹180</span>
+                        <span class="original">₹200</span>
+                    </div>
+                    <div class="card-btn-group">
+                        <button class="btn-card add-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                        <button class="btn-card buy-now-btn"><i class="fas fa-bolt"></i> Buy Now</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-id="2" data-name="Dal Mooth Mix" data-price="170" data-img="NADIYADIMIX.PNG.png">
+                    <span class="discount-tag">15% OFF</span>
+                    <div class="product-img">
+                        <img src="NADIYADIMIX.PNG.png" alt="Dal Mooth">
+                    </div>
+                    <h3>DAL MOOTH MIX</h3>
+                    <p class="desc">Crunchy & Healthy</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price">
+                        <span class="current">₹170</span>
+                        <span class="original">₹200</span>
+                    </div>
+                    <div class="card-btn-group">
+                        <button class="btn-card add-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                        <button class="btn-card buy-now-btn"><i class="fas fa-bolt"></i> Buy Now</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card" data-id="3" data-name="Punjabi Mix" data-price="190" data-img="PUNJABIMIX.PNG.png">
+                    <span class="discount-tag">12% OFF</span>
+                    <div class="product-img">
+                        <img src="PUNJABIMIX.PNG.png" alt="Punjabi Mix">
+                    </div>
+                    <h3>PUNJABI MIX</h3>
+                    <p class="desc">Perfect Blend</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price">
+                        <span class="current">₹190</span>
+                        <span class="original">₹215</span>
+                    </div>
+                    <div class="card-btn-group">
+                        <button class="btn-card add-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                        <button class="btn-card buy-now-btn"><i class="fas fa-bolt"></i> Buy Now</button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card" data-id="4" data-name="Methi Puri" data-price="160" data-img="METHIPURI.PNG.jpeg">
+                    <span class="discount-tag">10% OFF</span>
+                    <div class="product-img">
+                        <img src="METHIPURI.PNG.jpeg" alt="Methi Puri">
+                    </div>
+                    <h3>METHI PURI</h3>
+                    <p class="desc">Crispy & Tasty</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price">
+                        <span class="current">₹160</span>
+                        <span class="original">₹180</span>
+                    </div>
+                    <div class="card-btn-group">
+                        <button class="btn-card add-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                        <button class="btn-card buy-now-btn"><i class="fas fa-bolt"></i> Buy Now</button>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="product-card" data-id="5" data-name="Bingo Masala Peanuts" data-price="140" data-img="BINGOMASALA.PNG.png">
+                    <span class="discount-tag">15% OFF</span>
+                    <div class="product-img">
+                        <img src="BINGOMASALA.PNG.png" alt="Bingo Masala">
+                    </div>
+                    <h3>MASALA PEANUTS</h3>
+                    <p class="desc">Spicy & Crunchy</p>
+                    <div class="stars">★★★★★</div>
+                    <div class="price">
+                        <span class="current">₹140</span>
+                        <span class="original">₹165</span>
+                    </div>
+                    <div class="card-btn-group">
+                        <button class="btn-card add-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                        <button class="btn-card buy-now-btn"><i class="fas fa-bolt"></i> Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOUNDER SECTION -->
+    <section class="founder-section" id="founder">
+        <div class="container founder-container">
+            <div class="founder-img-box">
+                <!-- Founder image from your repository -->
+                <img src="founder.jpg" alt="Founder of Vishwash Namkeen">
+            </div>
+            <div class="founder-text">
+                <span class="sub-title"><i class="fas fa-quote-left"></i> OUR VISION</span>
+                <h2>Message From Founder</h2>
+                <p>"Hamara maksad aapko shuddh, swadist, aur uchtam gunvatta wala namkeen bina kisi compromise ke aapke ghar tak pahunchana hai. Vishwash Namkeen par aapka bharosa hi hamari sabse badi kamyabi hai."</p>
+                <div class="founder-details">
+                    <h4>Vishwash Namkeen Team</h4>
+                    <span>Founder & CEO</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UNIQUE SLIDING CART DRAWER -->
+    <div class="cart-drawer-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-bag"></i> Your Wish Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+
+        <div class="cart-body" id="cartBody">
+            <!-- Dynamic items will be injected via JS -->
+            <p class="empty-msg">Your cart is empty!</p>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="cartSubtotal">₹0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Delivery:</span>
+                    <span class="free-text">Calculated at Checkout</span>
+                </div>
+                <hr>
+                <div class="summary-row total-row">
+                    <span>Total Amount:</span>
+                    <span id="cartTotal">₹0</span>
+                </div>
+            </div>
+            <button class="btn btn-whatsapp-large btn-checkout" id="checkoutBtn">
+                <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2026 Vishwash Namkeen. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
 
     <!-- JavaScript File -->
     <script src="script.js"></script>
