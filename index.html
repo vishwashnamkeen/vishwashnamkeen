@@ -1,742 +1,285 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vishwash Namkeen | Pure Taste, True Trust</title>
-    <!-- FontAwesome for Premium Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Vishwash Namkeen - Authentic & Premium Taste</title>
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Custom Style Sheet -->
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Top Announcement Bar -->
+    <!-- TOP ANNOUNCEMENT BAR -->
     <div class="top-bar">
         <div class="container top-bar-content">
-            <p><i class="fas fa-bullhorn"></i> SPECIAL OFFER! Get <strong>10% OFF</strong> on your first order. Use Code: <span class="coupon-tag">VISHWASH10</span></p>
+            <span><span class="coupon-tag">OFFER</span> Get Free Shipping on Orders Above ₹499!</span>
             <div class="top-bar-contact">
-                <a href="tel:+918460183525"><i class="fas fa-phone-alt"></i> +918460183525</a>
+                <a href="tel:+919876543210"><i class="fas fa-phone-alt"></i> +91 98765 43210</a>
             </div>
         </div>
     </div>
 
-    <!-- Header / Navigation Bar -->
-    <header class="header" id="main-header">
+    <!-- HEADER / NAVBAR -->
+    <header class="header">
         <div class="container navbar">
-            <!-- Brand Logo -->
-            <a href="#home" class="logo">
-                <div class="logo-emblem">V</div>
+            <a href="#" class="logo">
+                <div class="logo-emblem">VN</div>
                 <div class="logo-text">
                     <h2>VISHWASH</h2>
-                    <span>- NAMKEEN -</span>
-                    <small>PREMIUM QUALITY</small>
+                    <span>NAMKEEN</span>
+                    <small>SWAD MEIN VISHWASH</small>
                 </div>
             </a>
 
-            <!-- Mobile Menu Hamburger Icon -->
-            <div class="menu-toggle" id="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </div>
-
-            <!-- Navigation Links -->
-            <nav class="nav-links" id="nav-menu">
-                <a href="#home" class="nav-item active">HOME</a>
-                <a href="#about" class="nav-item">ABOUT US</a>
-                <a href="#products" class="nav-item">OUR PRODUCTS</a>
-                <a href="#reviews" class="nav-item">REVIEWS</a>
-                <a href="#founder" class="nav-item">FOUNDER</a>
-                <a href="#contact" class="nav-item">CONTACT</a>
+            <nav class="nav-links" id="navLinks">
+                <a href="#home" class="nav-item active">Home</a>
+                <a href="#products" class="nav-item">Products</a>
+                <a href="#founder" class="nav-item">About Us</a>
+                <a href="#reviews" class="nav-item">Reviews</a>
             </nav>
 
-            <!-- Header Action Icons -->
             <div class="header-actions">
-                <!-- Search Button -->
-                <button class="action-icon-btn" id="search-toggle-btn" title="Search Products">
-                    <i class="fas fa-search"></i>
+                <button class="action-icon-btn wishlist-trigger" id="wishlistBtn">
+                    <i class="far fa-heart"></i>
+                    <span class="badge badge-red" id="wishlistCount">0</span>
                 </button>
-
-                <!-- Unique Wishlist Icon with Dynamic Badge -->
-                <button class="action-icon-btn wishlist-trigger" id="wishlist-btn" title="Your Wishlist">
-                    <i class="fa-solid fa-heart"></i>
-                    <span class="badge badge-gold" id="wishlist-count">0</span>
-                </button>
-
-                <!-- Shopping Cart Icon with Dynamic Badge -->
-                <button class="action-icon-btn cart-trigger" id="cart-drawer-btn" title="Shopping Cart">
+                <button class="action-icon-btn cart-trigger" id="cartBtn">
                     <i class="fas fa-shopping-bag"></i>
-                    <span class="badge badge-red" id="cart-count">0</span>
+                    <span class="badge badge-gold" id="cartCount">0</span>
                 </button>
-
-                <!-- Direct WhatsApp Order Button -->
-                <a href="https://wa.me/" target="_blank" class="btn btn-whatsapp header-wa-btn">
-                    <i class="fab fa-whatsapp"></i> ORDER NOW
-                </a>
-            </div>
-        </div>
-
-        <!-- Hidden Search Bar (Toggles on Search Click) -->
-        <div class="search-overlay" id="search-overlay">
-            <div class="container search-container">
-                <input type="text" id="search-input" placeholder="Search for Bhakarwadi, Dal Mooth, Peanuts...">
-                <button id="close-search-btn"><i class="fas fa-times"></i></button>
+                <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             </div>
         </div>
     </header>
 
-    <!-- Main Hero Banner with Image Slider -->
+    <!-- HERO SECTION & SLIDER -->
     <section class="hero" id="home">
         <div class="container hero-container">
-            <!-- Hero Left Text Content -->
             <div class="hero-text">
-                <div class="premium-badge">
-                    <i class="fas fa-leaf"></i> 100% PURE & FRESH
-                </div>
-                <h1>Pure Taste,<br><span class="text-gold">True Trust</span></h1>
-                <p class="tagline">Har Bite Me Desi Swad Ka Maza!</p>
-
-                <!-- Feature Highlights Grid -->
+                <span class="premium-badge"><i class="fas fa-crown"></i> PREMIUM QUALITY NAMKEEN</span>
+                <h1>Traditional Taste, <br><span class="text-gold">Pure Quality!</span></h1>
+                <p class="tagline">Sudh tel aur premium masaalo se bani Vishwash Namkeen ke har bite me paayein asli Indore aur Ratlam ka swad.</p>
+                
                 <div class="hero-features-grid">
-                    <div class="feat-box">
-                        <i class="fas fa-leaf"></i>
-                        <div>
-                            <strong>100% VEG</strong>
-                            <small>Pure & Healthy</small>
-                        </div>
-                    </div>
-                    <div class="feat-box">
-                        <i class="fas fa-award"></i>
-                        <div>
-                            <strong>PREMIUM QUALITY</strong>
-                            <small>Best Ingredients</small>
-                        </div>
-                    </div>
-                    <div class="feat-box">
-                        <i class="fas fa-fire"></i>
-                        <div>
-                            <strong>FRESH & CRISPY</strong>
-                            <small>Hygiene Packed</small>
-                        </div>
-                    </div>
-                    <div class="feat-box">
-                        <i class="fas fa-truck-fast"></i>
-                        <div>
-                            <strong>FAST DELIVERY</strong>
-                            <small>Direct To Door</small>
-                        </div>
-                    </div>
+                    <div class="feat-box"><i class="fas fa-leaf"></i> <div><strong>100% Pure Veg</strong><small>Hygiene Guaranteed</small></div></div>
+                    <div class="feat-box"><i class="fas fa-shipping-fast"></i> <div><strong>Fast Delivery</strong><small>Direct to Doorstep</small></div></div>
                 </div>
 
-                <!-- Call To Action Buttons -->
                 <div class="hero-btns">
-                    <a href="#products" class="btn btn-red-gold"><i class="fas fa-shopping-cart"></i> SHOP PRODUCTS</a>
-                    <a href="#about" class="btn btn-outline-gold"><i class="fas fa-compass"></i> EXPLORE MORE &rarr;</a>
+                    <a href="#products" class="btn btn-red-gold"><i class="fas fa-store"></i> Shop Products</a>
+                    <a href="https://wa.me/919876543210" class="btn btn-outline-gold" target="_blank"><i class="fab fa-whatsapp"></i> Quick Inquiry</a>
                 </div>
             </div>
 
-            <!-- Hero Right Interactive Slider -->
+            <!-- Hero Image Slider -->
             <div class="hero-slider-container">
-                <div class="slider-wrapper" id="hero-slider">
+                <button class="slider-arrow prev" id="slidePrev"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-wrapper">
                     <div class="slide-item active">
-                        <img src="Hiro.jpg.png" alt="Vishwash Special Mix">
-                        <div class="slide-caption">Special Namkeen Pack</div>
+                        <img src="BHAKARWADI.PNG.png" alt="Special Bhakarwadi">
+                        <div class="slide-caption">Special Crunchy Bhakarwadi</div>
                     </div>
                     <div class="slide-item">
-                        <img src="BHAKARWADI.PNG.png" alt="Crispy Bhakarwadi">
-                        <div class="slide-caption">Crispy Bhakarwadi</div>
-                    </div>
-                    <div class="slide-item">
-                        <img src="NADIYADIMIX.PNG.png" alt="Nadiyadi Mix">
-                        <div class="slide-caption">Nadiyadi Mixture</div>
-                    </div>
-                    <div class="slide-item">
-                        <img src="PUNJABIMIX.PNG.png" alt="Punjabi Mix">
-                        <div class="slide-caption">Punjabi Spicy Mix</div>
+                        <img src="Hiro.jpg.png" alt="Ratlami Sev">
+                        <div class="slide-caption">Spicy Ratlami Sev</div>
                     </div>
                 </div>
-
-                <!-- Slider Arrows -->
-                <button class="slider-arrow prev" id="slider-prev-btn"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-arrow next" id="slider-next-btn"><i class="fas fa-chevron-right"></i></button>
-
-                <!-- Veg Badge Badge -->
-                <div class="veg-seal-badge">
-                    <div class="veg-dot"></div>
-                    <span>100% VEG</span>
-                </div>
+                <button class="slider-arrow next" id="slideNext"><i class="fas fa-chevron-right"></i></button>
+                <div class="veg-seal-badge"><span class="veg-dot"></span> 100% Pure Veg</div>
             </div>
         </div>
     </section>
 
-    <!-- Trust Features Bar -->
+    <!-- TRUST FEATURES BAR -->
     <section class="trust-bar">
         <div class="container trust-grid">
             <div class="trust-item">
-                <div class="trust-icon"><i class="fas fa-leaf"></i></div>
-                <div class="trust-info">
-                    <h4>100% VEG</h4>
-                    <p>Pure & Healthy Preparation</p>
-                </div>
+                <div class="trust-icon"><i class="fas fa-award"></i></div>
+                <div class="trust-info"><h4>Premium Quality</h4><p>Handcrafted Recipes</p></div>
             </div>
             <div class="trust-item">
-                <div class="trust-icon"><i class="fas fa-shield-halved"></i></div>
-                <div class="trust-info">
-                    <h4>PREMIUM QUALITY</h4>
-                    <p>Handpicked Best Ingredients</p>
-                </div>
+                <div class="trust-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="trust-info"><h4>100% Hygienic</h4><p>Fresh & Safe Packing</p></div>
             </div>
             <div class="trust-item">
-                <div class="trust-icon"><i class="fas fa-truck-ramp-box"></i></div>
-                <div class="trust-info">
-                    <h4>FAST DELIVERY</h4>
-                    <p>On-Time Home Delivery</p>
-                </div>
+                <div class="trust-icon"><i class="fas fa-truck"></i></div>
+                <div class="trust-info"><h4>Fast Shipping</h4><p>All Over India</p></div>
             </div>
             <div class="trust-item">
                 <div class="trust-icon"><i class="fas fa-headset"></i></div>
-                <div class="trust-info">
-                    <h4>CUSTOMER SUPPORT</h4>
-                    <p>24/7 Dedicated Assistance</p>
-                </div>
+                <div class="trust-info"><h4>WhatsApp Support</h4><p>Instant Ordering</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Products Showcase Section -->
+    <!-- PRODUCTS GRID -->
     <section class="products-section" id="products">
         <div class="container">
             <div class="section-title text-center">
-                <span class="sub-heading">CRUNCHY & DELICIOUS</span>
-                <h2>OUR PREMIUM PRODUCTS</h2>
-                <div class="gold-divider"><span>❖</span></div>
-                <p>Taste the richness of traditional Indian spices and authentic recipe</p>
+                <span class="sub-heading">OUR BESTSELLERS</span>
+                <h2>Swad Jo Dil Jeet Le</h2>
+                <div class="gold-divider"><i class="fas fa-crown"></i></div>
             </div>
 
-            <!-- Products Grid -->
             <div class="products-grid">
-
-                <!-- Product Card 1 -->
-                <div class="product-card" data-id="1" data-name="Bhakarwadi" data-price="180" data-img="BHAKARWADI.PNG.png">
+                <!-- Product 1 -->
+                <div class="product-card" data-name="Special Bhakarwadi" data-price="180">
                     <span class="discount-badge">10% OFF</span>
-                    
-                    <!-- Unique Wishlist Icon -->
-                    <button class="card-wishlist-btn" title="Add to Wishlist">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-
+                    <button class="card-wishlist-btn"><i class="far fa-heart"></i></button>
                     <div class="product-img-holder">
-                        <img src="BHAKARWADI.PNG.png" alt="Bhakarwadi">
+                        <img src="BHAKARWADI.PNG.png" alt="Special Bhakarwadi">
                     </div>
-
                     <div class="product-details">
-                        <span class="category-tag">Traditional Swad</span>
-                        <h3>BHAKARWADI</h3>
-                        <p class="desc">Crispy, Sweet & Spicy Roll</p>
-                        
-                        <div class="rating-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(4.9/5)</span>
-                        </div>
-
+                        <span class="category-tag">Sweet & Spicy</span>
+                        <h3>Special Bhakarwadi</h3>
+                        <p class="desc">Crispy rolled snack with sweet and spicy masala filling.</p>
+                        <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(4.9)</span></div>
                         <div class="price-row">
-                            <div class="price-box">
-                                <span class="current-price">₹180</span>
-                                <span class="original-price">₹200</span>
-                            </div>
-                            <span class="weight-tag">400g Pack</span>
+                            <div><span class="current-price">₹180</span><span class="original-price">₹200</span></div>
+                            <span class="weight-tag">500g</span>
                         </div>
-
                         <div class="card-action-btns">
-                            <button class="btn-card add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
-                            <button class="btn-card buy-now-btn"><i class="fas fa-bolt"></i> Buy Now</button>
+                            <button class="btn-card add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add Cart</button>
+                            <button class="btn-card buy-now-btn">Buy Now</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product Card 2 -->
-                <div class="product-card" data-id="2" data-name="Dal Mooth Mix" data-price="170" data-img="NADIYADIMIX.PNG.png">
+                <!-- Product 2 -->
+                <div class="product-card" data-name="Indori Ratlami Sev" data-price="160">
                     <span class="discount-badge">15% OFF</span>
-                    
-                    <button class="card-wishlist-btn" title="Add to Wishlist">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-
+                    <button class="card-wishlist-btn"><i class="far fa-heart"></i></button>
                     <div class="product-img-holder">
-                        <img src="NADIYADIMIX.PNG.png" alt="Dal Mooth / Nadiyadi Mix">
+                        <img src="Hiro.jpg.png" alt="Ratlami Sev">
                     </div>
-
-                    <div class="product-details">
-                        <span class="category-tag">Crunchy Mixture</span>
-                        <h3>DAL MOOTH MIX</h3>
-                        <p class="desc">Crunchy & Healthy Roasted Dal</p>
-
-                        <div class="rating-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>(4.8/5)</span>
-                        </div>
-
-                        <div class="price-row">
-                            <div class="price-box">
-                                <span class="current-price">₹170</span>
-                                <span class="original-price">₹200</span>
-                            </div>
-                            <span class="weight-tag">500g Pack</span>
-                        </div>
-
-                        <div class="card-action-btns">
-                            <button class="btn-card add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
-                            <button class="btn-card buy-now-btn"><i class="fas fa-bolt"></i> Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 3 -->
-                <div class="product-card" data-id="3" data-name="Punjabi Mix" data-price="190" data-img="PUNJABIMIX.PNG.png">
-                    <span class="discount-badge">12% OFF</span>
-
-                    <button class="card-wishlist-btn" title="Add to Wishlist">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-
-                    <div class="product-img-holder">
-                        <img src="PUNJABIMIX.PNG.png" alt="Punjabi Mix">
-                    </div>
-
                     <div class="product-details">
                         <span class="category-tag">Spicy Special</span>
-                        <h3>PUNJABI MIX</h3>
-                        <p class="desc">Perfect Blend of Sev & Spices</p>
-
-                        <div class="rating-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(5.0/5)</span>
-                        </div>
-
+                        <h3>Indori Ratlami Sev</h3>
+                        <p class="desc">Authentic clove-flavored spicy gram flour noodles.</p>
+                        <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><span>(5.0)</span></div>
                         <div class="price-row">
-                            <div class="price-box">
-                                <span class="current-price">₹190</span>
-                                <span class="original-price">₹215</span>
-                            </div>
-                            <span class="weight-tag">500g Pack</span>
+                            <div><span class="current-price">₹160</span><span class="original-price">₹190</span></div>
+                            <span class="weight-tag">500g</span>
                         </div>
-
                         <div class="card-action-btns">
-                            <button class="btn-card add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
-                            <button class="btn-card buy-now-btn"><i class="fas fa-bolt"></i> Buy Now</button>
+                            <button class="btn-card add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add Cart</button>
+                            <button class="btn-card buy-now-btn">Buy Now</button>
                         </div>
                     </div>
                 </div>
-
-                <!-- Product Card 4 -->
-                <div class="product-card" data-id="4" data-name="Methi Puri" data-price="160" data-img="METHIPURI.PNG.jpeg">
-                    <span class="discount-badge">10% OFF</span>
-
-                    <button class="card-wishlist-btn" title="Add to Wishlist">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-
-                    <div class="product-img-holder">
-                        <img src="METHIPURI.PNG.jpeg" alt="Methi Puri">
-                    </div>
-
-                    <div class="product-details">
-                        <span class="category-tag">Tea Time Snack</span>
-                        <h3>METHI PURI / MATHRI</h3>
-                        <p class="desc">Crispy & Flavored Mathri</p>
-
-                        <div class="rating-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(4.9/5)</span>
-                        </div>
-
-                        <div class="price-row">
-                            <div class="price-box">
-                                <span class="current-price">₹160</span>
-                                <span class="original-price">₹180</span>
-                            </div>
-                            <span class="weight-tag">400g Pack</span>
-                        </div>
-
-                        <div class="card-action-btns">
-                            <button class="btn-card add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
-                            <button class="btn-card buy-now-btn"><i class="fas fa-bolt"></i> Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 5 -->
-                <div class="product-card" data-id="5" data-name="Masala Peanuts" data-price="140" data-img="BINGOMASALA.PNG.png">
-                    <span class="discount-badge">15% OFF</span>
-
-                    <button class="card-wishlist-btn" title="Add to Wishlist">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-
-                    <div class="product-img-holder">
-                        <img src="BINGOMASALA.PNG.png" alt="Masala Peanuts">
-                    </div>
-
-                    <div class="product-details">
-                        <span class="category-tag">Spicy Snack</span>
-                        <h3>MASALA PEANUTS</h3>
-                        <p class="desc">Coated Crunchy Peanuts</p>
-
-                        <div class="rating-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                            <span>(4.7/5)</span>
-                        </div>
-
-                        <div class="price-row">
-                            <div class="price-box">
-                                <span class="current-price">₹140</span>
-                                <span class="original-price">₹165</span>
-                            </div>
-                            <span class="weight-tag">350g Pack</span>
-                        </div>
-
-                        <div class="card-action-btns">
-                            <button class="btn-card add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
-                            <button class="btn-card buy-now-btn"><i class="fas fa-bolt"></i> Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 6 -->
-                <div class="product-card" data-id="6" data-name="Bingo Pani Puri Snack" data-price="150" data-img="BINGOPANIPURI.PNG.png">
-                    <span class="discount-badge">12% OFF</span>
-
-                    <button class="card-wishlist-btn" title="Add to Wishlist">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-
-                    <div class="product-img-holder">
-                        <img src="BINGOPANIPURI.PNG.png" alt="Bingo Pani Puri">
-                    </div>
-
-                    <div class="product-details">
-                        <span class="category-tag">Tangy Crunch</span>
-                        <h3>BINGO PANI PURI</h3>
-                        <p class="desc">Tangy & Chatpata Flavor</p>
-
-                        <div class="rating-stars">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <span>(4.9/5)</span>
-                        </div>
-
-                        <div class="price-row">
-                            <div class="price-box">
-                                <span class="current-price">₹150</span>
-                                <span class="original-price">₹170</span>
-                            </div>
-                            <span class="weight-tag">400g Pack</span>
-                        </div>
-
-                        <div class="card-action-btns">
-                            <button class="btn-card add-to-cart-btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
-                            <button class="btn-card buy-now-btn"><i class="fas fa-bolt"></i> Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Special Promo Offer Banner -->
-    <section class="promo-banner">
-        <div class="container promo-container">
-            <div class="promo-content">
-                <i class="fas fa-gift promo-icon"></i>
-                <div class="promo-text">
-                    <h3>SPECIAL OFFER FOR NEW CUSTOMERS!</h3>
-                    <p>Get <strong>10% INSTANT DISCOUNT</strong> on your first WhatsApp order.</p>
-                </div>
-            </div>
-            <div class="promo-coupon-box">
-                <small>COUPON CODE:</small>
-                <strong>VISHWASH10</strong>
-            </div>
-            <a href="https://wa.me/" target="_blank" class="btn btn-red-gold promo-btn">
-                <i class="fab fa-whatsapp"></i> CLAIM DISCOUNT NOW
-            </a>
-        </div>
-    </section>
-
-    <!-- Founder Message Section -->
+    <!-- FOUNDER SECTION -->
     <section class="founder-section" id="founder">
         <div class="container founder-container">
             <div class="founder-image-wrapper">
-                <!-- Founder image from github repository -->
-                <img src="founder.jpg" alt="Founder of Vishwash Namkeen">
-                <div class="founder-seal">
-                    <i class="fas fa-award"></i>
-                    <span>AUTHENTIC RECIPE</span>
-                </div>
+                <img src="founder.jpg" alt="Founder Vishwash Namkeen">
+                <div class="founder-seal"><i class="fas fa-check-circle"></i> Quality Approved</div>
             </div>
-
             <div class="founder-content">
-                <span class="sub-heading"><i class="fas fa-quote-left"></i> OUR VISION & PROMISE</span>
-                <h2>MESSAGE FROM OUR FOUNDER</h2>
+                <span class="sub-heading">BEHIND THE BRAND</span>
+                <h2>Meet Our Founder</h2>
                 <div class="gold-line"></div>
-                <p class="founder-quote">
-                    "Hamara ek hi uddeshya hai — aapke ghar tak bilkul shuddh, swadist, aur uchtam quality ka namkeen pahunchana. Hum har ek product me wahi desi swad aur apnapan daalte hain jis par aap bina kisi jhijhak ke bharosa kar sakein."
-                </p>
+                <p class="founder-quote">"Hamara maqsad sirf namkeen bechna nahi, balki har ghar tak sudh, swadist aur sabse behtar quality ka namkeen pahunchana hai."</p>
                 <div class="founder-info">
-                    <h4>Vishwash Namkeen Management</h4>
-                    <span>Founder & CEO, Vishwash Namkeen</span>
-                </div>
-                <div class="founder-features">
-                    <span><i class="fas fa-check-circle"></i> 100% Quality Tested</span>
-                    <span><i class="fas fa-check-circle"></i> Traditional Recipe</span>
-                    <span><i class="fas fa-check-circle"></i> Pure Ingredients</span>
+                    <h4>Vishwash Namkeen Team</h4>
+                    <span>Master Craftsmen of Taste</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Wishlist & Cart Sliding Drawer -->
-    <div class="drawer-overlay" id="drawer-overlay"></div>
-
-    <div class="sliding-drawer" id="sliding-drawer">
-        <!-- Drawer Header -->
-        <div class="drawer-header">
-            <div class="drawer-tabs">
-                <button class="drawer-tab-btn active" id="tab-cart-btn"><i class="fas fa-shopping-bag"></i> Cart (<span id="drawer-cart-num">0</span>)</button>
-                <button class="drawer-tab-btn" id="tab-wishlist-btn"><i class="fas fa-heart"></i> Wishlist (<span id="drawer-wishlist-num">0</span>)</button>
-            </div>
-            <button class="close-drawer-btn" id="close-drawer-btn">&times;</button>
-        </div>
-
-        <!-- Drawer Body Content -->
-        <div class="drawer-body" id="drawer-body">
-            <!-- Dynamic Cart/Wishlist items injected by JavaScript -->
-            <div class="empty-state">
-                <i class="fas fa-basket-shopping"></i>
-                <p>Your list is currently empty!</p>
-            </div>
-        </div>
-
-        <!-- Drawer Footer with Automatic Calculation -->
-        <div class="drawer-footer" id="drawer-footer">
-            <div class="price-calculation-box">
-                <div class="calc-row">
-                    <span>Items Total:</span>
-                    <strong id="cart-subtotal">₹0</strong>
-                </div>
-                <div class="calc-row">
-                    <span>Delivery Charge:</span>
-                    <strong class="text-green">FREE</strong>
-                </div>
-                <hr>
-                <div class="calc-row grand-total-row">
-                    <span>Total Amount:</span>
-                    <strong class="text-gold" id="cart-grand-total">₹0</strong>
-                </div>
+    <!-- CUSTOMER REVIEWS SECTION -->
+    <section class="reviews-section" id="reviews">
+        <div class="container">
+            <div class="section-title text-center">
+                <span class="sub-heading">VOICE OF CUSTOMERS</span>
+                <h2>Aapka Vishwash, Hamara Swad</h2>
+                <div class="gold-divider"><i class="fas fa-crown"></i></div>
             </div>
 
-            <button class="btn btn-whatsapp-checkout" id="whatsapp-checkout-btn">
-                <i class="fab fa-whatsapp"></i> PLACE ORDER ON WHATSAPP
-            </button>
-        </div>
-    </div>
+            <div class="review-summary-box">
+                <div class="rating-big">
+                    <h1>4.9</h1>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p>500+ Happy Customers</p>
+                </div>
+                <button class="btn btn-red-gold" id="open-review-modal-btn"><i class="fas fa-pen"></i> Review Likhein</button>
+            </div>
 
-    <!-- Footer Section -->
-    <footer class="footer" id="contact">
+            <div class="reviews-grid" id="reviews-container">
+                <div class="review-card">
+                    <div class="review-user-info">
+                        <div class="user-avatar">R</div>
+                        <div><h4>Rahul Sharma</h4><span class="verified-tag"><i class="fas fa-check-circle"></i> Verified Buyer</span></div>
+                    </div>
+                    <div class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="review-text">"Ratlami Sev ka taste bilkul authentic hai! Super crunchy aur fresh quality."</p>
+                    <span class="review-date">2 days ago</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
         <div class="container footer-grid">
-            <div class="footer-col brand-col">
-                <div class="logo">
-                    <h2>VISHWASH</h2>
-                    <span>- NAMKEEN -</span>
-                </div>
-                <p>Authentic taste and premium quality namkeen made with love and traditional Indian recipes.</p>
+            <div class="brand-col">
+                <a href="#" class="logo">
+                    <div class="logo-emblem">VN</div>
+                    <div class="logo-text"><h2>VISHWASH</h2><span>NAMKEEN</span></div>
+                </a>
+                <p>Authentic Indori & Ratlami Taste delivered right to your home.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/vishwashnamkeen?igsh=MXdtMnR3MG1iOGdtOA==" target="_blank" class="social-btn instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/919876543210" target="_blank" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://facebook.com" target="_blank" class="social-btn facebook"><i class="fab fa-facebook-f"></i></a>
                 </div>
             </div>
-
             <div class="footer-col">
-                <h4>QUICK LINKS</h4>
+                <h4>Quick Links</h4>
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#products">Our Products</a></li>
-                    <li><a href="#founder">Founder Vision</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#founder">About Us</a></li>
+                    <li><a href="#reviews">Reviews</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
-                <h4>OUR PRODUCTS</h4>
-                <ul>
-                    <li><a href="#products">Bhakarwadi</a></li>
-                    <li><a href="#products">Dal Mooth Mix</a></li>
-                    <li><a href="#products">Punjabi Mixture</a></li>
-                    <li><a href="#products">Methi Puri</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>CONTACT US</h4>
-                <p><i class="fas fa-map-marker-alt"></i> Main Market, Vishwash Namkeen Depot</p>
-                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
-                <p><i class="fas fa-envelope"></i> info@vishwashnamkeen.com</p>
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-map-marker-alt text-gold"></i> Gujarat, India</p>
+                <p><i class="fas fa-phone text-gold"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope text-gold"></i> info@vishwashnamkeen.com</p>
             </div>
         </div>
-
         <div class="footer-bottom text-center">
-            <div class="container">
-                <p>&copy; 2026 Vishwash Namkeen. All Rights Reserved. Designed for Pure Taste.</p>
-            </div>
+            <p>&copy; 2026 Vishwash Namkeen. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- Main JavaScript File -->
+    <!-- REVIEW MODAL FORM -->
+    <div class="review-modal-overlay" id="review-modal-overlay">
+        <div class="review-modal">
+            <button class="close-modal-btn" id="close-review-modal">&times;</button>
+            <h3>Apna Feedback Share Karein</h3>
+            <form id="review-form">
+                <div class="form-group"><label>Aapka Naam</label><input type="text" id="reviewer-name" required></div>
+                <div class="form-group"><label>Review</label><textarea id="reviewer-text" rows="3" required></textarea></div>
+                <button type="submit" class="btn btn-red-gold style-full">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/919876543210?text=Hello%20Vishwash%20Namkeen!" target="_blank" class="floating-whatsapp-btn">
+        <i class="fab fa-whatsapp"></i> <span>Fast Order</span>
+    </a>
+
     <script src="script.js"></script>
-    <!-- ==========================================
-     CUSTOMER REVIEWS & RATING SECTION
-     ========================================== -->
-<section class="reviews-section" id="reviews">
-    <div class="container">
-        <div class="section-title text-center">
-            <span class="sub-heading">VOICE OF OUR CUSTOMERS</span>
-            <h2>Aapka Vishwash, Hamara Swad</h2>
-            <div class="gold-divider"><i class="fas fa-crown"></i></div>
-        </div>
-
-        <!-- Review Summary Banner -->
-        <div class="review-summary-box">
-            <div class="rating-big">
-                <h1>4.9</h1>
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p>Based on 500+ Happy Customers</p>
-            </div>
-            <button class="btn btn-red-gold" id="open-review-modal-btn">
-                <i class="fas fa-pen"></i> Apna Review Likhein
-            </button>
-        </div>
-
-        <!-- Customer Reviews Grid -->
-        <div class="reviews-grid" id="reviews-container">
-            <!-- Review 1 -->
-            <div class="review-card">
-                <div class="review-user-info">
-                    <div class="user-avatar">R</div>
-                    <div>
-                        <h4>Rahul Sharma</h4>
-                        <span class="verified-tag"><i class="fas fa-check-circle"></i> Verified Buyer</span>
-                    </div>
-                </div>
-                <div class="rating-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="review-text">"Ratlami Sev ka taste bilkul authentic hai! Crunchy aur perfect spices. Packaging bhi 10/10 thi."</p>
-                <span class="review-date">2 din pehle</span>
-            </div>
-
-            <!-- Review 2 -->
-            <div class="review-card">
-                <div class="review-user-info">
-                    <div class="user-avatar gold">P</div>
-                    <div>
-                        <h4>Priya Patel</h4>
-                        <span class="verified-tag"><i class="fas fa-check-circle"></i> Verified Buyer</span>
-                    </div>
-                </div>
-                <div class="rating-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                </div>
-                <p class="review-text">"Direct WhatsApp se order ho gaya aur super fast delivery mili. Shahi Mixture ghar me sabko bohot pasand aaya!"</p>
-                <span class="review-date">1 hafte pehle</span>
-            </div>
-
-            <!-- Review 3 -->
-            <div class="review-card">
-                <div class="review-user-info">
-                    <div class="user-avatar red">A</div>
-                    <div>
-                        <h4>Amit Verma</h4>
-                        <span class="verified-tag"><i class="fas fa-check-circle"></i> Verified Buyer</span>
-                    </div>
-                </div>
-                <div class="rating-stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                </div>
-                <p class="review-text">"Hygiene aur quality me koi samjhota nahi hai. Pure oil aur fresh taste lagta hai. Highly recommended!"</p>
-                <span class="review-date">2 hafte pehle</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ==========================================
-     WRITE REVIEW MODAL (POPUP FORM)
-     ========================================== -->
-<div class="review-modal-overlay" id="review-modal-overlay">
-    <div class="review-modal">
-        <button class="close-modal-btn" id="close-review-modal">&times;</button>
-        <h3>Apna Feedback & Review Share Karein</h3>
-        <p>Aapka review baki customers ke liye madadgar hoga!</p>
-        
-        <form id="review-form">
-            <div class="form-group">
-                <label>Aapka Naam</label>
-                <input type="text" id="reviewer-name" placeholder="Apna naam darj karein" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Rating Choose Karein</label>
-                <div class="star-rating-select" id="star-select">
-                    <i class="far fa-star" data-rating="1"></i>
-                    <i class="far fa-star" data-rating="2"></i>
-                    <i class="far fa-star" data-rating="3"></i>
-                    <i class="far fa-star" data-rating="4"></i>
-                    <i class="far fa-star" data-rating="5"></i>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Aapka Anubhav / Review</label>
-                <textarea id="reviewer-text" rows="3" placeholder="Namkeen ka swad, delivery ya packaging kaisi lagi?" required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-red-gold style-full">Submit Review</button>
-        </form>
-    </div>
-</div>
-
-<!-- FLOATING QUICK WHATSAPP ORDER BUTTON -->
-<a href="https://wa.me/919876543210?text=Hello%20Vishwash%20Namkeen!%20I%20want%20to%20place%20an%20order." target="_blank" class="floating-whatsapp-btn" title="Quick Order on WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-    <span>Fast Order</span>
-</a>
 </body>
 </html>
