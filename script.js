@@ -1,6 +1,5 @@
 /* ==========================================================================
-   VISHWASH NAMKEEN - ADVANCED INTERACTIVE SCRIPT
-   Features: Light On Effects, Voice Confirmation, Buy Now & WhatsApp Integration
+   VISHWASH NAMKEEN - COMPLETE JS WITH WORKING WISHLIST & EFFECTS
    ========================================================================== */
 
 // 1. PRODUCT DATABASE
@@ -14,7 +13,7 @@ const products = [
     { id: 7, name: "Punjabi Mix", price: 150, image: "PUNJABIMIX.PNG.png", weight: "300g" }
 ];
 
-// Local State
+// Local Storage State
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
 
@@ -25,11 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
     updateWishlistUI();
 });
 
-// 3. VOICE CONFIRMATION FUNCTION (Web Speech API)
+// 3. VOICE CONFIRMATION
 function playOrderSuccessVoice() {
     if ('speechSynthesis' in window) {
-        const speech = new SpeechSynthesisUtterance();
-        speech.text = "Your order is successfully placed!";
+        const speech = new SpeechSynthesisUtterance("Your order is successfully placed!");
         speech.volume = 1;
         speech.rate = 0.95;
         speech.pitch = 1.0;
@@ -39,13 +37,11 @@ function playOrderSuccessVoice() {
 }
 
 // 4. RENDER PRODUCTS TO HOME GRID
-// 4. RENDER PRODUCTS TO HOME GRID (WITH WORKING WISHLIST CLICK)
 function renderProducts() {
     const grid = document.getElementById('product-list');
     if (!grid) return;
 
     grid.innerHTML = products.map(p => {
-        // Check karein ki kya yeh product pehle se wishlist me hai
         const isWishlisted = wishlist.some(w => w.id === p.id);
 
         return `
@@ -53,10 +49,9 @@ function renderProducts() {
                 <div class="card-top">
                     <span class="card-badge">Fresh</span>
                     
-                    <!-- WISHLIST BUTTON WITH CLICK EVENT & VISUAL CHECK -->
-                    <span class="wishlist-icon-btn" onclick="toggleWishlist(${p.id}, this)" title="Add to Wishlist">
+                    <span class="wishlist-icon-btn" onclick="toggleWishlist(${p.id}, this)" style="cursor:pointer;" title="Add to Wishlist">
                         <i class="${isWishlisted ? 'fa-solid fa-heart' : 'fa-regular fa-heart'}" 
-                           style="${isWishlisted ? 'color:red;' : ''}"></i>
+                           style="${isWishlisted ? 'color:red;' : 'color:#d90429;'} font-size: 18px;"></i>
                     </span>
 
                     <img src="${p.image}" alt="${p.name}">
@@ -86,31 +81,7 @@ function renderProducts() {
     }).join('');
 }
 
-// 5. ADD TO CART
-function addToCart(id) {
-    const item = products.find(p => p.id === id);
-    cart.push(item);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartUI();
-    alert(`${item.name} Cart me add ho gaya!`);
-}
-
-// 6. INSTANT BUY NOW BUTTON
-function buyNow(id) {
-    const item = products.find(p => p.id === id);
-    cart = [item]; // Set as single item order
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartUI();
-    
-    // Scroll to checkout form
-    const checkoutElem = document.getElementById('checkout');
-    if (checkoutElem) {
-        checkoutElem.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-// 7. WISHLIST FUNCTIONALITY
-// UPDATED WISHLIST FUNCTION WITH VISUAL CHECK/TOGGLE
+// 5. WORKING WISHLIST TOGGLE
 function toggleWishlist(id, element) {
     const item = products.find(p => p.id === id);
     if (!item) return;
@@ -118,41 +89,36 @@ function toggleWishlist(id, element) {
     const existingIndex = wishlist.findIndex(w => w.id === id);
 
     if (existingIndex === -1) {
-        // Wishlist mein ADD karein
         wishlist.push(item);
-        alert(`❤️ ${item.name} Wishlist me add ho gaya!`);
-        
-        // Heart icon ko red aur filled banayein
         if (element) {
-            element.style.color = 'red';
-            element.innerHTML = '<i class="fa-solid fa-heart"></i>';
+            const icon = element.querySelector('i');
+            if (icon) {
+                icon.className = 'fa-solid fa-heart';
+                icon.style.color = 'red';
+            }
         }
     } else {
-        // Wishlist se REMOVE karein
         wishlist.splice(existingIndex, 1);
-        alert(`💔 ${item.name} Wishlist se hata diya gaya.`);
-        
-        // Heart icon ko regular reset karein
         if (element) {
-            element.style.color = '#d90429';
-            element.innerHTML = '<i class="fa-regular fa-heart"></i>';
+            const icon = element.querySelector('i');
+            if (icon) {
+                icon.className = 'fa-regular fa-heart';
+                icon.style.color = '#d90429';
+            }
         }
     }
 
-    // Save & Sync UI
     localStorage.setItem('wishlist', JSON.stringify(wishlist));
     updateWishlistUI();
 }
 
-// UPDATE WISHLIST MODAL/POPUP CONTENT & COUNT
+// 6. UPDATE WISHLIST DISPLAY & COUNT
 function updateWishlistUI() {
-    // 1. Badge count update
     const wishElem = document.getElementById('wishlist-count');
     if (wishElem) {
         wishElem.innerText = wishlist.length;
     }
 
-    // 2. Modal list render
     const wishlistContainer = document.getElementById('wishlist-items-container');
     if (wishlistContainer) {
         if (wishlist.length === 0) {
@@ -176,14 +142,42 @@ function updateWishlistUI() {
     }
 }
 
-function updateWishlistUI() {
-    const wishElem = document.getElementById('wishlist-count');
-    if (wishElem) {
-        wishElem.innerText = wishlist.length;
+// 7. WISHLIST MODAL OPEN/CLOSE
+function openWishlistModal() {
+    const modal = document.getElementById('wishlistModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        updateWishlistUI();
     }
 }
 
-// 8. UPDATE CART DISPLAY
+function closeWishlistModal() {
+    const modal = document.getElementById('wishlistModal');
+    if (modal) modal.style.display = 'none';
+}
+
+// 8. ADD TO CART & BUY NOW
+function addToCart(id) {
+    const item = products.find(p => p.id === id);
+    cart.push(item);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartUI();
+    alert(`${item.name} Cart me add ho gaya!`);
+}
+
+function buyNow(id) {
+    const item = products.find(p => p.id === id);
+    cart = [item];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartUI();
+    
+    const checkoutElem = document.getElementById('checkout');
+    if (checkoutElem) {
+        checkoutElem.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// 9. UPDATE CART UI
 function updateCartUI() {
     const cartCountElem = document.getElementById('cart-count');
     if (cartCountElem) {
@@ -226,16 +220,7 @@ function removeFromCart(index) {
     updateCartUI();
 }
 
-// 9. OPEN CART / CHECKOUT IN NEW TAB
-function openCartTab(event) {
-    event.preventDefault();
-    const checkoutElem = document.getElementById('checkout');
-    if (checkoutElem) {
-        checkoutElem.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-// 10. PROCESS WHATSAPP ORDER WITH VOICE SOUND
+// 10. WHATSAPP ORDER WITH VOICE
 function processWhatsAppOrder(e) {
     e.preventDefault();
 
@@ -266,24 +251,12 @@ function processWhatsAppOrder(e) {
                 `💳 *GRAND TOTAL:* ₹${grandTotal}%0A%0A` +
                 `Please confirm my order!`;
 
-    // 1. Play Voice: "Your order is successfully placed!"
     playOrderSuccessVoice();
 
-    // 2. Open WhatsApp in new tab
     setTimeout(() => {
         window.open(`https://wa.me/918460183525?text=${msg}`, '_blank');
-        
-        // Clear Cart after success
         cart = [];
         localStorage.removeItem('cart');
         updateCartUI();
     }, 800);
-}
-
-// 11. MOBILE DRAWER TOGGLE
-function toggleMobileMenu() {
-    const drawer = document.getElementById('mobileDrawer');
-    if (drawer) {
-        drawer.classList.toggle('active');
-    }
 }
