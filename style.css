@@ -90,6 +90,17 @@ font-size:18px;
 color:#bbb;
 margin-bottom:50px;
 }
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+}
+
+body{
+    padding-top:90px;
+}
 
 /* Buttons */
 
@@ -171,26 +182,19 @@ color:black;
 /* HERO */
 
 .hero{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:50px;
-}
-
-.left{
-width:50%;
-}
-
-.right{
-width:50%;
-display:flex;
-justify-content:center;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:50px;
+    min-height:100vh;
+    padding:120px 8% 60px;
 }
 
 .right img{
-width:420px;
-max-width:100%;
-display:block;
+    width:500px;
+    max-width:100%;
+    height:auto;
+    display:block;
 }
 
 .left{
