@@ -1,334 +1,304 @@
-/* ==========================================
-   VISHWASH NAMKEEN
-   SCRIPT.JS - PART 1
-========================================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-console.log("Vishwash Namkeen Loaded");
-
-/* ==========================
-   MOBILE MENU
-========================== */
-
-const mobileMenu = document.querySelector(".mobile-menu");
-
-const menuBtn = document.querySelector(".menu-btn");
-
-const menuClose = document.querySelector(".menu-close");
-
-if(menuBtn){
-
-menuBtn.addEventListener("click",()=>{
-
-mobileMenu.classList.add("active");
-
-});
-
-}
-
-if(menuClose){
-
-menuClose.addEventListener("click",()=>{
-
-mobileMenu.classList.remove("active");
-
-});
-
-}
-
-/* ==========================
-   CART SIDEBAR
-========================== */
-
-const cart = document.querySelector(".cart-sidebar");
-
-const cartBtn = document.querySelector(".cart-icon");
-
-const closeCart = document.querySelector(".close-cart");
-
-if(cartBtn){
-
-cartBtn.onclick=()=>{
-
-cart.classList.add("active");
-
-};
-
-}
-
-if(closeCart){
-
-closeCart.onclick=()=>{
-
-cart.classList.remove("active");
-
-};
-
-}
-
-/* ==========================
-   SEARCH POPUP
-========================== */
-
-const searchBtn=document.querySelector(".search-btn");
-
-const searchPopup=document.querySelector(".search-popup");
-
-const closeSearch=document.querySelector(".search-close");
-
-if(searchBtn){
-
-searchBtn.onclick=()=>{
-
-searchPopup.classList.add("active");
-
-};
-
-}
-
-if(closeSearch){
-
-closeSearch.onclick=()=>{
-
-searchPopup.classList.remove("active");
-
-};
-
-}
-
-/* ==========================
-   BACK TO TOP
-========================== */
-
-const topBtn=document.getElementById("topBtn");
-
-window.addEventListener("scroll",()=>{
-
-if(window.scrollY>300){
-
-topBtn.style.display="flex";
-
-}else{
-
-topBtn.style.display="none";
-
-}
-
-});
-
-if(topBtn){
-
-topBtn.onclick=()=>{
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-};
-
-}
-
-/* ==========================
-   SMOOTH LINKS
-========================== */
-
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-
-link.addEventListener("click", function(e) {
-
-const href = this.getAttribute("href");
-
-if (href === "#") return;
-
-const target = document.querySelector(href);
-
-if (target) {
-
-e.preventDefault();
-
-target.scrollIntoView({
-behavior: "smooth"
-});
-
-}
-
-});
-/* ==========================================
-   ADD TO CART + BUY NOW + QUANTITY
-========================================== */
+/*==================================
+      VISHWASH NAMKEEN
+      PROFESSIONAL SCRIPT
+==================================*/
 
 let cart = [];
-let cartCount = 0;
+let total = 0;
 
-/* Load Cart */
+/*==================================
+        ADD TO CART
+==================================*/
 
-if(localStorage.getItem("vishwashCart")){
-cart = JSON.parse(localStorage.getItem("vishwashCart"));
-cartCount = cart.length;
-updateCartCount();
-}
+function addToCart(name, price, image){
 
-/* Cart Counter */
+    const existing = cart.find(item => item.name === name);
 
-function updateCartCount(){
+    if(existing){
 
-const count=document.querySelector(".cart-count");
+        existing.quantity++;
 
-if(count){
+    }else{
 
-count.innerHTML=cartCount;
+        cart.push({
+            name: name,
+            price: price,
+            image: image,
+            quantity: 1
+        });
 
-}
+    }
 
-}
+    updateCart();
 
-/* Save Cart */
-
-function saveCart(){
-
-localStorage.setItem("vishwashCart",JSON.stringify(cart));
-
-}
-
-/* Notification */
-
-function showNotification(message){
-
-const notify=document.querySelector(".notification");
-
-if(!notify) return;
-
-notify.innerHTML=message;
-
-notify.style.display="block";
-
-setTimeout(()=>{
-
-notify.style.display="none";
-
-},2500);
+    showNotification(name + " added to cart");
 
 }
 
-/* Add To Cart */
+/*==================================
+        UPDATE CART
+==================================*/
 
-document.querySelectorAll(".cart-btn").forEach(button=>{
+function updateCart(){
 
-button.addEventListener("click",()=>{
+    const cartItems = document.getElementById("cart-items");
+    const cartCount = document.getElementById("cart-count");
+    const cartTotal = document.getElementById("cart-total");
 
-const product=button.closest(".product-card");
+    cartItems.innerHTML = "";
 
-const name=product.querySelector("h3").innerText;
+    total = 0;
 
-const price=product.querySelector(".sale").innerText;
+    let count = 0;
 
-const image=product.querySelector("img").src;
+    if(cart.length === 0){
 
-cart.push({
+        cartItems.innerHTML =
+        "<p class='empty-cart'>Your cart is empty.</p>";
 
-name,
+        cartCount.innerText = "0";
+        cartTotal.innerText = "0";
 
-price,
+        return;
+    }
 
-image,
+    cart.forEach((item,index)=>{
 
-qty:1
+        total += item.price * item.quantity;
+
+        count += item.quantity;
+
+        cartItems.innerHTML += `
+
+<div class="cart-item">
+
+<img src="${item.image}" alt="${item.name}">
+
+<div class="cart-details">
+
+<h4>${item.name}</h4>
+
+<p>₹${item.price}</p>
+
+<div class="quantity-box">
+
+<button onclick="decreaseQuantity(${index})">-</button>
+
+<span>${item.quantity}</span>
+
+<button onclick="increaseQuantity(${index})">+</button>
+
+</div>
+
+<button class="remove-btn"
+onclick="removeItem(${index})">
+
+Remove
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+    });
+
+    cartCount.innerText = count;
+
+    cartTotal.innerText = total;
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+}
+/*==================================
+        INCREASE QUANTITY
+==================================*/
+
+function increaseQuantity(index){
+
+    cart[index].quantity++;
+
+    updateCart();
+
+}
+
+/*==================================
+        DECREASE QUANTITY
+==================================*/
+
+function decreaseQuantity(index){
+
+    if(cart[index].quantity > 1){
+
+        cart[index].quantity--;
+
+    }else{
+
+        cart.splice(index,1);
+
+    }
+
+    updateCart();
+
+}
+
+/*==================================
+        REMOVE ITEM
+==================================*/
+
+function removeItem(index){
+
+    cart.splice(index,1);
+
+    updateCart();
+
+    showNotification("Product Removed");
+
+}
+
+/*==================================
+        CLEAR CART
+==================================*/
+
+function clearCart(){
+
+    if(cart.length===0){
+
+        showNotification("Cart Already Empty");
+
+        return;
+
+    }
+
+    cart=[];
+
+    updateCart();
+
+    localStorage.removeItem("cart");
+
+    showNotification("Cart Cleared");
+
+}
+
+/*==================================
+      LOAD SAVED CART
+==================================*/
+
+window.addEventListener("load",()=>{
+
+    const savedCart=localStorage.getItem("cart");
+
+    if(savedCart){
+
+        cart=JSON.parse(savedCart);
+
+        updateCart();
+
+    }
 
 });
+/*==================================
+        TOGGLE CART
+==================================*/
 
-cartCount++;
+function toggleCart(){
 
-updateCartCount();
+    document.getElementById("cart").classList.toggle("active");
 
-saveCart();
+    document.getElementById("overlay").classList.toggle("active");
 
-showNotification("✔ Product Added To Cart");
+}
 
-});
+/*==================================
+        CHECKOUT
+==================================*/
 
-});
+function checkout(){
 
-/* Buy Now */
+    if(cart.length===0){
 
-document.querySelectorAll(".buy-btn").forEach(button=>{
+        showNotification("Your Cart is Empty");
 
-button.addEventListener("click",()=>{
+        return;
 
-window.location.href="#checkout";
+    }
 
-});
+    let message="🛒 *VISHWASH NAMKEEN ORDER*%0A%0A";
 
-});
+    let grandTotal=0;
 
-/* Quantity */
+    cart.forEach(item=>{
 
-document.querySelectorAll(".quantity").forEach(box=>{
+        const itemTotal=item.price*item.quantity;
 
-const minus=box.querySelector("button:first-child");
+        grandTotal+=itemTotal;
 
-const plus=box.querySelector("button:last-child");
+        message+=`📦 ${item.name}%0A`;
+        message+=`Qty : ${item.quantity}%0A`;
+        message+=`Price : ₹${item.price}%0A`;
+        message+=`Subtotal : ₹${itemTotal}%0A%0A`;
 
-const input=box.querySelector("input");
+    });
 
-minus.addEventListener("click",()=>{
+    message+=`💰 *Grand Total : ₹${grandTotal}*`;
 
-if(input.value>1){
+    window.open(
+    "https://wa.me/918460183525?text="+message,
+    "_blank"
+    );
 
-input.value--;
+}
+
+/*==================================
+      OPEN CART BUTTON
+==================================*/
+
+const cartButton=document.getElementById("cart-btn");
+
+if(cartButton){
+
+cartButton.addEventListener("click",toggleCart);
+
+}
+
+/*==================================
+      CLOSE WITH ESC KEY
+==================================*/
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+
+document.getElementById("cart").classList.remove("active");
+
+document.getElementById("overlay").classList.remove("active");
 
 }
 
 });
 
-plus.addEventListener("click",()=>{
+/*==================================
+      CLICK OUTSIDE CART
+==================================*/
 
-input.value++;
+const overlay=document.getElementById("overlay");
 
-});
+if(overlay){
 
-});
-/* ==========================================
-   WISHLIST + SEARCH + FILTER
-========================================== */
+overlay.addEventListener("click",function(){
 
-/* Wishlist */
+document.getElementById("cart").classList.remove("active");
 
-let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-
-document.querySelectorAll(".wishlist").forEach(btn => {
-
-btn.addEventListener("click", () => {
-
-const product = btn.closest(".product-card");
-
-const name = product.querySelector("h3").innerText;
-const price = product.querySelector(".sale").innerText;
-const image = product.querySelector("img").src;
-
-wishlist.push({
-name,
-price,
-image
-});
-
-localStorage.setItem("wishlist", JSON.stringify(wishlist));
-
-showNotification("❤️ Added To Wishlist");
-
-btn.innerHTML = "<i class='fa-solid fa-heart'></i>";
+overlay.classList.remove("active");
 
 });
 
-});
-
-/* ==========================
-   SEARCH
-========================== */
+}
+/*==================================
+        LIVE SEARCH
+==================================*/
 
 const searchInput = document.querySelector(".search-box input");
 
@@ -338,17 +308,19 @@ searchInput.addEventListener("keyup", function(){
 
 const value = this.value.toLowerCase();
 
-document.querySelectorAll(".product-card").forEach(card=>{
+const products = document.querySelectorAll(".product-card");
 
-const name = card.querySelector("h3").innerText.toLowerCase();
+products.forEach(product=>{
+
+const name = product.querySelector("h3").innerText.toLowerCase();
 
 if(name.includes(value)){
 
-card.style.display="block";
+product.style.display="block";
 
 }else{
 
-card.style.display="none";
+product.style.display="none";
 
 }
 
@@ -358,222 +330,128 @@ card.style.display="none";
 
 }
 
-/* ==========================
-   CATEGORY FILTER
-========================== */
+/*==================================
+      SHOW NOTIFICATION
+==================================*/
 
-document.querySelectorAll(".filter-btn").forEach(button=>{
+function showNotification(message){
 
-button.addEventListener("click",()=>{
+const notification=document.getElementById("notification");
 
-const category = button.dataset.filter;
+if(!notification) return;
 
-document.querySelectorAll(".product-card").forEach(card=>{
+notification.innerText=message;
 
-if(category==="all"){
+notification.classList.add("show");
 
-card.style.display="block";
+setTimeout(()=>{
 
-}else if(card.dataset.category===category){
+notification.classList.remove("show");
 
-card.style.display="block";
+},2500);
+
+}
+
+/*==================================
+      BACK TO TOP BUTTON
+==================================*/
+
+const backTop=document.getElementById("backToTop");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>400){
+
+if(backTop){
+
+backTop.style.display="flex";
+
+}
 
 }else{
 
-card.style.display="none";
+if(backTop){
+
+backTop.style.display="none";
+
+}
+
+}
+
+});
+
+/*==================================
+      SCROLL TO TOP
+==================================*/
+
+function scrollToTop(){
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+}
+
+/*==================================
+      STICKY HEADER
+==================================*/
+
+const header=document.querySelector("header");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>80){
+
+header.classList.add("scrolled");
+
+}else{
+
+header.classList.remove("scrolled");
+
+}
+
+});
+
+/*==================================
+      SMOOTH SECTION SCROLL
+==================================*/
+
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+
+link.addEventListener("click",function(e){
+
+e.preventDefault();
+
+const target=document.querySelector(this.getAttribute("href"));
+
+if(target){
+
+target.scrollIntoView({
+
+behavior:"smooth"
+
+});
 
 }
 
 });
 
 });
+/*==================================
+        PAGE LOADER
+==================================*/
 
-});
+window.addEventListener("load", function(){
 
-/* ==========================
-   SORT BY PRICE
-========================== */
-
-const sortSelect=document.querySelector("#sort");
-
-if(sortSelect){
-
-sortSelect.addEventListener("change",()=>{
-
-showNotification("Products Sorted");
-
-});
-
-}
-
-/* ==========================
-   LIVE PRODUCT COUNT
-========================== */
-
-function updateProductCount(){
-
-const visible=document.querySelectorAll(".product-card:not([style*='display: none'])");
-
-const count=document.querySelector(".product-count");
-
-if(count){
-
-count.innerHTML=visible.length+" Products";
-
-}
-
-}
-
-updateProductCount();
-/* ==========================================
-   HERO SLIDER + IMAGE SLIDER + ANIMATIONS
-========================================== */
-
-/* Hero Background Slider */
-
-const hero = document.querySelector(".hero");
-
-const heroImages = [
-
-"images/hero1.jpg",
-
-"images/hero2.jpg",
-
-"images/hero3.jpg",
-
-"images/hero4.jpg"
-
-];
-
-let heroIndex = 0;
-
-function changeHero(){
-
-if(hero){
-
-hero.style.backgroundImage =
-
-`linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),url('${heroImages[heroIndex]}')`;
-
-heroIndex++;
-
-if(heroIndex >= heroImages.length){
-
-heroIndex = 0;
-
-}
-
-}
-
-}
-
-changeHero();
-
-setInterval(changeHero,5000);
-
-/* ==========================
-   PRODUCT IMAGE HOVER
-========================== */
-
-document.querySelectorAll(".product-card img").forEach(img=>{
-
-img.addEventListener("mouseenter",()=>{
-
-img.style.transform="scale(1.08)";
-
-img.style.transition=".4s";
-
-});
-
-img.addEventListener("mouseleave",()=>{
-
-img.style.transform="scale(1)";
-
-});
-
-});
-
-/* ==========================
-   AUTO SLIDER
-========================== */
-
-const slides=document.querySelectorAll(".slide");
-
-let currentSlide=0;
-
-function showSlide(index){
-
-slides.forEach((slide)=>{
-
-slide.style.display="none";
-
-});
-
-if(slides[index]){
-
-slides[index].style.display="block";
-
-}
-
-}
-
-function nextSlide(){
-
-currentSlide++;
-
-if(currentSlide>=slides.length){
-
-currentSlide=0;
-
-}
-
-showSlide(currentSlide);
-
-}
-
-if(slides.length>0){
-
-showSlide(0);
-
-setInterval(nextSlide,4000);
-
-}
-
-/* ==========================
-   FADE ANIMATION
-========================== */
-
-const observer=new IntersectionObserver(entries=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("fade-up");
-
-}
-
-});
-
-});
-
-document.querySelectorAll("section,.product-card,.feature-box,.review-card").forEach(item=>{
-
-observer.observe(item);
-
-});
-
-/* ==========================
-   LOADER
-========================== */
-
-window.addEventListener("load",()=>{
-
-const loader=document.querySelector(".loader");
+const loader = document.getElementById("loader");
 
 if(loader){
 
-setTimeout(()=>{
+setTimeout(function(){
 
 loader.style.opacity="0";
 
@@ -584,967 +462,538 @@ loader.style.visibility="hidden";
 }
 
 });
-/* ==========================================
-   CHECKOUT + COUPON + ORDER SUMMARY
-========================================== */
 
-let subtotal = 0;
-let discount = 0;
-let delivery = 0;
-let total = 0;
+/*==================================
+      SCROLL ANIMATION
+==================================*/
 
-/* ==========================
-   UPDATE TOTAL
-========================== */
-
-function updateSummary(){
-
-subtotal = 0;
-
-cart.forEach(item=>{
-
-   uncaught syntraxError:missing)after arguent list script.js:606
-const price = Number(string(item.price.replace("₹","")); 0;
-
-subtotal += price * item.qty;
-
-});
-
-if(subtotal >= 499){
-
-delivery = 0;
-
-}else{
-
-delivery = 40;
-
-}
-
-total = subtotal - discount + delivery;
-
-const subtotalEl = document.querySelector(".subtotal-price");
-const discountEl = document.querySelector(".discount-price");
-const deliveryEl = document.querySelector(".delivery-price");
-const totalEl = document.querySelector(".total-price");
-
-if(subtotalEl) subtotalEl.innerHTML = "₹"+subtotal;
-
-if(discountEl) discountEl.innerHTML = "- ₹"+discount;
-
-if(deliveryEl) deliveryEl.innerHTML = delivery===0 ? "FREE" : "₹"+delivery;
-
-if(totalEl) totalEl.innerHTML = "₹"+total;
-
-}
-
-/* ==========================
-   COUPON CODE
-========================== */
-
-const couponBtn = document.querySelector(".coupon-btn");
-
-if(couponBtn){
-
-couponBtn.addEventListener("click",()=>{
-
-const code = document.querySelector(".coupon-input input").value.trim().toUpperCase();
-
-if(code==="VISHWASH10"){
-
-discount = Math.round(subtotal*0.10);
-
-showNotification("🎉 10% Discount Applied");
-
-}
-
-else if(code==="WELCOME20"){
-
-discount = 20;
-
-showNotification("🎉 ₹20 Discount Applied");
-
-}
-
-else{
-
-discount = 0;
-
-showNotification("❌ Invalid Coupon");
-
-}
-
-updateSummary();
-
-});
-
-}
-
-/* ==========================
-   CHECKOUT FORM
-========================== */
-
-const checkoutForm = document.querySelector(".checkout-form");
-
-if(checkoutForm){
-
-checkoutForm.addEventListener("submit",(e)=>{
-
-e.preventDefault();
-
-const name = checkoutForm.querySelector("input[type='text']").value;
-
-const phone = checkoutForm.querySelector("input[type='tel']").value;
-
-const address = checkoutForm.querySelector("textarea").value;
-
-if(name==="" || phone==="" || address===""){
-
-showNotification("Please Fill All Details");
-
-return;
-
-}
-
-showNotification("✅ Order Placed Successfully");
-
-checkoutForm.reset();
-
-cart=[];
-
-cartCount=0;
-
-saveCart();
-
-updateCartCount();
-
-updateSummary();
-
-});
-
-}
-
-/* ==========================
-   PAYMENT METHOD
-========================== */
-
-document.querySelectorAll(".payment-option").forEach(option=>{
-
-option.addEventListener("click",()=>{
-
-document.querySelectorAll(".payment-option").forEach(item=>{
-
-item.classList.remove("active");
-
-});
-
-option.classList.add("active");
-
-});
-
-});
-
-/* ==========================
-   INITIAL LOAD
-========================== */
-
-updateSummary();
-/* ==========================================
-   ORDER TRACKING + PIN CHECK + QUICK VIEW
-========================================== */
-
-/* PIN CODE CHECK */
-
-const pinBtn = document.querySelector(".pin-check-btn");
-
-if(pinBtn){
-
-pinBtn.addEventListener("click",()=>{
-
-const pin=document.querySelector(".pin-input").value.trim();
-
-const availablePins=[393040,395003,395004,394601,394210];
-
-if(availablePins.includes(Number(pin))){
-
-showNotification("✅ Delivery Available");
-
-}else{
-
-showNotification("❌ Delivery Not Available");
-
-}
-
-});
-
-}
-
-/* ==========================
-   ORDER TRACKING
-========================== */
-
-const trackBtn=document.querySelector(".track-btn");
-
-if(trackBtn){
-
-trackBtn.addEventListener("click",()=>{
-
-const order=document.querySelector(".track-input").value;
-
-if(order.length<5){
-
-showNotification("Enter Valid Order ID");
-
-return;
-
-}
-
-document.querySelector(".tracking-status").innerHTML=
-
-"<b>Order Status :</b> Your Order is Out For Delivery 🚚";
-
-});
-
-}
-
-/* ==========================
-   QUICK VIEW
-========================== */
-
-document.querySelectorAll(".quick-view-btn").forEach(btn=>{
-
-btn.addEventListener("click",()=>{
-
-const card=btn.closest(".product-card");
-
-const img=card.querySelector("img").src;
-
-const title=card.querySelector("h3").innerText;
-
-const price=card.querySelector(".sale").innerText;
-
-document.querySelector(".quick-view img").src=img;
-
-document.querySelector(".quick-details h2").innerHTML=title;
-
-document.querySelector(".quick-details h3").innerHTML=price;
-
-document.querySelector(".quick-view").classList.add("active");
-
-});
-
-});
-
-const closeQuick=document.querySelector(".quick-close");
-
-if(closeQuick){
-
-closeQuick.onclick=()=>{
-
-document.querySelector(".quick-view").classList.remove("active");
-
-};
-
-}
-
-/* ==========================
-   WISHLIST COUNT
-========================== */
-
-function updateWishlist(){
-
-const count=document.querySelector(".wishlist-count");
-
-if(count){
-
-count.innerHTML=wishlist.length;
-
-}
-
-}
-
-updateWishlist();
-
-/* ==========================
-   REMOVE WISHLIST
-========================== */
-
-document.querySelectorAll(".remove-wishlist").forEach(btn=>{
-
-btn.addEventListener("click",()=>{
-
-btn.parentElement.remove();
-
-showNotification("❤️ Removed From Wishlist");
-
-});
-
-});
-
-/* ==========================
-   PRODUCT SHARE
-========================== */
-
-document.querySelectorAll(".share-btn").forEach(btn=>{
-
-btn.addEventListener("click",()=>{
-
-if(navigator.share){
-
-navigator.share({
-
-title:"Vishwash Namkeen",
-
-text:"Check this amazing product!",
-
-url:window.location.href
-
-});
-
-}else{
-
-navigator.clipboard.writeText(window.location.href);
-
-showNotification("🔗 Link Copied");
-
-}
-
-});
-
-});
-/* ==========================================
-   PRODUCT REVIEWS + RATING + COMPARE
-========================================== */
-
-/* ==========================
-   STAR RATING
-========================== */
-
-document.querySelectorAll(".rating-stars i").forEach((star,index)=>{
-
-star.addEventListener("click",()=>{
-
-const stars=star.parentElement.querySelectorAll("i");
-
-stars.forEach((item,i)=>{
-
-if(i<=index){
-
-item.classList.remove("fa-regular");
-item.classList.add("fa-solid");
-
-}else{
-
-item.classList.remove("fa-solid");
-item.classList.add("fa-regular");
-
-}
-
-});
-
-showNotification("⭐ Thanks For Rating!");
-
-});
-
-});
-
-/* ==========================
-   SUBMIT REVIEW
-========================== */
-
-const reviewForm=document.querySelector(".review-form");
-
-if(reviewForm){
-
-reviewForm.addEventListener("submit",(e)=>{
-
-e.preventDefault();
-
-const name=reviewForm.querySelector(".review-name").value;
-
-const message=reviewForm.querySelector(".review-message").value;
-
-if(name===""||message===""){
-
-showNotification("Fill All Fields");
-
-return;
-
-}
-
-const reviewList=document.querySelector(".review-list");
-
-const review=document.createElement("div");
-
-review.className="review-card";
-
-review.innerHTML=`
-
-<h3>${name}</h3>
-
-<div class="stars">
-
-★★★★★
-
-</div>
-
-<p>${message}</p>
-
-`;
-
-reviewList.prepend(review);
-
-reviewForm.reset();
-
-showNotification("✅ Review Submitted");
-
-});
-
-}
-
-/* ==========================
-   RECENTLY VIEWED
-========================== */
-
-let recentProducts=[];
-
-document.querySelectorAll(".product-card").forEach(card=>{
-
-card.addEventListener("click",()=>{
-
-const name=card.querySelector("h3").innerText;
-
-if(!recentProducts.includes(name)){
-
-recentProducts.push(name);
-
-localStorage.setItem("recentProducts",
-
-JSON.stringify(recentProducts));
-
-}
-
-});
-
-});
-
-/* ==========================
-   COMPARE PRODUCTS
-========================== */
-
-let compare=[];
-
-document.querySelectorAll(".compare-btn").forEach(btn=>{
-
-btn.addEventListener("click",()=>{
-
-const card=btn.closest(".product-card");
-
-const product=card.querySelector("h3").innerText;
-
-if(compare.length<2){
-
-compare.push(product);
-
-showNotification(product+" Added");
-
-}else{
-
-showNotification("Only 2 Products Compare");
-
-}
-
-});
-
-});
-
-/* ==========================
-   CLEAR COMPARE
-========================== */
-
-const clearCompare=document.querySelector(".clear-compare");
-
-if(clearCompare){
-
-clearCompare.onclick=()=>{
-
-compare=[];
-
-showNotification("Compare Cleared");
-
-};
-
-}
-
-/* ==========================
-   PRODUCT LIKES
-========================== */
-
-document.querySelectorAll(".like-btn").forEach(btn=>{
-
-let likes=0;
-
-btn.addEventListener("click",()=>{
-
-likes++;
-
-btn.querySelector("span").innerHTML=likes;
-
-});
-
-});
-
-/* ==========================
-   PRODUCT VIEW COUNT
-========================== */
-
-document.querySelectorAll(".product-card").forEach(card=>{
-
-card.addEventListener("mouseenter",()=>{
-
-let views=Number(card.dataset.views||0);
-
-views++;
-
-card.dataset.views=views;
-
-});
-
-});
-/* ==========================================
-   VOICE SEARCH + THEME + CURRENCY + ANIMATION
-========================================== */
-
-/* ==========================
-   VOICE SEARCH
-========================== */
-
-const voiceBtn = document.querySelector(".voice-btn");
-
-if (voiceBtn && "webkitSpeechRecognition" in window) {
-
-const recognition = new webkitSpeechRecognition();
-
-recognition.lang = "en-IN";
-recognition.continuous = false;
-
-voiceBtn.addEventListener("click", () => {
-
-recognition.start();
-
-showNotification("🎤 Listening...");
-
-});
-
-recognition.onresult = (event) => {
-
-const text = event.results[0][0].transcript;
-
-const input = document.querySelector(".search-box input");
-
-if(input){
-
-input.value = text;
-input.dispatchEvent(new Event("keyup"));
-
-}
-
-};
-
-}
-
-/* ==========================
-   SEARCH SUGGESTIONS
-========================== */
-
-const suggestions = [
-
-"Punjabi Mix",
-"Tikha Sev",
-"Aloo Bhujia",
-"Masala Chips",
-"Khatta Meetha",
-"Corn Mixture",
-"Moong Dal",
-"Banana Chips"
-
-];
-
-const searchInput2= document.querySelector(".search-box input");
-
-if(searchInput){
-
-searchInput.addEventListener("input",()=>{
-
-const value = searchInput.value.toLowerCase();
-
-const result = suggestions.filter(item=>{
-
-return item.toLowerCase().includes(value);
-
-});
-
-console.log(result);
-
-});
-
-}
-
-/* ==========================
-   DARK / LIGHT MODE
-========================== */
-
-const themeBtn = document.querySelector(".theme-btn");
-
-if(themeBtn){
-
-themeBtn.onclick=()=>{
-
-document.body.classList.toggle("light-theme");
-
-localStorage.setItem(
-
-"theme",
-
-document.body.classList.contains("light-theme")
-
-? "light"
-
-: "dark"
-
-);
-
-};
-
-}
-
-if(localStorage.getItem("theme")=="light"){
-
-document.body.classList.add("light-theme");
-
-}
-
-/* ==========================
-   CURRENCY
-========================== */
-
-const currency = document.querySelector("#currency");
-
-if(currency){
-
-currency.addEventListener("change",()=>{
-
-showNotification("Currency Updated");
-
-});
-
-}
-
-/* ==========================
-   COUNTER ANIMATION
-========================== */
-
-document.querySelectorAll(".counter").forEach(counter=>{
-
-let start = 0;
-
-const end = Number(counter.dataset.count);
-
-const timer = setInterval(()=>{
-
-start++;
-
-counter.innerHTML = start;
-
-if(start >= end){
-
-clearInterval(timer);
-
-}
-
-},20);
-
-});
-
-/* ==========================
-   IMAGE ZOOM
-========================== */
-
-document.querySelectorAll(".zoom-img").forEach(img=>{
-
-img.addEventListener("mousemove",()=>{
-
-img.style.transform="scale(1.15)";
-
-});
-
-img.addEventListener("mouseleave",()=>{
-
-img.style.transform="scale(1)";
-
-});
-
-});
-
-/* ==========================
-   PARALLAX EFFECT
-========================== */
-
-window.addEventListener("scroll",()=>{
-
-const hero = document.querySelector(".hero");
-
-if(hero){
-
-hero.style.backgroundPositionY =
-
-window.scrollY * 0.4 + "px";
-
-}
-
-});
-/* ==========================================
-   OFFER COUNTDOWN + NEWSLETTER + BANNER
-========================================== */
-
-/* ==========================
-   OFFER COUNTDOWN
-========================== */
-
-const countdown = document.querySelector(".offer-timer");
-
-if(countdown){
-
-let endDate = new Date();
-
-endDate.setHours(endDate.getHours()+24);
-
-function updateCountdown(){
-
-const now = new Date().getTime();
-
-const distance = endDate - now;
-
-if(distance <= 0){
-
-countdown.innerHTML = "Offer Expired";
-
-return;
-
-}
-
-const hours = Math.floor(distance/(1000*60*60));
-
-const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-
-const seconds = Math.floor((distance%(1000*60))/1000);
-
-countdown.innerHTML =
-hours+"h : "+minutes+"m : "+seconds+"s";
-
-}
-
-setInterval(updateCountdown,1000);
-
-}
-
-/* ==========================
-   NEWSLETTER POPUP
-========================== */
-
-const newsletter=document.querySelector(".newsletter-popup");
-
-if(newsletter){
-
-setTimeout(()=>{
-
-if(!localStorage.getItem("newsletterShown")){
-
-newsletter.classList.add("active");
-
-localStorage.setItem("newsletterShown","yes");
-
-}
-
-},5000);
-
-}
-
-const closePopup=document.querySelector(".popup-close");
-
-if(closePopup){
-
-closePopup.onclick=()=>{
-
-newsletter.classList.remove("active");
-
-};
-
-}
-
-/* ==========================
-   SUBSCRIBE
-========================== */
-
-const subscribeBtn=document.querySelector(".newsletter-popup button");
-
-if(subscribeBtn){
-
-subscribeBtn.onclick=()=>{
-
-const email=document.querySelector(".newsletter-popup input").value;
-
-if(email==""){
-
-showNotification("Enter Email");
-
-return;
-
-}
-
-showNotification("🎉 Subscription Successful");
-
-newsletter.classList.remove("active");
-
-};
-
-}
-
-/* ==========================
-   AUTO BANNER SLIDER
-========================== */
-
-const banners=document.querySelectorAll(".banner-slide");
-
-let bannerIndex=0;
-
-function bannerSlider(){
-
-banners.forEach(slide=>{
-
-slide.style.display="none";
-
-});
-
-if(banners.length){
-
-banners[bannerIndex].style.display="block";
-
-bannerIndex++;
-
-if(bannerIndex>=banners.length){
-
-bannerIndex=0;
-
-}
-
-}
-
-}
-
-if(banners.length){
-
-bannerSlider();
-
-setInterval(bannerSlider,4000);
-
-}
-
-/* ==========================
-   CART TOTAL LIVE
-========================== */
-
-function refreshCart(){
-
-let total=0;
-
-cart.forEach(item=>{
-
-const price=parseInt(item.price.replace("₹",""));
-
-total+=price*item.qty;
-
-});
-
-const cartTotal=document.querySelector(".cart-total");
-
-if(cartTotal){
-
-cartTotal.innerHTML="₹"+total;
-
-}
-
-}
-
-refreshCart();
-
-/* ==========================
-   REMOVE PRODUCT
-========================== */
-
-document.querySelectorAll(".remove-item").forEach(btn=>{
-
-btn.onclick=()=>{
-
-btn.closest(".cart-item").remove();
-
-showNotification("🗑 Product Removed");
-
-refreshCart();
-
-};
-
-});
-
-/* ==========================
-   EMPTY CART
-========================== */
-
-const emptyCart=document.querySelector(".empty-cart");
-
-if(emptyCart){
-
-emptyCart.onclick=()=>{
-
-cart=[];
-
-localStorage.removeItem("vishwashCart");
-
-document.querySelector(".cart-items").innerHTML="";
-
-updateCartCount();
-
-refreshCart();
-
-showNotification("Cart Cleared");
-
-};
-
-}
-/* ==========================================
-   VISHWASH NAMKEEN
-   SCRIPT.JS PART 10
-   FINAL FEATURES
-========================================== */
-
-/* ==========================
-   LAZY IMAGE LOADING
-========================== */
-
-const lazyImages = document.querySelectorAll("img[data-src]");
-
-const imageObserver = new IntersectionObserver((entries, observer)=>{
+const observer = new IntersectionObserver((entries)=>{
 
 entries.forEach(entry=>{
 
 if(entry.isIntersecting){
 
-const img = entry.target;
+entry.target.classList.add("show");
 
-img.src = img.dataset.src;
+}
 
-img.removeAttribute("data-src");
+});
 
-observer.unobserve(img);
+},{
+threshold:0.15
+});
+
+document.querySelectorAll(
+".fade-up,.fade-left,.fade-right"
+).forEach(el=>{
+
+observer.observe(el);
+
+});
+
+/*==================================
+      GALLERY IMAGE ZOOM
+==================================*/
+
+document.querySelectorAll(".gallery-item img").forEach(img=>{
+
+img.addEventListener("click",function(){
+
+const popup=document.createElement("div");
+
+popup.className="image-popup";
+
+popup.innerHTML=`
+<div class="popup-bg">
+<img src="${this.src}">
+<span class="popup-close">&times;</span>
+</div>
+`;
+
+document.body.appendChild(popup);
+
+popup.querySelector(".popup-close")
+.onclick=function(){
+
+popup.remove();
+
+};
+
+popup.onclick=function(e){
+
+if(e.target===popup){
+
+popup.remove();
+
+}
+
+};
+
+});
+
+});
+
+/*==================================
+      SEARCH POPUP
+==================================*/
+
+const searchIcon=document.querySelector(".fa-search");
+const searchPopup=document.getElementById("searchPopup");
+
+if(searchIcon && searchPopup){
+
+searchIcon.addEventListener("click",()=>{
+
+searchPopup.classList.toggle("active");
+
+});
+
+}
+
+/*==================================
+      CLOSE SEARCH (ESC)
+==================================*/
+
+document.addEventListener("keydown",(e)=>{
+
+if(e.key==="Escape" && searchPopup){
+
+searchPopup.classList.remove("active");
+
+}
+
+});
+
+/*==================================
+      PRELOAD IMAGES
+==================================*/
+
+[
+"HERO.PNG",
+"BHAKARWADI.PNG",
+"BINGOMASALA.PNG",
+"BINGOPANIPURI.PNG",
+"METHIPURI.PNG",
+"PUNJABIMIX.PNG",
+"NADIYADIMIX.PNG",
+"MASALABANANAWEFER.PNG"
+].forEach(src=>{
+
+const img=new Image();
+
+img.src=src;
+
+});
+/*==================================
+      LOGIN / SIGNUP MODAL
+==================================*/
+
+const loginModal=document.getElementById("loginModal");
+
+function openLogin(){
+
+if(loginModal){
+
+loginModal.classList.add("active");
+
+}
+
+}
+
+function closeLogin(){
+
+if(loginModal){
+
+loginModal.classList.remove("active");
+
+}
+
+}
+
+/*==================================
+      SUCCESS MODAL
+==================================*/
+
+const successModal=document.getElementById("successModal");
+
+function openSuccess(){
+
+if(successModal){
+
+successModal.classList.add("active");
+
+}
+
+}
+
+function closeSuccess(){
+
+if(successModal){
+
+successModal.classList.remove("active");
+
+}
+
+}
+
+/*==================================
+      NEWSLETTER
+==================================*/
+
+const newsletter=document.querySelector(".newsletter-form");
+
+if(newsletter){
+
+newsletter.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const email=this.querySelector("input").value.trim();
+
+const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if(email===""){
+
+showNotification("Please Enter Email");
+
+return;
+
+}
+
+if(!emailPattern.test(email)){
+
+showNotification("Invalid Email");
+
+return;
+
+}
+
+showNotification("Subscribed Successfully");
+
+this.reset();
+
+});
+
+}
+
+/*==================================
+      CONTACT FORM
+==================================*/
+
+const contactForm=document.querySelector(".contact-form form");
+
+if(contactForm){
+
+contactForm.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+const name=this.querySelector("input[type='text']").value.trim();
+
+const email=this.querySelector("input[type='email']").value.trim();
+
+const phone=this.querySelector("input[type='tel']").value.trim();
+
+if(name.length<3){
+
+showNotification("Enter Valid Name");
+
+return;
+
+}
+
+if(phone.length<10){
+
+showNotification("Enter Valid Mobile Number");
+
+return;
+
+}
+
+showNotification("Message Sent Successfully");
+
+this.reset();
+
+});
+
+}
+
+/*==================================
+      CHECKOUT SUCCESS
+==================================*/
+
+function orderPlaced(){
+
+openSuccess();
+
+clearCart();
+
+showNotification("Order Placed Successfully");
+
+}
+
+/*==================================
+      CLICK SOUND
+==================================*/
+
+const clickSound=document.getElementById("clickSound");
+
+document.querySelectorAll("button").forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+if(clickSound){
+
+clickSound.currentTime=0;
+
+clickSound.play().catch(()=>{});
+
+}
+
+});
+
+});
+/*==================================
+      MOBILE MENU
+==================================*/
+
+const menuBtn=document.querySelector(".menu-toggle");
+const navLinks=document.querySelector(".nav-links");
+
+if(menuBtn){
+
+menuBtn.addEventListener("click",()=>{
+
+navLinks.classList.toggle("active");
+
+});
+
+}
+
+/*==================================
+      CLOSE MENU
+==================================*/
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+if(navLinks){
+
+navLinks.classList.remove("active");
+
+}
+
+});
+
+});
+
+/*==================================
+        DARK MODE
+==================================*/
+
+const darkBtn=document.getElementById("darkMode");
+
+if(darkBtn){
+
+darkBtn.addEventListener("click",()=>{
+
+document.body.classList.toggle("dark");
+
+localStorage.setItem(
+"theme",
+document.body.classList.contains("dark")
+?"dark":"light"
+);
+
+});
+
+}
+
+const savedTheme=localStorage.getItem("theme");
+
+if(savedTheme==="dark"){
+
+document.body.classList.add("dark");
+
+}
+
+/*==================================
+        WISHLIST
+==================================*/
+
+let wishlist=[];
+
+function addWishlist(product){
+
+if(!wishlist.includes(product)){
+
+wishlist.push(product);
+
+showNotification(product+" added to Wishlist");
+
+}else{
+
+showNotification("Already in Wishlist");
+
+}
+
+}
+
+/*==================================
+      PRODUCT FILTER
+==================================*/
+
+function filterProducts(category){
+
+const cards=document.querySelectorAll(".product-card");
+
+cards.forEach(card=>{
+
+const productCategory=card.dataset.category;
+
+if(category==="all"){
+
+card.style.display="block";
+
+}
+else if(productCategory===category){
+
+card.style.display="block";
+
+}
+else{
+
+card.style.display="none";
+
+}
+
+});
+
+}
+
+/*==================================
+      PAGE SCROLL PROGRESS
+==================================*/
+
+window.addEventListener("scroll",()=>{
+
+const totalHeight=
+document.documentElement.scrollHeight-
+window.innerHeight;
+
+const progress=
+(window.pageYOffset/totalHeight)*100;
+
+const bar=document.getElementById("progressBar");
+
+if(bar){
+
+bar.style.width=progress+"%";
+
+}
+
+});
+/*==================================
+      AUTO HERO SLIDER
+==================================*/
+
+const heroImages=[
+"HERO.PNG",
+"BHAKARWADI.PNG",
+"PUNJABIMIX.PNG",
+"NADIYADIMIX.PNG"
+];
+
+let heroIndex=0;
+
+const heroImage=document.querySelector(".hero-image img");
+
+if(heroImage){
+
+setInterval(()=>{
+
+heroIndex++;
+
+if(heroIndex>=heroImages.length){
+
+heroIndex=0;
+
+}
+
+heroImage.style.opacity="0";
+
+setTimeout(()=>{
+
+heroImage.src=heroImages[heroIndex];
+
+heroImage.style.opacity="1";
+
+},300);
+
+},4000);
+
+}
+
+/*==================================
+      PRODUCT SORTING
+==================================*/
+
+function sortProducts(type){
+
+const container=document.querySelector(".product-container");
+
+if(!container) return;
+
+const cards=[...container.querySelectorAll(".product-card")];
+
+cards.sort((a,b)=>{
+
+const priceA=parseInt(
+a.querySelector(".price").innerText.replace(/[^\d]/g,"")
+);
+
+const priceB=parseInt(
+b.querySelector(".price").innerText.replace(/[^\d]/g,"")
+);
+
+if(type==="low"){
+
+return priceA-priceB;
+
+}
+
+if(type==="high"){
+
+return priceB-priceA;
+
+}
+
+return 0;
+
+});
+
+cards.forEach(card=>container.appendChild(card));
+
+}
+
+/*==================================
+      LAZY IMAGE LOADING
+==================================*/
+
+const lazyImages=document.querySelectorAll("img");
+
+const imageObserver=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+const img=entry.target;
+
+img.loading="lazy";
+
+imageObserver.unobserve(img);
 
 }
 
@@ -1558,162 +1007,383 @@ imageObserver.observe(img);
 
 });
 
-/* ==========================
-   OFFLINE / ONLINE
-========================== */
+/*==================================
+      PRODUCT HOVER EFFECT
+==================================*/
 
-window.addEventListener("offline",()=>{
+document.querySelectorAll(".product-card").forEach(card=>{
 
-showNotification("⚠ No Internet Connection");
+card.addEventListener("mouseenter",()=>{
 
-});
-
-window.addEventListener("online",()=>{
-
-showNotification("✅ Internet Connected");
+card.style.transform="translateY(-12px) scale(1.02)";
 
 });
 
-/* ==========================
-   PAGE LOADING TIME
-========================== */
+card.addEventListener("mouseleave",()=>{
 
-window.addEventListener("load",()=>{
-
-console.log(
-
-"Website Loaded Successfully"
-
-);
+card.style.transform="";
 
 });
 
-/* ==========================
-   ESC CLOSE POPUPS
-========================== */
-
-document.addEventListener("keydown",(e)=>{
-
-if(e.key==="Escape"){
-
-document.querySelectorAll(
-
-".login-modal,.newsletter-popup,.cart-sidebar"
-
-).forEach(box=>{
-
-box.classList.remove("active");
-
 });
+
+/*==================================
+      SCROLL REVEAL
+==================================*/
+
+window.addEventListener("scroll",()=>{
+
+document.querySelectorAll("section").forEach(section=>{
+
+const top=section.getBoundingClientRect().top;
+
+if(top<window.innerHeight-120){
+
+section.classList.add("fade-up","show");
 
 }
 
 });
 
-/* ==========================
-   DISABLE RIGHT CLICK
-========================== */
+});
 
-document.addEventListener("contextmenu",(e)=>{
+/*==================================
+      PRODUCT IMAGE CLICK
+==================================*/
 
-e.preventDefault();
+document.querySelectorAll(".product-card img").forEach(img=>{
+
+img.style.cursor="pointer";
+
+img.addEventListener("click",()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
 
 });
 
-/* ==========================
-   DISABLE F12
-========================== */
+});
 
-document.addEventListener("keydown",(e)=>{
+});
+/*==================================
+        COUPON SYSTEM
+==================================*/
 
-if(e.key==="F12"){
+let couponDiscount = 0;
 
-e.preventDefault();
+function applyCoupon(){
+
+const coupon=document.getElementById("couponCode");
+
+if(!coupon){
+
+showNotification("Coupon Box Not Found");
+
+return;
 
 }
 
+const code=coupon.value.trim().toUpperCase();
+
+if(code==="VISHWASH10"){
+
+couponDiscount=10;
+
+showNotification("10% Discount Applied");
+
+}
+else if(code==="WELCOME20"){
+
+couponDiscount=20;
+
+showNotification("20% Discount Applied");
+
+}
+else{
+
+couponDiscount=0;
+
+showNotification("Invalid Coupon");
+
+}
+
+updateFinalBill();
+
+}
+
+/*==================================
+      FINAL BILL
+==================================*/
+
+function updateFinalBill(){
+
+let subtotal=0;
+
+cart.forEach(item=>{
+
+subtotal+=item.price*item.quantity;
+
 });
 
-/* ==========================
-   PAGE VISIT COUNTER
-========================== */
+const delivery=subtotal>=500?0:40;
 
-let visits = Number(
+const discount=(subtotal*couponDiscount)/100;
 
-localStorage.getItem("visits")
+const gst=((subtotal-discount)*5)/100;
 
-)||0;
+const grandTotal=subtotal-discount+delivery+gst;
 
-visits++;
+const totalBox=document.getElementById("cart-total");
+
+if(totalBox){
+
+totalBox.innerText=Math.round(grandTotal);
+
+}
+
+}
+
+/*==================================
+      INVOICE
+==================================*/
+
+function generateInvoice(){
+
+let invoice="";
+
+invoice+="===== VISHWASH NAMKEEN =====\n\n";
+
+cart.forEach(item=>{
+
+invoice+=item.name+" x "+item.quantity;
+
+invoice+=" = ₹"+(item.price*item.quantity);
+
+invoice+="\n";
+
+});
+
+invoice+="\n";
+
+invoice+="Total : ₹"+document.getElementById("cart-total").innerText;
+
+alert(invoice);
+
+}
+
+/*==================================
+      FINAL CHECKOUT
+==================================*/
+
+function finalCheckout(){
+
+if(cart.length===0){
+
+showNotification("Cart is Empty");
+
+return;
+
+}
+
+generateInvoice();
+
+checkout();
+
+}
+
+/*==================================
+      SAVE LAST ORDER
+==================================*/
+
+function saveLastOrder(){
 
 localStorage.setItem(
 
-"visits",
+"lastOrder",
 
-visits
+JSON.stringify(cart)
 
 );
-
-console.log("Visits :",visits);
-
-/* ==========================
-   RANDOM OFFER
-========================== */
-
-const offers=[
-
-"🔥 Flat 10% OFF",
-
-"🎉 Buy 2 Get 1 Free",
-
-"🚚 Free Delivery Above ₹499",
-
-"🥳 Extra ₹50 OFF"
-
-];
-
-const offer=document.querySelector(".offer-text");
-
-if(offer){
-
-offer.innerHTML=
-
-offers[Math.floor(Math.random()*offers.length)];
 
 }
 
-/* ==========================
-   CONSOLE MESSAGE
-========================== */
+/*==================================
+      CLEAR AFTER ORDER
+==================================*/
 
-console.log(
+function completeOrder(){
 
-"%cWelcome To VISHWASH NAMKEEN",
+saveLastOrder();
 
-"color:#ffb300;font-size:24px;font-weight:bold;"
+clearCart();
+
+showNotification("Thank You For Your Order");
+
+}
+
+/*==================================
+      AUTO BILL UPDATE
+==================================*/
+
+setInterval(()=>{
+
+updateFinalBill();
+
+},1000);
+/*==================================
+      FINAL INITIALIZATION
+==================================*/
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+console.log("Vishwash Namkeen Website Loaded");
+
+if(localStorage.getItem("cart")){
+
+cart=JSON.parse(localStorage.getItem("cart"));
+
+updateCart();
+
+}
+
+});
+
+/*==================================
+      GLOBAL ERROR HANDLER
+==================================*/
+
+window.addEventListener("error",(event)=>{
+
+console.error(
+"Error:",
+event.message
+);
+
+});
+
+/*==================================
+      SAFE QUERY SELECTOR
+==================================*/
+
+function safeElement(selector){
+
+try{
+
+return document.querySelector(selector);
+
+}catch{
+
+return null;
+
+}
+
+}
+
+/*==================================
+      CART AUTO SAVE
+==================================*/
+
+function saveCart(){
+
+localStorage.setItem(
+
+"cart",
+
+JSON.stringify(cart)
 
 );
 
+}
+
+setInterval(()=>{
+
+saveCart();
+
+},3000);
+
+/*==================================
+      PRODUCT COUNTER
+==================================*/
+
+function totalProducts(){
+
+let total=0;
+
+cart.forEach(item=>{
+
+total+=item.quantity;
+
+});
+
+return total;
+
+}
+
+/*==================================
+      WEBSITE STATS
+==================================*/
+
 console.log(
-
-"Website Developed Successfully."
-
+"Professional Vishwash Namkeen Store Ready"
 );
 
-/* ==========================
-   GLOBAL ERROR
-========================== */
+/*==================================
+      ONLINE / OFFLINE STATUS
+==================================*/
 
-window.onerror=function(){
+window.addEventListener("online",()=>{
 
-console.log("Error Captured");
+showNotification("Internet Connected");
 
-return true;
+});
+
+window.addEventListener("offline",()=>{
+
+showNotification("Internet Disconnected");
+
+});
+
+/*==================================
+      PREVENT FORM RESUBMIT
+==================================*/
+
+if(window.history.replaceState){
+
+window.history.replaceState(
+null,
+null,
+window.location.href
+);
+
+}
+
+/*==================================
+      IMAGE ERROR FIX
+==================================*/
+
+document.querySelectorAll("img").forEach(img=>{
+
+img.onerror=function(){
+
+this.src="HERO.PNG";
 
 };
 
-/* ==========================
-   FINISHED
-========================== */
+});
 
-console.log("All JavaScript Loaded Successfully 🚀");
+/*==================================
+      PERFORMANCE
+==================================*/
+
+window.requestIdleCallback?.(()=>{
+
+console.log("Website Optimized");
+
+});
+
+/*==================================
+      END OF SCRIPT.JS
+==================================*/
